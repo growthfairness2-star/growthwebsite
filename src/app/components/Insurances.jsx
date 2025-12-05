@@ -1,75 +1,95 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
-const insuranceLogos = [
-  { src: "/insurances1.jpeg", name: "BlueCross BlueShield" },
-  { src: "/insurances2.jpeg", name: "Aetna" },
-  { src: "/insurances3.jpeg", name: "Cigna" },
-  { src: "/insurances4.jpeg", name: "Oscar Health" },
-  { src: "/insurances5.jpeg", name: "Oxford Health Plans" },
-];
+// ALL 18 insurance logos
+const insuranceLogos = Array.from({ length: 18 }, (_, i) => ({
+  src: `/insurances${i + 1}.jpeg`,
+  name: `Insurance ${i + 1}`,
+}));
 
-export default function Insurances() {
+export default function InsuranceMarquee() {
+  const controls = useAnimation();
+
+  // Smooth slow scrolling motion
+  const startScroll = () => {
+    controls.start({
+      x: ["0%", "-50%"],
+      transition: {
+        duration: 120, // SUPER SLOW (Luxury feel)
+        repeat: Infinity,
+        ease: "linear",
+      },
+    });
+  };
+
+  useEffect(() => {
+    startScroll();
+  }, []);
+
+  const pauseScroll = () => controls.stop();
+  const resumeScroll = () => startScroll();
+
   return (
-    <section className="w-full py-20 bg-[#F7FBFD]">
+    <section className="relative w-full py-20 bg-[#F7FBFD] overflow-hidden">
+
       <div className="max-w-7xl mx-auto px-6 lg:px-16 text-center">
-
-        {/* TITLE */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-extrabold text-gray-900 mb-4"
-        >
+        <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
           Insurances We Accept
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-gray-600 max-w-2xl mx-auto mb-12 text-lg"
+        <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-lg">
+          We work with a wide range of insurance providers to keep care affordable.
+        </p>
+      </div>
+
+      {/* Fade masks - PRO DESIGN */}
+      <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#F7FBFD] to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#F7FBFD] to-transparent pointer-events-none z-10" />
+
+      {/* DESKTOP MARQUEE */}
+      <div className="hidden md:block overflow-hidden w-full">
+        <motion.div
+          animate={controls}
+          onMouseEnter={pauseScroll}
+          onMouseLeave={resumeScroll}
+          className="flex gap-16 w-max"
         >
-          We partner with major insurance providers to make mental health care
-          accessible and affordable for you.
-        </motion.p>
-
-        {/* LOGO GRID */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 mt-10">
-
-          {insuranceLogos.map((logo, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex justify-center items-center bg-white rounded-xl shadow-sm hover:shadow-lg transition p-4"
+          {[...insuranceLogos, ...insuranceLogos].map((logo, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-6 min-w-[200px] flex items-center justify-center border border-gray-100"
             >
               <Image
                 src={logo.src}
-                width={150}
-                height={100}
                 alt={logo.name}
+                width={160}
+                height={100}
                 className="object-contain"
               />
-            </motion.div>
+            </div>
           ))}
+        </motion.div>
+      </div>
 
-        </div>
-
-        {/* BUTTON */}
-        <motion.button
-          onClick={() => window.location.href = "/insurances"}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="mt-12 bg-[#FFAA00] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#e79a00] transition shadow-lg"
-        >
-          View Full Insurance List
-        </motion.button>
-
+      {/* MOBILE STATIC GRID */}
+      <div className="grid md:hidden grid-cols-2 sm:grid-cols-3 gap-6 px-6 mt-10">
+        {insuranceLogos.map((logo, i) => (
+          <div
+            key={i}
+            className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-center border border-gray-100"
+          >
+            <Image
+              src={logo.src}
+              alt={logo.name}
+              width={140}
+              height={80}
+              className="object-contain"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );

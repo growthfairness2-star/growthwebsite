@@ -56,18 +56,18 @@ export default function ConditionsTabs() {
     <section className="w-full py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
 
-        {/* Section Title */}
+        {/* Section Title - CENTERED */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-4xl font-bold text-gray-900 mb-8"
+          className="text-4xl font-bold text-gray-900 mb-10 text-center"
         >
           Psychiatric & Mental Health Conditions We Treat
         </motion.h2>
 
         {/* Tabs */}
-        <div className="flex flex-wrap gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
           {conditions.map((item, index) => (
             <motion.button
               whileHover={{ scale: 1.05 }}
