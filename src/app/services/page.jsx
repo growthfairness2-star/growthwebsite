@@ -7,7 +7,7 @@ const services = [
   {
     title: "Medication Management",
     desc: "Prescribing, monitoring, and optimizing psychiatric medications to support your mental wellness journey.",
-    image: "/homemeds.jpg", // replace with an image you have OR keep services.png
+    image: "/medication.jpg",
   },
   {
     title: "Psychiatric Evaluation",
@@ -29,34 +29,50 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="w-full pb-24">
-
-      {/* HERO SECTION */}
-      <section className="relative w-full h-[380px] flex items-center justify-center bg-[#F7FBFD]">
+      
+      {/* HERO SECTION - MAXIMIZED FOR SIZE AND IMPACT */}
+      <section className="w-full bg-[#F7FBFD] py-24 lg:py-40 min-h-[550px] flex items-center"> {/* Added min-h and flex items-center */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center px-6"
+          // Added items-center to ensure vertical alignment within the grid columns
+          className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" 
         >
-          <Image
-            src="/services.png"
-            alt="Services"
-            width={120}
-            height={120}
-            className="mx-auto mb-4"
-          />
+          
+          {/* IMAGE (Left Side - Maximized) */}
+          <div className="flex justify-center lg:justify-start">
+            <Image
+              src="/services.png"
+              alt="Our Services"
+              width={450} // Significantly larger image size
+              height={450} // Significantly larger image size
+              // Added max-w-full to ensure responsiveness and w-full for full utilization of the grid space
+              className="rounded-3xl shadow-2xl object-cover max-w-full h-auto" 
+            />
+          </div>
+          
+          {/* TEXT (Right Side - Large and Aligned) */}
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-extrabold text-gray-900 md:text-7xl leading-tight"> {/* Increased text size further */}
+              Our <span className="text-[#FFAA00]">Services</span>
+            </h1>
 
-          <h1 className="text-4xl font-extrabold text-gray-900">
-            Our Services
-          </h1>
+            <p className="text-gray-700 mt-6 text-xl md:text-2xl max-w-xl lg:max-w-full mx-auto lg:mx-0">
+              Compassionate, professional mental health care tailored to your unique needs and delivered virtually or in-person.
+            </p>
 
-          <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-lg">
-            Compassionate, professional mental health care tailored to your needs.
-          </p>
+            <a
+                href="/appointments"
+                className="mt-8 px-10 py-4 bg-[#FFAA00] text-white font-bold text-lg rounded-full shadow-lg hover:bg-[#e09900] transition inline-block transform hover:scale-105" // Larger button
+            >
+                Start Your Journey
+            </a>
+          </div>
         </motion.div>
       </section>
 
-      {/* SERVICES LIST */}
+      {/* SERVICES LIST (Image Left, Text Right) */}
       <section className="max-w-7xl mx-auto px-6 lg:px-16 mt-20 space-y-20">
         {services.map((service, index) => (
           <motion.div
@@ -64,22 +80,20 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-              index % 2 === 1 ? "lg:flex-row-reverse" : ""
-            }`}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
           >
-            {/* IMAGE */}
+            {/* IMAGE (Left Column) */}
             <div>
               <Image
                 src={service.image}
                 alt={service.title}
-                width={600}
-                height={400}
-                className="rounded-3xl shadow-lg object-cover"
+                width={700}
+                height={500}
+                className="rounded-3xl shadow-lg object-cover w-full h-auto"
               />
             </div>
 
-            {/* TEXT */}
+            {/* TEXT (Right Column) */}
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 {service.title}

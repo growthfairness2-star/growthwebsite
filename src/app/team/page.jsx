@@ -9,159 +9,218 @@ import {
   FaClock,
   FaLanguage,
   FaCheckCircle,
-} from "react-icons/fa";
+  FaStethoscope,
+  FaAward,
+} from "react-icons/fa"; // Added FaStethoscope, FaAward
+
+// Define a list of key specialties for a cleaner display
+const keySpecialties = [
+    "Anxiety",
+    "Depression",
+    "Bipolar Disorder",
+    "Anger Management",
+    "ADHD",
+];
+
+// Component for a styled icon-text item
+const InfoItem = ({ icon: Icon, text }) => (
+    <div className="flex items-start gap-3 text-gray-700">
+        <Icon className="text-[#FFAA00] mt-1 flex-shrink-0" size={18} />
+        <p className="leading-relaxed">{text}</p>
+    </div>
+);
 
 export default function RaymondProfile() {
   return (
-    <div className="w-full min-h-screen bg-[#F4FAFC] pb-20">
-      {/* HEADER AREA */}
-      <section className="max-w-6xl mx-auto px-6 lg:px-0 py-12 lg:py-20">
-        <div className="bg-white shadow-md rounded-3xl p-6 lg:p-10 grid lg:grid-cols-2 gap-10">
+    <div className="w-full min-h-screen bg-white pb-20"> {/* Changed background to white for cleaner look */}
+      
+      {/* PROFESSIONAL HEADER AREA (Stays Wide) */}
+      <section className="bg-[#F4FAFC] border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-0 py-12 lg:py-16">
+          <div className="bg-white rounded-3xl p-6 lg:p-10 shadow-xl grid lg:grid-cols-3 gap-10"> {/* Changed shadow and layout */}
 
-          {/* LEFT — IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-center"
-          >
-            <Image
-              src="/provider.jpg"
-              width={340}
-              height={340}
-              alt="Raymond Obiajulu"
-              className="rounded-2xl object-cover shadow-lg"
-            />
-          </motion.div>
+            {/* LEFT — IMAGE & CONTACT INFO */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-1 flex flex-col items-center text-center"
+            >
+              <Image
+                src="/provider.jpg"
+                width={280} // Slightly reduced size to balance the layout
+                height={280}
+                alt="Raymond Obiajulu"
+                className="rounded-full object-cover shadow-2xl border-4 border-[#FFAA00] mb-6" // Rounded image, accent border, stronger shadow
+              />
+              
+              <h1 className="text-3xl font-bold text-gray-900">
+                Raymond Obiajulu
+              </h1>
+              <p className="text-xl font-semibold text-[#306EFF] mt-1"> {/* Secondary color for title */}
+                Psychiatric Mental Health NP  
+              </p>
+              <p className="text-gray-600 italic">5 years of experience</p>
 
-          {/* RIGHT — INTRO TEXT */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Raymond Obiajulu
-            </h1>
-            <p className="text-gray-700 mt-2">
-              Psychiatric Mental Health NP  
-            </p>
-            <p className="text-gray-600">5 years of experience</p>
+              <div className="mt-8 w-full space-y-4">
+                <InfoItem icon={FaMapMarkerAlt} text="Virtual Care (Licensed in Texas)" />
+                <InfoItem icon={FaClock} text="Accepting New Patients" />
+                <InfoItem icon={FaLanguage} text="Languages: English, Igbo" />
+              </div>
+            </motion.div>
 
-            <div className="mt-6 space-y-3 text-gray-700">
-              <p className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-[#FFAA00]" /> Virtual
-              </p>
-              <p className="flex items-center gap-3">
-                <FaHeartbeat className="text-[#FFAA00]" />
-                Anxiety, Bipolar disorder, Depression, Anger management
-              </p>
-              <p className="flex items-center gap-3">
-                <FaCheckCircle className="text-[#FFAA00]" />
-                Medication management, Individual therapy
-              </p>
+            {/* RIGHT — PROFILE SUMMARY & CTA (Spans 2 columns on desktop) */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-2 space-y-8"
+            >
+                {/* 1. Specialties & Services */}
+                <div>
+                    <h2 className="text-2xl font-bold text-gray-800 border-b pb-2 mb-4 border-[#FFAA00]">
+                        Key Expertise
+                    </h2>
+                    
+                    <h3 className="text-lg font-semibold text-gray-700 mt-4 mb-2">Top Specialties</h3>
+                    <div className="flex flex-wrap gap-3">
+                        {keySpecialties.map((spec) => (
+                            <span 
+                                key={spec}
+                                className="px-4 py-1.5 bg-[#FFAA00] text-white font-medium rounded-full text-sm shadow-sm"
+                            >
+                                {spec}
+                            </span>
+                        ))}
+                    </div>
+
+                    <h3 className="text-lg font-semibold text-gray-700 mt-6 mb-2">Services Provided</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <InfoItem icon={FaCheckCircle} text="Medication Management" />
+                        <InfoItem icon={FaCheckCircle} text="Individual Therapy" />
+                        <InfoItem icon={FaCheckCircle} text="CBT, Motivational Interviewing" />
+                        <InfoItem icon={FaCheckCircle} text="Adults & Seniors" />
+                    </div>
+                </div>
+
+                {/* 2. Insurance Block */}
+                <div className="p-5 bg-[#F4FAFC] rounded-xl border border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                        <FaAward className="text-[#306EFF]" />
+                        Insurance Accepted
+                    </h3>
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                        Aetna, Blue Cross Blue Shield, Carelon Behavioral Health, Cigna,
+                        Oscar, Oxford, United Healthcare, and more.
+                    </p>
+                </div>
+
+                {/* 3. CTA */}
+                <div className="pt-4">
+                    <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full py-4 bg-[#FFAA00] text-white rounded-xl font-bold text-lg shadow-lg hover:bg-[#e69a00] transition"
+                        onClick={() => (window.location.href = "/appointments")}
+                    >
+                        Book a Session with Raymond
+                    </motion.button>
+                </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* MAIN CONTENT AREA (2-Column for desktop) */}
+      <section className="max-w-6xl mx-auto px-6 lg:px-0 mt-12 grid lg:grid-cols-3 gap-10">
+
+        {/* LEFT COLUMN (Bio & Approach - 2/3 width) */}
+        <div className="lg:col-span-2 space-y-10">
+
+            {/* Nice to Meet You / Bio */}
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gray-50 p-6 lg:p-8 rounded-2xl shadow-md border-t-4 border-[#FFAA00]/70"
+            >
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">👋 Nice to Meet You!</h2>
+                <p className="mt-3 text-gray-700 leading-relaxed">
+                    As a dedicated Mental Health NP, I've worked in healthcare for over a decade,
+                    treating a wide range of complex conditions including Anxiety, Depression,
+                    PTSD, OCD, Sleep Disorder, Mood Disorders, Grief, Bipolar Disorder,
+                    ADHD, and more.  
+                    <br /><br />
+                    I don't consider this work—it's my passion. My goal is to empower you toward meaningful, lasting mental wellness.
+                    <em> "The best way to find yourself is to lose yourself in the service of others."</em>
+                </p>
+            </motion.div>
+
+            {/* Approach */}
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white p-6 lg:p-8 rounded-2xl shadow-md border border-gray-100"
+            >
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <FaStethoscope className="text-[#306EFF]" /> My Approach to Care
+                </h2>
+                <p className="text-gray-700 leading-relaxed">
+                    My approach is evidence-based with a holistic focus. I firmly believe in a collaborative partnership, where we create 
+                    personalized treatment plans tailored to your specific needs, values, and long-term life goals. I utilize techniques 
+                    from CBT, Motivational Interviewing, and Behavior Modification to achieve lasting results.
+                </p>
+            </motion.div>
+
+            {/* What to Expect */}
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="bg-white p-6 lg:p-8 rounded-2xl shadow-md border border-gray-100"
+            >
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">What You Can Expect</h2>
+                <p className="text-gray-700 leading-relaxed">
+                    Every patient receives a care plan they are excited about.  You will always feel fully supported, respected, and deeply understood. My commitment is to provide a non-judgmental, safe space where you can explore your challenges and celebrate your progress.
+                </p>
+            </motion.div>
+
+        </div>
+
+        {/* RIGHT COLUMN (Qualifications & Personal - 1/3 width) */}
+        <div className="lg:col-span-1 space-y-10">
+            
+            {/* Qualifications / Training Block */}
+            <div className="bg-[#F4FAFC] p-6 rounded-2xl shadow-md border border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2 border-gray-300">
+                    Qualifications
+                </h2>
+                <div className="mt-4 space-y-3 text-gray-700">
+                    <p><strong>Years of experience:</strong> 5 years</p>
+                    <p><strong>Training:</strong> MSN (Walden University)</p>
+                    <p><strong>License type:</strong> APN – Texas</p>
+                    <p><strong>Licensed in:</strong> Texas</p>
+                </div>
             </div>
-          </motion.div>
+
+            {/* About Me Block */}
+            <div className="bg-[#F4FAFC] p-6 rounded-2xl shadow-md border border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2 border-gray-300">
+                    Background
+                </h2>
+                <div className="mt-4 space-y-3 text-gray-700">
+                    <InfoItem icon={FaUser} text="Black or African descent, Cisgender Male" />
+                    <InfoItem icon={FaUser} text="Holistic, Open-minded, Warm approach" />
+                </div>
+            </div>
+            
         </div>
       </section>
-
-      {/* MAIN CONTENT AREA */}
-      <section className="max-w-6xl mx-auto px-6 space-y-10">
-
-        {/* Nice to Meet You */}
-        <div className="bg-white p-6 lg:p-8 rounded-2xl shadow-sm">
-          <h2 className="text-xl font-semibold">Nice to meet you!</h2>
-          <p className="mt-3 text-gray-700 leading-relaxed">
-            Mental Health NP. I've worked in healthcare for over a decade,
-            treating a wide range of conditions including Anxiety, Depression,
-            PTSD, OCD, Sleep Disorder, Mood Disorders, Grief, Bipolar Disorder,
-            ADHD, etc.  
-            <br /><br />
-            I don't consider this work—it's my passion.  
-            <em>"The best way to find yourself is to lose yourself in the service of others."</em>
-          </p>
-        </div>
-
-        {/* Approach */}
-        <div className="bg-white p-6 lg:p-8 rounded-2xl shadow-sm">
-          <h2 className="text-xl font-semibold">My approach to therapy</h2>
-          <p className="mt-3 text-gray-700 leading-relaxed">
-            My approach is evidence-based with a holistic focus. I create 
-            personalized treatment plans tailored to each individual's needs 
-            and life goals.
-          </p>
-        </div>
-
-        {/* What to Expect */}
-        <div className="bg-white p-6 lg:p-8 rounded-2xl shadow-sm">
-          <h2 className="text-xl font-semibold">What you can expect from me</h2>
-          <p className="mt-3 text-gray-700 leading-relaxed">
-            Every patient receives a care plan they are excited about.  
-            You will always feel supported, respected, and understood — 
-            just like I treat my own close friends.
-          </p>
-        </div>
-
-        {/* About Me */}
-        <div className="bg-white p-6 lg:p-8 rounded-2xl shadow-sm">
-          <h2 className="text-xl font-semibold">About me</h2>
-
-          <div className="mt-3 space-y-3 text-gray-700">
-            <p className="flex items-center gap-3">
-              <FaUser className="text-[#FFAA00]" /> Black or African descent, Cisgender Male
-            </p>
-            <p className="flex items-center gap-3">
-              <FaUser className="text-[#FFAA00]" /> Holistic, Open-minded, Warm
-            </p>
-          </div>
-        </div>
-
-        {/* Qualifications */}
-        <div className="bg-white p-6 lg:p-8 rounded-2xl shadow-sm">
-          <h2 className="text-xl font-semibold">Qualification and insurance</h2>
-
-          <div className="mt-4 space-y-4 text-gray-700">
-            <p><strong>Years of experience:</strong> 5 years</p>
-            <p><strong>Training:</strong> MSN (Walden University)</p>
-            <p><strong>License type:</strong> APN – Texas</p>
-            <p><strong>Licensed in:</strong> Texas</p>
-            <p>
-              <strong>Insurance accepted:</strong><br />
-              Aetna, Blue Cross Blue Shield, Carelon Behavioral Health, Cigna,
-              Oscar, Oxford, United Healthcare, and more.
-            </p>
-          </div>
-        </div>
-
-        {/* CARE DETAILS */}
-        <div className="bg-white p-6 lg:p-8 rounded-2xl shadow-sm">
-          <h2 className="text-xl font-semibold">Care details</h2>
-
-          <ul className="mt-4 space-y-3 text-gray-700">
-            <li><strong>Top specialties:</strong> Anxiety, Bipolar disorder, Depression, Anger management</li>
-            <li><strong>More specialties:</strong> ADHD, OCD, Sleep disorder, Stress, Trauma, PTSD</li>
-            <li><strong>Therapy methods:</strong> CBT, Motivational Interviewing, Behavior Modification</li>
-            <li><strong>Care types:</strong> Medication management, Individual therapy</li>
-            <li><strong>Ages served:</strong> Adults, Seniors</li>
-            <li className="flex items-center gap-2">
-              <FaLanguage className="text-[#FFAA00]" /> English, Igbo
-            </li>
-          </ul>
-        </div>
-
-        {/* BOOK SESSION BUTTON */}
-        <div className="flex justify-center pt-6">
-          <motion.button
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            whileHover={{ scale: 1.03 }}
-            className="px-8 py-4 bg-[#FFAA00] text-white rounded-xl font-semibold text-lg shadow-md hover:bg-[#e69a00]"
-            onClick={() => (window.location.href = "/appointments")}
-          >
-            Book a Session
-          </motion.button>
-        </div>
-      </section>
+      
     </div>
   );
 }

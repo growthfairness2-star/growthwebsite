@@ -1,172 +1,201 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image"; // Import Image component
+import { FaDollarSign, FaUserClock, FaCreditCard, FaLock, FaCalendarAlt, FaStar, FaInfoCircle } from "react-icons/fa"; // Updated icons
 
 export default function SelfPayPage() {
   const stripeLink = "https://buy.stripe.com/3cI5kD9YN16GgUub6eak000";
 
+  // Reusable component for a styled feature list item
+  const FeatureItem = ({ text }) => (
+    <li className="flex items-start gap-2 text-sm text-gray-700">
+      <FaLock className="text-[#306EFF] flex-shrink-0 mt-1" size={12} />
+      {text}
+    </li>
+  );
+  
+  // Custom button group for payment/booking
+  const ButtonGroup = ({ isFeatured = false }) => (
+    <div className="space-y-3 mt-auto pt-6">
+        <a
+            href={stripeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-full flex items-center justify-center gap-2 font-bold rounded-xl px-5 py-3 shadow-lg transition transform hover:scale-[1.01]
+                ${isFeatured ? 'bg-[#FFAA00] text-gray-900 hover:bg-[#e69900]' : 'bg-[#306EFF] text-white hover:bg-[#2052c2]'}
+            `}
+        >
+            <FaCreditCard /> Pay Now
+        </a>
+        <Link
+            href="/appointments"
+            className="w-full flex items-center justify-center gap-2 border border-gray-300 bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium rounded-xl px-5 py-3 transition"
+        >
+            <FaCalendarAlt /> Book Appointment
+        </Link>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-[#F4FAFC] text-gray-900">
-      {/* Top strip (soft texture or color) */}
-      <div className="w-full bg-[url('/profile-bg.png')] bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6 py-14">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
-            Self-Pay · Private Pay
-          </h1>
-          <p className="mt-3 text-gray-600 max-w-3xl">
-            Transparent pricing for out-of-pocket appointments. Choose a service,
-            securely pay with Stripe, or book an appointment below.
-          </p>
+    <div className="min-h-screen bg-white text-gray-900">
+      
+      {/* 1. HERO SECTION - Clean, Image-Focused Header */}
+      <div className="w-full bg-[#F4FAFC] border-b border-gray-100 py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* LEFT: Text Content */}
+            <div>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-gray-900">
+                    Transparent <span className="text-[#FFAA00]">Private Pay</span> Options
+                </h1>
+                <p className="mt-4 text-xl text-gray-700 max-w-lg">
+                    Transparent pricing for out-of-pocket appointments. Choose a service, 
+                    securely pay with Stripe, or book an appointment below.
+                </p>
+                <div className="mt-6 flex items-center gap-3 text-lg font-semibold text-[#FFAA00]">
+                    <FaStar /> Trusted Payment & Booking Process
+                </div>
+            </div>
+
+            {/* RIGHT: Image (selfpay.jpg) */}
+            <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="flex justify-center"
+            >
+                <Image
+                    src="/selfpay.jpg"
+                    alt="Self Pay and Private Payment Options"
+                    width={500}
+                    height={400}
+                    className="rounded-3xl shadow-2xl object-cover"
+                />
+            </motion.div>
         </div>
       </div>
+      
+      {/* --- */}
 
-      {/* Pricing grid */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Card */}
+      {/* 2. PRICING GRID - Enhanced Differentiation & Visual Clarity */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24">
+        
+        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">Choose Your Service Level</h2>
+
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+          
+          {/* Card 1: Initial Intake Consult (FEATURED CARD) */}
           <motion.article
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-8 shadow-md"
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.1 }}
+            className="relative bg-white border-4 border-[#FFAA00] rounded-3xl p-8 shadow-2xl flex flex-col transform hover:scale-[1.02] transition-all duration-300"
           >
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <h2 className="text-2xl font-semibold">Initial Intake Consult</h2>
-                <p className="text-sm text-gray-500 mt-1">Out-of-Pocket payment · up to 60 min</p>
-
-                <ul className="mt-4 ml-4 list-disc text-gray-700 space-y-2 text-sm">
-                  <li>Comprehensive assessment</li>
-                  <li>Diagnostic evaluation</li>
-                  <li>Medication management</li>
-                  <li>Talk / supportive therapy</li>
-                </ul>
-              </div>
-
-              <div className="flex-shrink-0 text-right">
-                <div className="inline-block bg-[#FFFAF2] border border-[#FFE6B8] px-4 py-2 rounded-full text-lg font-bold text-[#C06B00]">
-                  $200
-                </div>
-
-                <button
-                  onClick={() => window.open(stripeLink, "_blank")}
-                  className="mt-6 w-full bg-[#FFAA00] hover:bg-[#e69900] text-white font-semibold rounded-lg px-5 py-2 shadow-sm transition"
-                >
-                  Pay Now
-                </button>
-              </div>
+            <div className="absolute -top-4 right-6 bg-[#FFAA00] text-gray-900 text-sm font-bold uppercase px-3 py-1 rounded-full shadow-md">
+                Recommended
             </div>
+            
+            <FaUserClock className="text-4xl text-[#FFAA00] mb-4" />
+            <h3 className="text-2xl font-bold mb-1">Initial Intake Consult</h3>
+            <p className="text-sm text-gray-500 mb-6">Out-of-Pocket payment · up to 60 min</p>
+
+            <div className="text-5xl font-extrabold text-gray-900 mb-6 flex items-center">
+              <span className="text-4xl">$</span>200
+            </div>
+
+            <ul className="space-y-3 mb-8">
+              <FeatureItem text="Comprehensive assessment" />
+              <FeatureItem text="Diagnostic evaluation" />
+              <FeatureItem text="Medication management" />
+              <FeatureItem text="Talk / supportive therapy" />
+            </ul>
+
+            <ButtonGroup isFeatured={true} />
           </motion.article>
 
-          {/* Card */}
+          {/* Card 2: Follow-up Consult */}
           <motion.article
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-8 shadow-md"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            className="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg flex flex-col"
           >
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <h2 className="text-2xl font-semibold">Follow-up Consult</h2>
-                <p className="text-sm text-gray-500 mt-1">Out-of-Pocket payment · 30 min</p>
+            <FaUserClock className="text-4xl text-gray-500 mb-4" />
+            <h3 className="text-2xl font-bold mb-1">Follow-up Consult</h3>
+            <p className="text-sm text-gray-500 mb-6">Out-of-Pocket payment · 30 min</p>
 
-                <ul className="mt-4 ml-4 list-disc text-gray-700 space-y-2 text-sm">
-                  <li>Medication management & refill</li>
-                  <li>Brief assessment</li>
-                  <li>Talk / supportive therapy</li>
-                </ul>
-              </div>
-
-              <div className="flex-shrink-0 text-right">
-                <div className="inline-block bg-[#FFFAF2] border border-[#FFE6B8] px-4 py-2 rounded-full text-lg font-bold text-[#C06B00]">
-                  $120
-                </div>
-
-                <button
-                  onClick={() => window.open(stripeLink, "_blank")}
-                  className="mt-6 w-full bg-[#FFAA00] hover:bg-[#e69900] text-white font-semibold rounded-lg px-5 py-2 shadow-sm transition"
-                >
-                  Pay Now
-                </button>
-              </div>
+            <div className="text-5xl font-extrabold text-gray-900 mb-6 flex items-center">
+              <span className="text-4xl">$</span>120
             </div>
+
+            <ul className="space-y-3 mb-8">
+              <FeatureItem text="Medication management & refill" />
+              <FeatureItem text="Brief assessment" />
+              <FeatureItem text="Talk / supportive therapy" />
+              <FeatureItem text="Ongoing care planning" />
+            </ul>
+            
+            <ButtonGroup />
           </motion.article>
 
-          {/* Admin Fees */}
+          {/* Card 3: Administrative Fees & Other Payments (Consolidated) */}
           <motion.article
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-8 shadow-md"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
+            className="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg flex flex-col"
           >
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <h2 className="text-2xl font-semibold">Administrative Fees</h2>
-                <p className="text-sm text-gray-500 mt-1">Out-of-Pocket payment</p>
+            <FaDollarSign className="text-4xl text-gray-500 mb-4" />
+            <h3 className="text-2xl font-bold mb-1">Fees & Custom Payments</h3>
+            <p className="text-sm text-gray-500 mb-6">Administrative or Custom Bills</p>
 
-                <ul className="mt-4 ml-4 list-disc text-gray-700 space-y-2 text-sm">
-                  <li>Letters, reports, or detailed records requested</li>
-                  <li>Consultation with other providers outside normal case management</li>
-                </ul>
-              </div>
-
-              <div className="flex-shrink-0 text-right">
-                <div className="inline-block bg-[#FFFAF2] border border-[#FFE6B8] px-4 py-2 rounded-full text-lg font-bold text-[#C06B00]">
-                  $100
-                </div>
-
-                <button
-                  onClick={() => window.open(stripeLink, "_blank")}
-                  className="mt-6 w-full bg-[#FFAA00] hover:bg-[#e69900] text-white font-semibold rounded-lg px-5 py-2 shadow-sm transition"
-                >
-                  Pay Now
-                </button>
-              </div>
+            <div className="text-5xl font-extrabold text-gray-900 mb-6 flex items-center">
+              <span className="text-4xl">$</span>100+
             </div>
+
+            <ul className="space-y-3 mb-8">
+              <FeatureItem text="Administrative Fees ($100)" />
+              <FeatureItem text="Letters, reports, or detailed records requested" />
+              <FeatureItem text="Consultation with other providers" />
+              <FeatureItem text="Pay any outstanding bill or custom amount" />
+            </ul>
+            
+            <ButtonGroup />
           </motion.article>
-
-          {/* Pay Bill (custom amount) */}
-          <motion.article
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-8 shadow-md"
-          >
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <h2 className="text-2xl font-semibold">Pay a Bill</h2>
-                <p className="text-sm text-gray-500 mt-1">Out-of-Pocket payment</p>
-
-                <ul className="mt-4 ml-4 list-disc text-gray-700 space-y-2 text-sm">
-                  <li>Enter any agreed amount on the secure Stripe checkout</li>
-                  <li>Contact us if you need help: (832) 449-6276 or info@growthfairness.com</li>
-                </ul>
-              </div>
-
-              <div className="flex-shrink-0 text-right">
-                <div className="inline-block bg-[#FFFAF2] border border-[#FFE6B8] px-4 py-2 rounded-full text-lg font-bold text-[#C06B00]">
-                  USD
-                </div>
-
-                <button
-                  onClick={() => window.open(stripeLink, "_blank")}
-                  className="mt-6 w-full bg-[#FFAA00] hover:bg-[#e69900] text-white font-semibold rounded-lg px-5 py-2 shadow-sm transition"
-                >
-                  Pay Now
-                </button>
-              </div>
-            </div>
-          </motion.article>
+          
         </div>
       </section>
 
-      {/* calendar + booking area */}
-      <section className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
-          <div className="p-6">
-            <h3 className="text-xl font-semibold">Book an Appointment</h3>
-            <p className="text-sm text-gray-600 mt-1">
-              Use the scheduler below to see available times and reserve a session.
+      {/* --- */}
+      
+      {/* 3. POLICY & DISCLAIMER AREA */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 pb-16">
+        <div className="p-8 rounded-2xl bg-[#FFF9E5] border-l-4 border-[#FFAA00] shadow-md">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                <FaInfoCircle className="text-[#FFAA00]" />
+                Important Financial Policies
+            </h3>
+            <p className="text-gray-700 leading-relaxed text-lg">
+                **No-Show or Late Cancellation:** A mandatory **$75 fee** is charged for appointments cancelled less than **24 hours** in advance or for no-shows. <br />
+                **Transparent Pricing:** We adhere to the **'Patients First’** law, ensuring clear and transparent pricing for all services.
+            </p>
+        </div>
+      </div>
+
+      {/* --- */}
+
+      {/* 4. CALENDAR & BOOKING AREA (Retained Iframe) */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-16 pb-24">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div className="p-6 bg-gray-50 border-b border-gray-100">
+            <h3 className="text-2xl font-bold text-gray-900">Book Your Appointment Now</h3>
+            <p className="text-gray-600 mt-1">
+              Use the live scheduler below to see available times and instantly reserve your session.
             </p>
           </div>
 
