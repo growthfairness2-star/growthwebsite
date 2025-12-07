@@ -1,96 +1,130 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Ensure you have react-icons installed
 
-// ALL 18 insurance logos
+// MOCK DATA: In production, ensure these are transparent PNGs or SVGs for the best effect
 const insuranceLogos = Array.from({ length: 18 }, (_, i) => ({
-  src: `/insurances${i + 1}.jpeg`,
-  name: `Insurance ${i + 1}`,
+  src: `/insurances${i + 1}.jpeg`, // Ideally .png or .svg
+  name: `Insurance Provider ${i + 1}`,
 }));
 
 export default function InsuranceMarquee() {
+  const [isExpanded, setIsExpanded] = useState(false);
   const controls = useAnimation();
 
-  // Smooth slow scrolling motion
-  const startScroll = () => {
+  // Optimized Infinite Scroll Logic
+  useEffect(() => {
     controls.start({
-      x: ["0%", "-50%"],
+      x: "-50%",
       transition: {
-        duration: 120, // SUPER SLOW (Luxury feel)
-        repeat: Infinity,
+        duration: 40, // Tuned for readability
         ease: "linear",
+        repeat: Infinity,
       },
     });
-  };
-
-  useEffect(() => {
-    startScroll();
-  }, []);
-
-  const pauseScroll = () => controls.stop();
-  const resumeScroll = () => startScroll();
+  }, [controls]);
 
   return (
-    <section className="relative w-full py-20 bg-[#F7FBFD] overflow-hidden">
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 text-center">
-        <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
-          Insurances We Accept
-        </h2>
-
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-lg">
-          We work with a wide range of insurance providers to keep care affordable.
-        </p>
+    <section className="relative w-full py-24 bg-gradient-to-b from-white via-[#F7FBFD] to-white overflow-hidden">
+      
+      {/* HEADER */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 text-center mb-16">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+        >
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] tracking-tight mb-6">
+            Partnering for Your <span className="text-[#306EFF]">Care</span>
+            </h2>
+            <p className="text-gray-500 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+            We believe accessible mental health care is a right. We proudly accept most major insurance plans to minimize your out-of-pocket costs.
+            </p>
+        </motion.div>
       </div>
 
-      {/* Fade masks - PRO DESIGN */}
-      <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#F7FBFD] to-transparent pointer-events-none z-10" />
-      <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#F7FBFD] to-transparent pointer-events-none z-10" />
+      {/* --- DESKTOP MARQUEE (Hidden on Mobile) --- */}
+      <div className="hidden lg:flex relative w-full overflow-hidden group">
+        
+        {/* Cinematic Fade Masks */}
+        <div className="absolute top-0 bottom-0 left-0 w-40 bg-gradient-to-r from-white via-white/90 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-40 bg-gradient-to-l from-white via-white/90 to-transparent z-10 pointer-events-none" />
 
-      {/* DESKTOP MARQUEE */}
-      <div className="hidden md:block overflow-hidden w-full">
         <motion.div
+          className="flex gap-8 w-max"
           animate={controls}
-          onMouseEnter={pauseScroll}
-          onMouseLeave={resumeScroll}
-          className="flex gap-16 w-max"
+          onMouseEnter={() => controls.stop()}
+          onMouseLeave={() => controls.start({ x: "-50%", transition: { duration: 40, ease: "linear", repeat: Infinity } })}
         >
+          {/* Doubled list for seamless loop */}
           {[...insuranceLogos, ...insuranceLogos].map((logo, i) => (
             <div
               key={i}
-              className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-6 min-w-[200px] flex items-center justify-center border border-gray-100"
+              className="relative group/card flex items-center justify-center w-[220px] h-[120px] bg-white rounded-2xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(48,110,255,0.15)] hover:border-[#306EFF]/20 transition-all duration-300 cursor-pointer"
             >
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                width={160}
-                height={100}
-                className="object-contain"
-              />
+              <div className="relative w-[140px] h-[70px]">
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  fill
+                  className="object-contain filter grayscale opacity-60 transition-all duration-300 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-110"
+                />
+              </div>
             </div>
           ))}
         </motion.div>
       </div>
 
-      {/* MOBILE STATIC GRID */}
-      <div className="grid md:hidden grid-cols-2 sm:grid-cols-3 gap-6 px-6 mt-10">
-        {insuranceLogos.map((logo, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-center border border-gray-100"
-          >
-            <Image
-              src={logo.src}
-              alt={logo.name}
-              width={140}
-              height={80}
-              className="object-contain"
-            />
-          </div>
-        ))}
+      {/* --- MOBILE SMART GRID (Visible on Mobile/Tablet) --- */}
+      <div className="lg:hidden px-6 max-w-md mx-auto">
+        <motion.div 
+            layout
+            className="grid grid-cols-2 gap-4"
+        >
+          <AnimatePresence>
+            {/* Show first 6 by default, show all if expanded */}
+            {(isExpanded ? insuranceLogos : insuranceLogos.slice(0, 6)).map((logo, i) => (
+              <motion.div
+                layout
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-xl shadow-sm p-4 h-24 flex items-center justify-center border border-gray-100"
+              >
+                <div className="relative w-full h-full">
+                    <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    fill
+                    className="object-contain" // Kept color on mobile for clarity as there is no hover
+                    />
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Expand / Collapse Button */}
+        <div className="mt-8 flex justify-center">
+            <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="flex items-center gap-2 text-sm font-bold text-[#306EFF] bg-blue-50 px-6 py-3 rounded-full hover:bg-blue-100 transition-colors"
+            >
+                {isExpanded ? (
+                    <>Show Less <FaChevronUp /></>
+                ) : (
+                    <>View All Providers ({insuranceLogos.length}) <FaChevronDown /></>
+                )}
+            </button>
+        </div>
       </div>
+
     </section>
   );
 }
