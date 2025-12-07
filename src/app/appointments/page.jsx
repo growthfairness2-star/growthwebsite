@@ -54,7 +54,7 @@ export default function AppointmentsPage() {
               alt="Appointment"
               width={500}
               height={500}
-              className="rounded-3xl shadow-xl w-[280px] md:w-[500px]" // Responsive sizing for image
+              className="rounded-3xl shadow-xl w-[280px] md:w-[500px]" // Ressponsive sizing for image
             />
           </motion.div>
 
