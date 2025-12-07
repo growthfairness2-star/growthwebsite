@@ -92,7 +92,7 @@ export default function ADHDPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-black text-gray-950 mb-8 leading-tight">
-              Personalized Strategies for a <span className="border-b-4 border-[#FFAA00]">Focused Life.</span>
+              Personalized Strategie(s) for a <span className="border-b-4 border-[#FFAA00]">Focused Life.</span>
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-8">
               ADHD is not just a lack of attention—it is a unique neurological configuration. Our clinical approach focuses on optimizing neurotransmitters while providing you with a behavioral toolkit that works for <em>your</em> brain.
