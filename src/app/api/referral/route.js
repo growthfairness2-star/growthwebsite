@@ -2,16 +2,15 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    // Read submitted form data
     const form = await req.formData();
     const entries = Object.fromEntries(form.entries());
 
-    // Check required environment variables
+    // Ensure required ENV variables exist
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       throw new Error("Missing EMAIL_USER or EMAIL_PASS in environment variables.");
     }
 
-    // Optional file upload
+    // File attachment
     let attachment = null;
     const file = form.get("file");
 
@@ -23,17 +22,17 @@ export async function POST(req) {
       };
     }
 
-    // Create Gmail SMTP transporter
+    // Gmail Transporter (App Password required)
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER, // your Gmail address
-        pass: process.env.EMAIL_PASS, // 16-digit App Password (NO SPACES)
+        user: process.env.EMAIL_USER, // growthfairness2@gmail.com
+        pass: process.env.EMAIL_PASS, // App Password (16 characters, NO SPACES)
       },
     });
 
-    // Construct HTML email body
-    const htmlBody = `
+    // Email body
+    const html = `
       <h2>New Patient Referral</h2>
 
       <h3>Patient Information</h3>
@@ -50,22 +49,23 @@ export async function POST(req) {
       <h3>Additional Notes</h3>
       <p>${entries.notes || "None"}</p>
 
-      <h3>Referring Provider Information</h3>
+      <h3>Referring Provider</h3>
       <p><strong>Name:</strong> ${entries.providerName}</p>
       <p><strong>Phone:</strong> ${entries.providerPhone}</p>
       <p><strong>Email:</strong> ${entries.providerEmail}</p>
     `;
 
-    // Send the email
+    // Send email
     await transporter.sendMail({
       from: `"GrowthFairness Referrals" <${process.env.EMAIL_USER}>`,
       to: "growthfairness2@gmail.com",
       subject: "New Patient Referral Submission",
-      html: htmlBody,
+      html,
       attachments: attachment ? [attachment] : [],
     });
 
     return Response.json({ success: true });
+
   } catch (err) {
     console.error("Referral API Error:", err);
     return Response.json(
