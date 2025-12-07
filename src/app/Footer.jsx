@@ -18,8 +18,8 @@ export default function Footer() {
         {/* COLUMN 1 — LOGOS + SHARE */}
         <div>
           <Image 
-            src="/logofile.png" 
-            width={180} 
+            src="/logoweb.png" 
+            width={280} 
             height={60} 
             alt="GrowthFairness Logo"
             className="mb-6"
