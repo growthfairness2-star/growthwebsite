@@ -13,118 +13,162 @@ export default function AppointmentsPage() {
       id: "why",
       label: "Why Book?",
       icon: <FaLightbulb />,
-      content: "Professional psychiatric and mental health care designed around your convenience and recovery goals.",
+      content:
+        "Booking an appointment gives you fast, convenient access to compassionate psychiatric and mental health care. We ensure every session is private, supportive, and tailored to your needs.",
     },
     {
       id: "how",
-      label: "Process",
+      label: "How It Works",
       icon: <FaCalendarCheck />,
-      content: "Choose your time via Headway, verify your insurance instantly, and confirm your session in under 2 minutes.",
+      content:
+        "We use Headway for secure scheduling. Choose your time, verify insurance, confirm your appointment, and you're set. No long forms. No delays. Everything is handled smoothly.",
     },
     {
       id: "insurance",
-      label: "Insurance",
+      label: "Insurance & Cost",
       icon: <FaShieldAlt />,
-      content: "We accept major plans like Aetna, Cigna, and United Healthcare. Transparent pricing for self-pay clients.",
+      content:
+        "We accept major insurance plans including Aetna, Cigna, BlueCross BlueShield, Oscar, United Healthcare, and more. Self-pay options are also available for uninsured clients.",
     },
     {
       id: "expect",
-      label: "Experience",
+      label: "What to Expect",
       icon: <FaSmile />,
-      content: "A judgment-free, collaborative environment where you are truly heard and professionally guided.",
+      content:
+        "Your provider will listen attentively, understand your goals, discuss treatment options, and guide you with care and respect. Each session is collaborative and judgment-free.",
     },
   ];
 
   const [activeTab, setActiveTab] = useState("why");
 
   return (
-    <div className="w-full bg-[#F5FAFD] text-gray-900 pb-20 overflow-x-hidden">
+    <div className="w-full bg-[#F5FAFD] text-gray-900 pb-28 min-h-screen">
       
       {/* ================= HERO SECTION ================= */}
-      <section className="relative w-full py-16 lg:py-32">
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 grid lg:grid-cols-2 gap-10 items-center text-center lg:text-left">
+      <section className="relative w-full py-24 lg:py-40 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/bg-soft.png"
+            alt="background"
+            fill
+            className="object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 grid lg:grid-cols-2 gap-16 items-center">
           
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
             className="flex justify-center"
           >
-            <Image
-              src="/appoint.png"
-              alt="Appointment"
-              width={500}
-              height={500}
-              className="rounded-3xl shadow-xl w-[280px] md:w-[500px]" // Ressponsive sizing for image
-            />
+            <div className="relative group">
+               <div className="absolute -inset-1 bg-gradient-to-r from-[#FFAA00] to-[#E69900] rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+               <Image
+                src="/appoint.png"
+                alt="Appointment Image"
+                width={550}
+                height={550}
+                className="relative rounded-3xl shadow-2xl object-cover"
+              />
+            </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            {/* MOBILE: 3xl (30px) | DESKTOP: 6xl (60px) */}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight mb-4">
-              Your Path to <span className="text-[#FFAA00]">Wellness</span>
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-[1.1] mb-6">
+              Book an <span className="text-[#FFAA00]">Appointment</span>
             </h1>
 
-            {/* MOBILE: lg (18px) | DESKTOP: xl (20px) */}
-            <p className="text-gray-700 text-lg md:text-xl mb-8 max-w-lg mx-auto lg:mx-0">
-              High-quality mental health support that is easy to schedule and covered by insurance.
+            <p className="text-gray-700 text-xl leading-relaxed max-w-lg mb-10 font-medium">
+              Take the first step towards mental clarity. Schedule your session securely via Headway.
             </p>
 
             <button
               onClick={() => window.open(headway, "_blank")}
-              className="bg-[#FFAA00] text-white font-black px-10 py-4 rounded-xl text-lg hover:bg-black transition-all"
+              className="bg-[#FFAA00] hover:bg-[#E69900] text-white font-black px-12 py-5 rounded-2xl shadow-[0_20px_40px_-12px_rgba(255,170,0,0.4)] text-xl transition transform hover:-translate-y-1 active:scale-95"
             >
-              Book an Appointment
+              Start My Journey
             </button>
           </motion.div>
         </div>
       </section>
 
       {/* ================= TABS SECTION ================= */}
-      <section className="max-w-6xl mx-auto px-6 mt-10">
+      <section className="max-w-6xl mx-auto px-6 lg:px-10 -mt-10 relative z-20">
 
-        {/* TAB BUTTONS: Grid adjusts based on mobile/desktop */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* TAB BUTTONS - PRO LOGIC FOR ICON VISIBILITY */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative flex flex-col items-center justify-center p-4 h-24 md:h-28 rounded-2xl transition border-2 
+                className={`group relative h-32 flex flex-col items-center justify-center px-6 rounded-2xl transition-all duration-300 border-2 overflow-hidden
                   ${isActive 
-                    ? "bg-[#FFAA00] border-[#FFAA00] text-white" 
-                    : "bg-white border-gray-100 text-gray-700"
+                    ? "bg-[#FFAA00] border-[#FFAA00] shadow-xl" 
+                    : "bg-white border-gray-100 hover:border-[#FFAA00]/40 text-gray-700 shadow-sm"
                   }`}
               >
-                {!isActive && (
-                  <div className="text-2xl mb-1 text-[#FFAA00]">{tab.icon}</div>
-                )}
-                {/* Labels use text-sm to avoid breaking on narrow mobile screens */}
-                <span className="font-bold text-sm md:text-base tracking-tight">{tab.label}</span>
+                <AnimatePresence mode="wait">
+                  {!isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                      className="text-3xl mb-3 text-[#FFAA00] transition-colors"
+                    >
+                      {tab.icon}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                <span className={`font-black tracking-wide text-lg transition-colors
+                  ${isActive ? "text-white mt-0" : "text-gray-900 group-hover:text-[#FFAA00]"}`}>
+                  {tab.label}
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* TAB CONTENT: Mobile-optimized padding and size */}
-        <div className="mt-8 bg-white rounded-3xl shadow-sm p-6 md:p-12 min-h-[160px] border border-gray-50 flex items-center">
+        {/* TAB CONTENT CAROUSEL */}
+        <div className="mt-12 bg-white rounded-[32px] shadow-[0_10px_50px_rgba(0,0,0,0.05)] p-10 md:p-14 min-h-[220px] flex items-center border border-gray-50">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
+              className="w-full"
             >
-              <h3 className="text-[#FFAA00] font-bold text-xs uppercase tracking-widest mb-2">
+              <h3 className="text-[#FFAA00] font-black text-sm uppercase tracking-[0.2em] mb-4">
                 {tabs.find(t => t.id === activeTab)?.label}
               </h3>
-              {/* MOBILE: xl (20px) | DESKTOP: 2xl (24px) */}
-              <p className="text-gray-900 text-xl md:text-2xl font-bold leading-snug">
+              <p className="text-gray-900 text-2xl md:text-3xl font-bold leading-snug">
                 {tabs.find((t) => t.id === activeTab)?.content}
               </p>
             </motion.div>
           </AnimatePresence>
+        </div>
+
+        {/* REINFORCED CALL TO ACTION */}
+        <div className="flex flex-col items-center mt-16">
+          <p className="text-gray-500 font-bold mb-6 tracking-wide uppercase text-sm">Safe • Secure • HIPAA Compliant</p>
+          <button
+            onClick={() => window.open(headway, "_blank")}
+            className="group inline-flex items-center gap-4 bg-[#FFAA00] hover:bg-black text-white font-black px-12 py-5 rounded-2xl shadow-2xl text-xl transition-all duration-500"
+          >
+            Finalize My Appointment Now
+            <FaCalendarCheck className="group-hover:rotate-12 transition-transform" />
+          </button>
         </div>
 
       </section>
