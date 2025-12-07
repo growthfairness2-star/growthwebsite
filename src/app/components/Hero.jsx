@@ -3,27 +3,27 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link"; // Use Link for navigation
 import { motion } from "framer-motion";
-import { MdMedicalServices, MdPsychology, MdLaptopMac, MdOutlineHealthAndSafety, MdOutlineVerified } from "react-icons/md"; // Added MdOutlineHealthAndSafety, MdOutlineVerified
+import { MdMedicalServices, MdPsychology, MdLaptopMac, MdOutlineHealthAndSafety, MdOutlineVerified } from "react-icons/md"; 
 import { BiConversation } from "react-icons/bi";
-import { FaUserMd, FaShieldAlt } from "react-icons/fa"; // Added FaUserMd, FaShieldAlt
+import { FaUserMd, FaShieldAlt } from "react-icons/fa"; 
 
 export default function Hero() {
 
-  // Swipe-up variant (unchanged, but well-implemented)
+  // Swipe-up variant
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.15, // Slightly faster transition
+        delay: i * 0.15,
         duration: 0.6,
         ease: "easeOut"
       }
     })
   };
 
-  // Service Card Data for cleaner mapping
+  // Service Card Data
   const services = [
     { 
       title: "Medication Management", 
@@ -33,7 +33,7 @@ export default function Hero() {
     },
     { 
       title: "Psychiatric Evaluation", 
-      icon: FaUserMd, // Changed icon for a more professional look
+      icon: FaUserMd, 
       description: "Comprehensive mental-health assessment and personalized diagnosis.", 
       href: "/evaluation" 
     },
@@ -52,7 +52,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="w-full bg-white pb-20"> {/* Changed primary background to white, will use the light blue for accent */}
+    <section className="w-full bg-white pb-20">
       
       {/* HERO TOP */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 lg:px-16 pt-24 items-center">
@@ -70,14 +70,33 @@ export default function Hero() {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A1A1A] leading-tight">
             Elevating Emotional Wellness and <span className="text-[#306EFF]">Clarity</span>
-          </h1> {/* Use a secondary color for emphasis */}
+          </h1>
 
-          <p className="mt-6 text-xl text-gray-700 leading-relaxed max-w-lg">
+          <p className="mt-6 text-xl text-gray-700 leading-relaxed max-w-lg mb-8">
             Compassionate, professional mental-health care designed to help you 
             regain clarity, balance, and peace — wherever you are on your journey.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+          {/* --- MOBILE ONLY IMAGE (Appears between text and buttons on small screens) --- */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:hidden flex justify-center mb-8" // lg:hidden ensures this vanishes on desktop
+          >
+             <div className="bg-[#F4F9FA] p-4 rounded-[30px] shadow-2xl shadow-blue-100/70">
+                <Image 
+                    src="/hero.png"
+                    width={550}
+                    height={550}
+                    alt="Illustration of a person seeking mental health clarity"
+                    className="rounded-2xl object-cover w-full h-auto"
+                />
+             </div>
+          </motion.div>
+          {/* -------------------------------------------------------------------------- */}
+
+          <div className="flex flex-col sm:flex-row gap-4">
             {/* PRIMARY CTA */}
             <Link 
               href="/appointments"
@@ -104,14 +123,14 @@ export default function Hero() {
 
         </motion.div>
 
-        {/* HERO IMAGE */}
+        {/* --- DESKTOP ONLY IMAGE (Hidden on mobile, stays on right on desktop) --- */}
         <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-end"
+            className="hidden lg:flex relative justify-center lg:justify-end" // hidden lg:flex handles the logic
         >
-            <div className="bg-[#F4F9FA] p-4 rounded-[30px] shadow-2xl shadow-blue-100/70"> {/* Accent Background for image */}
+            <div className="bg-[#F4F9FA] p-4 rounded-[30px] shadow-2xl shadow-blue-100/70">
                 <Image 
                     src="/hero.png"
                     width={550}
@@ -121,17 +140,19 @@ export default function Hero() {
                 />
             </div>
         </motion.div>
+        {/* ----------------------------------------------------------------------- */}
+
       </div>
 
       {/* --- */}
 
-      {/* SERVICES WITH MOTION - Enhanced Grid */}
+      {/* SERVICES WITH MOTION */}
       <div className="max-w-7xl mx-auto px-6 lg:px-16 mt-20">
         <h2 className="text-3xl font-bold text-gray-800 text-center mb-10">
           Our Comprehensive Services
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-[#F4F9FA] p-8 rounded-3xl shadow-inner"> {/* New Accent Background for cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-[#F4F9FA] p-8 rounded-3xl shadow-inner">
 
           {services.map((service, i) => (
             <motion.div
