@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaFacebookF, FaWhatsapp, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
-  const websiteUrl = "https://growthfairness.com"; // <-- replace with your real domain
+  const websiteUrl = "https://growthfairness.com";
 
   const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
   const whatsappShare = `https://api.whatsapp.com/send?text=${websiteUrl}`;
@@ -13,12 +13,12 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-[#F4F9FA] text-[#1A1A1A] py-16 mt-20 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-12">
 
         {/* COLUMN 1 — LOGOS + SHARE */}
         <div>
           <Image 
-            src="/logo.png" 
+            src="/logofile.png" 
             width={180} 
             height={60} 
             alt="GrowthFairness Logo"
@@ -28,16 +28,13 @@ export default function Footer() {
           <p className="text-gray-600 mb-3">Secured & Verified by:</p>
 
           <div className="flex items-center gap-4 mb-8">
-            <Image src="/logo1.png" width={60} height={60} alt="Security Logo 1" />
-            <Image src="/logo2.png" width={60} height={60} alt="Security Logo 2" />
+            <Image src="/logo1.png" width={120} height={60} alt="Security Logo 1" />
+            <Image src="/logo2.png" width={120} height={60} alt="Security Logo 2" />
           </div>
 
-          {/* SHARE THIS WEBSITE */}
-          <h3 className="text-lg font-semibold text-[#1A1A1A] mb-3">Share This Website</h3>
+          <h3 className="text-lg font-semibold mb-3">Share This Website</h3>
 
           <div className="flex gap-4 text-2xl">
-
-            {/* Facebook */}
             <a 
               href={facebookShare} 
               target="_blank" 
@@ -46,7 +43,6 @@ export default function Footer() {
               <FaFacebookF />
             </a>
 
-            {/* WhatsApp */}
             <a 
               href={whatsappShare} 
               target="_blank" 
@@ -55,7 +51,6 @@ export default function Footer() {
               <FaWhatsapp />
             </a>
 
-            {/* Twitter */}
             <a 
               href={twitterShare}
               target="_blank"
@@ -63,7 +58,6 @@ export default function Footer() {
             >
               <FaTwitter />
             </a>
-
           </div>
         </div>
 
@@ -108,11 +102,42 @@ export default function Footer() {
 
           <ul className="space-y-3 text-gray-700">
             <li><Link href="/" className="hover:text-[#FFAA00]">Home</Link></li>
-            <li><Link href="/about" className="hover:text-[#FFAA00]">About</Link></li>
+            <li><Link href="/team" className="hover:text-[#FFAA00]">Team</Link></li>
             <li><Link href="/services" className="hover:text-[#FFAA00]">Services</Link></li>
             <li><Link href="/contact" className="hover:text-[#FFAA00]">Contact</Link></li>
             <li><Link href="/appointments" className="hover:text-[#FFAA00]">Book Appointment</Link></li>
-            <li><Link href="/patient-referral" className="hover:text-[#FFAA00]">Patient Referral Form</Link></li>
+            <li><Link href="/forms" className="hover:text-[#FFAA00]">Patient Referral Form</Link></li>
+          </ul>
+        </div>
+
+        {/* COLUMN 4 — SERVICES */}
+        <div>
+          <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">Our Services</h3>
+
+          <ul className="space-y-3 text-gray-700">
+            <li>
+              <Link href="/medication" className="hover:text-[#FFAA00]">
+                Medication Management
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/evaluation" className="hover:text-[#FFAA00]">
+                Psychiatric Evaluation
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/services/therapy" className="hover:text-[#FFAA00]">
+                Psychotherapy
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/telepsychiatry" className="hover:text-[#FFAA00]">
+                Telepsychiatry
+              </Link>
+            </li>
           </ul>
         </div>
 

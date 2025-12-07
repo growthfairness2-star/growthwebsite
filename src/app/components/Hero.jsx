@@ -29,25 +29,25 @@ export default function Hero() {
       title: "Medication Management", 
       icon: MdMedicalServices, 
       description: "Monitoring and adjusting medication to optimize treatment.", 
-      href: "/services/medication" 
+      href: "/medication" 
     },
     { 
       title: "Psychiatric Evaluation", 
       icon: FaUserMd, // Changed icon for a more professional look
       description: "Comprehensive mental-health assessment and personalized diagnosis.", 
-      href: "/services/evaluation" 
+      href: "/evaluation" 
     },
     { 
       title: "Psychotherapy", 
       icon: BiConversation, 
       description: "Emotional support and guidance to help you heal and grow.", 
-      href: "/services/therapy" 
+      href: "/therapy" 
     },
     { 
       title: "Telepsychiatry", 
       icon: MdLaptopMac, 
       description: "Receive expert mental-health care securely from the comfort of home.", 
-      href: "/services/telepsychiatry" 
+      href: "/telepsychiatry" 
     },
   ];
 

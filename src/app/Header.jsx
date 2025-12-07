@@ -26,7 +26,7 @@ export default function Header() {
 
         {/* Logo */}
         <button onClick={() => go("/")} className="flex items-center gap-2">
-          <Image src="/logo.png" width={180} height={50} alt="Logo" />
+          <Image src="/logofile.png" width={280} height={50} alt="Logo" />
         </button>
 
         {/* Desktop Navigation */}
