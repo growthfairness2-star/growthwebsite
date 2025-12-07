@@ -21,7 +21,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-white shadow-sm sticky top-0 z-[9999]">
+    <header className="w-full bg-white shadow-sm  z-[9999]">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
 
         {/* LOGO */}
