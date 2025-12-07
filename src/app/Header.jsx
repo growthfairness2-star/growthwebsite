@@ -36,7 +36,7 @@ export default function Header() {
         
         {/* LOGO */}
         <button onClick={() => go("/")} className="transition active:scale-95">
-          <Image src="/logofile.png" width={220} height={40} alt="Logo" priority />
+          <Image src="/logoweb.png" width={220} height={40} alt="Logo" priority />
         </button>
 
         {/* ================= DESKTOP NAV ================= */}
