@@ -269,7 +269,7 @@ export default function FAQPage() {
             </p>
 
             <Link
-                href="/book-an-appointment"
+                href="/appointments"
                 className="inline-block px-10 py-4 bg-[#FFAA00] text-gray-900 font-bold rounded-full text-xl shadow-lg transition transform hover:bg-[#e69a00] hover:scale-[1.02]"
             >
                 Book Your First Appointment
