@@ -35,6 +35,21 @@ const conditions = [
     name: "Substance Use",
     image: "/homesubstance.jpg",
     description: "Integrated psychiatric support to address concurrent mental health challenges during your recovery journey."
+  },
+  {
+    name: "Sleep/Insomnia",
+    image: "/sleep.png",
+    description: "Targeted interventions to resolve sleep disturbances, regulate circadian rhythms, and improve overall restorative rest."
+  },
+  {
+    name: "Psychosis",
+    image: "/psychosis.png",
+    description: "Specialized clinical management to navigate sensory distortions and disconnected thoughts, focusing on reality testing and stability."
+  },
+  {
+    name: "OCD",
+    image: "/ocd.png",
+    description: "Evidence-based strategies to manage intrusive thoughts and compulsive behaviors, restoring control and daily functionality."
   }
 ];
 
@@ -64,7 +79,7 @@ export default function ConditionsTabs() {
         </div>
 
         {/* --- FLUID TABS --- */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16 max-w-4xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-3 mb-16 max-w-5xl mx-auto">
           {conditions.map((item, index) => (
             <motion.button
               key={index}

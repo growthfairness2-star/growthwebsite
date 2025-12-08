@@ -11,33 +11,37 @@ import {
   FaCheckCircle,
   FaStethoscope,
   FaAward,
-} from "react-icons/fa"; // Added FaStethoscope, FaAward
+} from "react-icons/fa";
 
-// Define a list of key specialties for a cleaner display
+// Updated list with 5 more key specialties (Total 10)
 const keySpecialties = [
-    "Anxiety",
-    "Depression",
-    "Bipolar Disorder",
-    "Anger Management",
-    "ADHD",
+  "Anxiety",
+  "Depression",
+  "Bipolar Disorder",
+  "Anger Management",
+  "ADHD",
+  "PTSD",
+  "Sleep Disorders",
+  "OCD",
+  "Mood Disorders",
+  "Grief & Loss"
 ];
 
-// Component for a styled icon-text item
 const InfoItem = ({ icon: Icon, text }) => (
-    <div className="flex items-start gap-3 text-gray-700">
-        <Icon className="text-[#FFAA00] mt-1 flex-shrink-0" size={18} />
-        <p className="leading-relaxed">{text}</p>
-    </div>
+  <div className="flex items-start gap-3 text-gray-700">
+    <Icon className="text-[#FFAA00] mt-1 flex-shrink-0" size={18} />
+    <p className="leading-relaxed">{text}</p>
+  </div>
 );
 
 export default function RaymondProfile() {
   return (
-    <div className="w-full min-h-screen bg-white pb-20"> {/* Changed background to white for cleaner look */}
+    <div className="w-full min-h-screen bg-white pb-20">
       
-      {/* PROFESSIONAL HEADER AREA (Stays Wide) */}
+      {/* PROFESSIONAL HEADER AREA */}
       <section className="bg-[#F4FAFC] border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-0 py-12 lg:py-16">
-          <div className="bg-white rounded-3xl p-6 lg:p-10 shadow-xl grid lg:grid-cols-3 gap-10"> {/* Changed shadow and layout */}
+          <div className="bg-white rounded-3xl p-6 lg:p-10 shadow-xl grid lg:grid-cols-3 gap-10">
 
             {/* LEFT — IMAGE & CONTACT INFO */}
             <motion.div
@@ -48,17 +52,17 @@ export default function RaymondProfile() {
             >
               <Image
                 src="/provider.jpg"
-                width={280} // Slightly reduced size to balance the layout
+                width={280}
                 height={280}
                 alt="Raymond Obiajulu"
-                className="rounded-full object-cover shadow-2xl border-4 border-[#FFAA00] mb-6" // Rounded image, accent border, stronger shadow
+                className="rounded-full object-cover shadow-2xl border-4 border-[#FFAA00] mb-6"
               />
               
               <h1 className="text-3xl font-bold text-gray-900">
                 Raymond Obiajulu
               </h1>
-              <p className="text-xl font-semibold text-[#306EFF] mt-1"> {/* Secondary color for title */}
-                Psychiatric Mental Health NP  
+              <p className="text-xl font-semibold text-[#306EFF] mt-1">
+                Psychiatric Mental Health NP  
               </p>
               <p className="text-gray-600 italic">5 years of experience</p>
 
@@ -69,7 +73,7 @@ export default function RaymondProfile() {
               </div>
             </motion.div>
 
-            {/* RIGHT — PROFILE SUMMARY & CTA (Spans 2 columns on desktop) */}
+            {/* RIGHT — PROFILE SUMMARY */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -99,7 +103,8 @@ export default function RaymondProfile() {
                         <InfoItem icon={FaCheckCircle} text="Medication Management" />
                         <InfoItem icon={FaCheckCircle} text="Individual Therapy" />
                         <InfoItem icon={FaCheckCircle} text="CBT, Motivational Interviewing" />
-                        <InfoItem icon={FaCheckCircle} text="Adults & Seniors" />
+                        {/* Updated to include Teens */}
+                        <InfoItem icon={FaCheckCircle} text="Teens, Adults & Seniors" />
                     </div>
                 </div>
 
@@ -131,13 +136,11 @@ export default function RaymondProfile() {
         </div>
       </section>
 
-      {/* MAIN CONTENT AREA (2-Column for desktop) */}
+      {/* MAIN CONTENT AREA */}
       <section className="max-w-6xl mx-auto px-6 lg:px-0 mt-12 grid lg:grid-cols-3 gap-10">
 
-        {/* LEFT COLUMN (Bio & Approach - 2/3 width) */}
         <div className="lg:col-span-2 space-y-10">
-
-            {/* Nice to Meet You / Bio */}
+            {/* Bio */}
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -150,10 +153,11 @@ export default function RaymondProfile() {
                     As a dedicated Mental Health NP, I've worked in healthcare for over a decade,
                     treating a wide range of complex conditions including Anxiety, Depression,
                     PTSD, OCD, Sleep Disorder, Mood Disorders, Grief, Bipolar Disorder,
-                    ADHD, and more.  
+                    ADHD, and more.  
                     <br /><br />
                     I don't consider this work—it's my passion. My goal is to empower you toward meaningful, lasting mental wellness.
-                    <em> "The best way to find yourself is to lose yourself in the service of others."</em>
+                    <br /><br />
+                    <em className="text-gray-600 italic text-sm"> "The best way to find yourself is to lose yourself in the service of others."</em>
                 </p>
             </motion.div>
 
@@ -185,16 +189,13 @@ export default function RaymondProfile() {
             >
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">What You Can Expect</h2>
                 <p className="text-gray-700 leading-relaxed">
-                    Every patient receives a care plan they are excited about.  You will always feel fully supported, respected, and deeply understood. My commitment is to provide a non-judgmental, safe space where you can explore your challenges and celebrate your progress.
+                    Every patient receives a care plan they are excited about. You will always feel fully supported, respected, and deeply understood. My commitment is to provide a non-judgmental, safe space where you can explore your challenges and celebrate your progress.
                 </p>
             </motion.div>
-
         </div>
 
-        {/* RIGHT COLUMN (Qualifications & Personal - 1/3 width) */}
+        {/* RIGHT COLUMN */}
         <div className="lg:col-span-1 space-y-10">
-            
-            {/* Qualifications / Training Block */}
             <div className="bg-[#F4FAFC] p-6 rounded-2xl shadow-md border border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2 border-gray-300">
                     Qualifications
@@ -207,7 +208,6 @@ export default function RaymondProfile() {
                 </div>
             </div>
 
-            {/* About Me Block */}
             <div className="bg-[#F4FAFC] p-6 rounded-2xl shadow-md border border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2 border-gray-300">
                     Background
@@ -217,10 +217,8 @@ export default function RaymondProfile() {
                     <InfoItem icon={FaUser} text="Holistic, Open-minded, Warm approach" />
                 </div>
             </div>
-            
         </div>
       </section>
-      
     </div>
   );
 }

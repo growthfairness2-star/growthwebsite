@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function ContactPage() {
+  const router = useRouter();
+
+  const handleNavigation = () => {
+    router.push("/forms");
+  };
+
   return (
     <div className="w-full bg-[#F4FAFC]">
 
@@ -17,19 +24,33 @@ export default function ContactPage() {
         </p>
       </section>
 
-      {/* REFERRAL BUTTONS */}
+      {/* REFERRAL BUTTONS - Updated to be unique and link to /forms */}
       <section className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 px-6 pb-16">
-        {[1, 2].map((item) => (
-          <motion.div
-            key={item}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="bg-[#7DB8CE] text-white text-center py-8 rounded-xl shadow hover:shadow-lg transition"
-          >
-            <p className="text-xl font-semibold">Are you a clinician?</p>
-            <p className="mt-2">Refer a Client for Med Management</p>
-          </motion.div>
-        ))}
+        
+        {/* Clinician Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.02 }}
+          onClick={handleNavigation}
+          className="bg-[#7DB8CE] text-white text-center py-8 rounded-xl shadow cursor-pointer hover:shadow-lg transition"
+        >
+          <p className="text-xl font-semibold">Are you a clinician?</p>
+          <p className="mt-2">Refer a Client for Med Management</p>
+        </motion.div>
+
+        {/* Patient Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.02 }}
+          onClick={handleNavigation}
+          className="bg-[#7DB8CE] text-white text-center py-8 rounded-xl shadow cursor-pointer hover:shadow-lg transition"
+        >
+          <p className="text-xl font-semibold">Are you a patient?</p>
+          <p className="mt-2">Request an Appointment or Consultation</p>
+        </motion.div>
+
       </section>
 
       {/* THREE INFO COLUMNS */}
@@ -66,10 +87,11 @@ export default function ContactPage() {
         {/* MAP */}
         <div className="w-full h-[500px] rounded-xl overflow-hidden shadow">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3347.231268852648!2d-95.58764948491702!3d29.95702992911396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf40a942fbb3%3A0x79e17fc54a53c0b9!2s12337%20Jones%20Rd%2C%20Houston%2C%20TX%2077070!5e0!3m2!1sen!2sus!4v1700000000000"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.578635839958!2d-95.6027063!3d29.98565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640d1df68157771%3A0xc66c11d279318898!2s12337%20Jones%20Rd%2C%20Houston%2C%20TX%2077070!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
             width="100%"
             height="100%"
             loading="lazy"
+            className="border-0"
           ></iframe>
         </div>
 
@@ -101,7 +123,6 @@ export default function ContactPage() {
             <input type="file" className="w-full" />
 
             <div className="w-full">
-              {/* You will replace this with actual ReCAPTCHA */}
               <div className="bg-gray-100 border rounded-md p-6 text-center text-gray-500">
                 reCAPTCHA placeholder
               </div>
