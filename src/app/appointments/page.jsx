@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaCalendarCheck, FaLightbulb, FaShieldAlt, FaSmile } from "react-icons/fa";
+import { FaCalendarCheck, FaLightbulb, FaShieldAlt, FaSmile, FaCreditCard, FaStethoscope } from "react-icons/fa";
 
 export default function AppointmentsPage() {
   const headway = "https://care.headway.co/providers/raymond-obiajulu";
+  const selfPayUrl = "/selfpay";
 
   const tabs = [
     {
@@ -40,6 +41,16 @@ export default function AppointmentsPage() {
   ];
 
   const [activeTab, setActiveTab] = useState("why");
+
+  // Pulse animation definition
+  const pulseAnimation = {
+    scale: [1, 1.03, 1],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  };
 
   return (
     <div className="w-full bg-[#F5FAFD] text-gray-900 pb-28 min-h-screen">
@@ -86,15 +97,33 @@ export default function AppointmentsPage() {
             </h1>
 
             <p className="text-gray-700 text-xl leading-relaxed max-w-lg mb-10 font-medium">
-              Take the first step towards mental clarity. Schedule your session securely via Headway.
+              Take the first step towards mental clarity. Select your payment method below to get started.
             </p>
 
-            <button
-              onClick={() => window.open(headway, "_blank")}
-              className="bg-[#FFAA00] hover:bg-[#E69900] text-white font-black px-12 py-5 rounded-2xl shadow-[0_20px_40px_-12px_rgba(255,170,0,0.4)] text-xl transition transform hover:-translate-y-1 active:scale-95"
-            >
-              Start My Journey
-            </button>
+            {/* PULSATING BUTTONS GROUP */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <motion.button
+                animate={pulseAnimation}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.open(headway, "_blank")}
+                className="flex items-center justify-center gap-3 bg-[#FFAA00] hover:bg-[#E69900] text-white font-black px-8 py-5 rounded-2xl shadow-[0_20px_40px_-12px_rgba(255,170,0,0.4)] text-lg transition-colors"
+              >
+                <FaStethoscope className="text-xl" />
+                All Insurance Pay
+              </motion.button>
+
+              <motion.button
+                animate={pulseAnimation}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.location.href = selfPayUrl}
+                className="flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white font-black px-8 py-5 rounded-2xl shadow-[0_20px_40px_-12px_rgba(0,0,0,0.2)] text-lg transition-colors"
+              >
+                <FaCreditCard className="text-xl" />
+                Self/Out of Pocket Pay
+              </motion.button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -102,7 +131,7 @@ export default function AppointmentsPage() {
       {/* ================= TABS SECTION ================= */}
       <section className="max-w-6xl mx-auto px-6 lg:px-10 -mt-10 relative z-20">
 
-        {/* TAB BUTTONS - PRO LOGIC FOR ICON VISIBILITY */}
+        {/* TAB BUTTONS */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -158,19 +187,6 @@ export default function AppointmentsPage() {
             </motion.div>
           </AnimatePresence>
         </div>
-
-        {/* REINFORCED CALL TO ACTION */}
-        <div className="flex flex-col items-center mt-16">
-          <p className="text-gray-500 font-bold mb-6 tracking-wide uppercase text-sm">Safe • Secure • HIPAA Compliant</p>
-          <button
-            onClick={() => window.open(headway, "_blank")}
-            className="group inline-flex items-center gap-4 bg-[#FFAA00] hover:bg-black text-white font-black px-12 py-5 rounded-2xl shadow-2xl text-xl transition-all duration-500"
-          >
-            Finalize My Appointment Now
-            <FaCalendarCheck className="group-hover:rotate-12 transition-transform" />
-          </button>
-        </div>
-
       </section>
     </div>
   );
