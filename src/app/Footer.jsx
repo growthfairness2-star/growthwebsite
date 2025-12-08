@@ -59,61 +59,64 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* COLUMN 2 — CENTERED ON MOBILE */}
+        {/* COLUMN 2 — CONTACT INFO (CENTERED ON MOBILE) */}
         <div className="text-center md:text-left">
           <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">
             GrowthFairness Psychiatry, PLLC.
           </h3>
 
-          <p className="mb-1 text-gray-700">Call / Text:</p>
-          <a href="tel:8324496276" className="block mb-4 hover:text-[#FFAA00]">
+          <p className="mb-1 text-gray-700 font-medium">Call / Text:</p>
+          <a href="tel:8324496276" className="block mb-4 hover:text-[#FFAA00] transition-colors">
             832-449-6276
           </a>
 
-          <p className="mb-1 text-gray-700">Fax:</p>
-          <a href="fax:7135541811" className="block mb-4 hover:text-[#FFAA00]">
+          <p className="mb-1 text-gray-700 font-medium">Fax:</p>
+          <a href="fax:7135541811" className="block mb-4 hover:text-[#FFAA00] transition-colors">
             713-554-1811
           </a>
 
-          <p className="mb-1 text-gray-700">Email:</p>
-          <a href="mailto:info@growthfairness.com" className="block mb-4 hover:text-[#FFAA00]">
+          <p className="mb-1 text-gray-700 font-medium">Email:</p>
+          <a href="mailto:info@growthfairness.com" className="block mb-4 hover:text-[#FFAA00] transition-colors">
             info@growthfairness.com
           </a>
 
-          <p className="mb-1 text-gray-700">Business Address:</p>
+          <p className="mb-1 text-gray-700 font-medium">Business Address:</p>
           <a 
-            href="https://www.google.com/maps?q=12337+Jones+Road,+Houston+Texas+77070"
+            href="https://maps.google.com/?q=12337+Jones+Road+Houston+Texas+77070"
             target="_blank"
-            className="block leading-relaxed hover:text-[#FFAA00]"
+            rel="noopener noreferrer"
+            className="block leading-relaxed hover:text-[#FFAA00] transition-colors"
           >
             12337 Jones Road,<br />
             Houston, Texas 77070
           </a>
         </div>
 
-        {/* HORIZONTAL CONTAINER FOR LINKS - Keeps side-by-side but labels are left-aligned within columns */}
-        <div className="flex flex-row md:contents gap-4 sm:gap-8">
+        {/* COLUMNS 3 & 4 — HORIZONTAL ON MOBILE */}
+        {/* We use px-2 to ensure text doesn't hit the screen edges on very small devices */}
+        <div className="flex flex-row md:contents gap-2 sm:gap-8 px-2 md:px-0">
           
           {/* COLUMN 3 — QUICK LINKS */}
-          <div className="flex-1 text-left sm:text-center md:text-left">
-            <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">Quick Links</h3>
-            <ul className="space-y-3 text-gray-700">
+          <div className="flex-1 text-left">
+            <h3 className="text-lg md:text-xl font-semibold mb-4 text-[#FFAA00]">Quick Links</h3>
+            <ul className="space-y-3 text-gray-700 text-sm md:text-base">
               <li><Link href="/" className="hover:text-[#FFAA00]">Home</Link></li>
               <li><Link href="/team" className="hover:text-[#FFAA00]">Team</Link></li>
               <li><Link href="/services" className="hover:text-[#FFAA00]">Services</Link></li>
               <li><Link href="/contact" className="hover:text-[#FFAA00]">Contact</Link></li>
-              <li><Link href="/appointments" className="hover:text-[#FFAA00]">Appt.</Link></li>
+              <li><Link href="/appointments" className="hover:text-[#FFAA00]">Book Appointment</Link></li>
+              <li><Link href="/forms" className="hover:text-[#FFAA00]">Patient Forms</Link></li>
             </ul>
           </div>
 
-          {/* COLUMN 4 — SERVICES */}
-          <div className="flex-1 text-left sm:text-center md:text-left">
-            <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">Our Services</h3>
-            <ul className="space-y-3 text-gray-700">
-              <li><Link href="/medication" className="hover:text-[#FFAA00]">Medication</Link></li>
-              <li><Link href="/evaluation" className="hover:text-[#FFAA00]">Evaluation</Link></li>
-              <li><Link href="/therapy" className="hover:text-[#FFAA00]">Therapy</Link></li>
-              <li><Link href="/telepsychiatry" className="hover:text-[#FFAA00]">Telepsych</Link></li>
+          {/* COLUMN 4 — OUR SERVICES */}
+          <div className="flex-1 text-left">
+            <h3 className="text-lg md:text-xl font-semibold mb-4 text-[#FFAA00]">Our Services</h3>
+            <ul className="space-y-3 text-gray-700 text-sm md:text-base">
+              <li><Link href="/medication" className="hover:text-[#FFAA00]">Medication Management</Link></li>
+              <li><Link href="/evaluation" className="hover:text-[#FFAA00]">Psychiatric Evaluation</Link></li>
+              <li><Link href="/therapy" className="hover:text-[#FFAA00]">Psychotherapy</Link></li>
+              <li><Link href="/telepsychiatry" className="hover:text-[#FFAA00]">Telepsychiatry</Link></li>
             </ul>
           </div>
 
@@ -121,7 +124,7 @@ export default function Footer() {
 
       </div>
 
-      <div className="text-center text-gray-600 text-sm mt-12 border-t pt-8">
+      <div className="text-center text-gray-600 text-sm mt-12 border-t border-gray-200 pt-8">
         © {new Date().getFullYear()} GrowthFairness Psychiatry, PLLC. All Rights Reserved.
       </div>
     </footer>
