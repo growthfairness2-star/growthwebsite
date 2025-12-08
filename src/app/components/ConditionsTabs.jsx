@@ -42,7 +42,7 @@ const conditions = [
     description: "Targeted interventions to resolve sleep disturbances, regulate circadian rhythms, and improve overall restorative rest."
   },
   {
-    name: "Psychosis",
+    name: "Bipolar",
     image: "/psychosis.png",
     description: "Specialized clinical management to navigate sensory distortions and disconnected thoughts, focusing on reality testing and stability."
   },
