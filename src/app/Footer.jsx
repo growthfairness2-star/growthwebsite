@@ -15,8 +15,8 @@ export default function Footer() {
     <footer className="w-full bg-[#F4F9FA] text-[#1A1A1A] py-16 mt-20 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-12">
 
-        {/* COLUMN 1 — LOGOS + SHARE */}
-        <div>
+        {/* COLUMN 1 — CENTERED ON MOBILE */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <Image 
             src="/logoweb.png" 
             width={280} 
@@ -42,7 +42,6 @@ export default function Footer() {
             >
               <FaFacebookF />
             </a>
-
             <a 
               href={whatsappShare} 
               target="_blank" 
@@ -50,7 +49,6 @@ export default function Footer() {
             >
               <FaWhatsapp />
             </a>
-
             <a 
               href={twitterShare}
               target="_blank"
@@ -61,8 +59,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* COLUMN 2 — CONTACT INFO */}
-        <div>
+        {/* COLUMN 2 — CENTERED ON MOBILE */}
+        <div className="text-center md:text-left">
           <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">
             GrowthFairness Psychiatry, PLLC.
           </h3>
@@ -78,10 +76,7 @@ export default function Footer() {
           </a>
 
           <p className="mb-1 text-gray-700">Email:</p>
-          <a 
-            href="mailto:info@growthfairness.com" 
-            className="block mb-4 hover:text-[#FFAA00]"
-          >
+          <a href="mailto:info@growthfairness.com" className="block mb-4 hover:text-[#FFAA00]">
             info@growthfairness.com
           </a>
 
@@ -96,55 +91,37 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* COLUMN 3 — QUICK LINKS */}
-        <div>
-          <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">Quick Links</h3>
+        {/* HORIZONTAL CONTAINER FOR LINKS - Keeps side-by-side but labels are left-aligned within columns */}
+        <div className="flex flex-row md:contents gap-4 sm:gap-8">
+          
+          {/* COLUMN 3 — QUICK LINKS */}
+          <div className="flex-1 text-left sm:text-center md:text-left">
+            <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">Quick Links</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li><Link href="/" className="hover:text-[#FFAA00]">Home</Link></li>
+              <li><Link href="/team" className="hover:text-[#FFAA00]">Team</Link></li>
+              <li><Link href="/services" className="hover:text-[#FFAA00]">Services</Link></li>
+              <li><Link href="/contact" className="hover:text-[#FFAA00]">Contact</Link></li>
+              <li><Link href="/appointments" className="hover:text-[#FFAA00]">Appt.</Link></li>
+            </ul>
+          </div>
 
-          <ul className="space-y-3 text-gray-700">
-            <li><Link href="/" className="hover:text-[#FFAA00]">Home</Link></li>
-            <li><Link href="/team" className="hover:text-[#FFAA00]">Team</Link></li>
-            <li><Link href="/services" className="hover:text-[#FFAA00]">Services</Link></li>
-            <li><Link href="/contact" className="hover:text-[#FFAA00]">Contact</Link></li>
-            <li><Link href="/appointments" className="hover:text-[#FFAA00]">Book Appointment</Link></li>
-            <li><Link href="/forms" className="hover:text-[#FFAA00]">Patient Referral Form</Link></li>
-          </ul>
-        </div>
+          {/* COLUMN 4 — SERVICES */}
+          <div className="flex-1 text-left sm:text-center md:text-left">
+            <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">Our Services</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li><Link href="/medication" className="hover:text-[#FFAA00]">Medication</Link></li>
+              <li><Link href="/evaluation" className="hover:text-[#FFAA00]">Evaluation</Link></li>
+              <li><Link href="/therapy" className="hover:text-[#FFAA00]">Therapy</Link></li>
+              <li><Link href="/telepsychiatry" className="hover:text-[#FFAA00]">Telepsych</Link></li>
+            </ul>
+          </div>
 
-        {/* COLUMN 4 — SERVICES */}
-        <div>
-          <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">Our Services</h3>
-
-          <ul className="space-y-3 text-gray-700">
-            <li>
-              <Link href="/medication" className="hover:text-[#FFAA00]">
-                Medication Management
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/evaluation" className="hover:text-[#FFAA00]">
-                Psychiatric Evaluation
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/services/therapy" className="hover:text-[#FFAA00]">
-                Psychotherapy
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/telepsychiatry" className="hover:text-[#FFAA00]">
-                Telepsychiatry
-              </Link>
-            </li>
-          </ul>
         </div>
 
       </div>
 
-      {/* FOOTER BOTTOM */}
-      <div className="text-center text-gray-600 text-sm mt-12">
+      <div className="text-center text-gray-600 text-sm mt-12 border-t pt-8">
         © {new Date().getFullYear()} GrowthFairness Psychiatry, PLLC. All Rights Reserved.
       </div>
     </footer>
