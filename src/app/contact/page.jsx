@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -7,76 +8,89 @@ import { useRouter } from "next/navigation";
 export default function ContactPage() {
   const router = useRouter();
 
-  const handleNavigation = () => {
-    router.push("/forms");
-  };
+  // ⭐⭐⭐ Load + Render reCAPTCHA manually (FIXES invisibility)
+  useEffect(() => {
+    // Define callback BEFORE loading script
+    window.onloadCallback = function () {
+      if (window.grecaptcha) {
+        window.grecaptcha.render("recaptcha-container", {
+          sitekey: "6LcrlyUsAAAAABQPTXrs2gpQb-vuwFoeCyEtXaP_",
+        });
+      }
+    };
+
+    // Load script
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }, []);
+
+  const goToClinicianForms = () => router.push("/forms");
+  const goToPatientAppointments = () => router.push("/appointments");
 
   return (
     <div className="w-full bg-[#F4FAFC]">
 
       {/* HEADER */}
       <section className="text-center py-16 px-6">
-        <h1 className="text-4xl font-bold text-gray-900">Contact Us</h1>
-        <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Your mental health is our priority. Feel free to contact us with your questions.
-          We are here to help you with your mental health issues. We currently offer
-          psychiatric assessment, evaluation, diagnosis, and medication management.
+        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Contact Us</h1>
+        <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed text-lg">
+          Your mental health is our priority. We are here to support you with psychiatric assessment, 
+          diagnosis, and expert medication management.
         </p>
       </section>
 
-      {/* REFERRAL BUTTONS - Updated to be unique and link to /forms */}
-      <section className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 px-6 pb-16">
-        
-        {/* Clinician Button */}
+      {/* PATHWAYS */}
+      <section className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 px-6 pb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.02 }}
-          onClick={handleNavigation}
-          className="bg-[#7DB8CE] text-white text-center py-8 rounded-xl shadow cursor-pointer hover:shadow-lg transition"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          whileHover={{ scale: 1.03 }}
+          onClick={goToClinicianForms}
+          className="bg-[#7DB8CE] text-white text-center py-10 rounded-2xl shadow-xl cursor-pointer transition-all border-b-8 border-black/10"
         >
-          <p className="text-xl font-semibold">Are you a clinician?</p>
-          <p className="mt-2">Refer a Client for Med Management</p>
+          <p className="text-2xl font-black uppercase tracking-wide">Are you a clinician?</p>
+          <p className="mt-2 text-white/90 font-medium italic">Refer a Client for Med Management</p>
         </motion.div>
 
-        {/* Patient Button */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.02 }}
-          onClick={handleNavigation}
-          className="bg-[#7DB8CE] text-white text-center py-8 rounded-xl shadow cursor-pointer hover:shadow-lg transition"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          whileHover={{ scale: 1.03 }}
+          onClick={goToPatientAppointments}
+          className="bg-[#FFAA00] text-white text-center py-10 rounded-2xl shadow-xl cursor-pointer transition-all border-b-8 border-black/10"
         >
-          <p className="text-xl font-semibold">Are you a patient?</p>
-          <p className="mt-2">Request an Appointment or Consultation</p>
+          <p className="text-2xl font-black uppercase tracking-wide">Are you a patient?</p>
+          <p className="mt-2 text-white/90 font-medium italic">Book an Appointment Online</p>
         </motion.div>
-
       </section>
 
-      {/* THREE INFO COLUMNS */}
+      {/* INFO */}
       <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center px-6 py-10">
-        <div>
-          <h3 className="font-semibold text-gray-900 text-xl">Open Hours</h3>
+        <div className="bg-white p-6 rounded-xl shadow-sm">
+          <h3 className="font-bold text-gray-900 text-xl">Open Hours</h3>
           <p className="mt-2 text-gray-600">
-            Monday to Saturday <br /> 9am to 7pm
+            Mon–Sat<br/>
+            <span className="text-[#FFAA00] font-semibold">9:00 AM – 7:00 PM</span>
           </p>
         </div>
 
-        <div>
-          <h3 className="font-semibold text-gray-900 text-xl">Get in Touch</h3>
-          <p className="mt-2 text-gray-600">
-            Call / Text: 8324496276 <br />
-            Fax: 7135541811 <br />
-            info@growthfairness.com
+        <div className="bg-white p-6 rounded-xl shadow-sm">
+          <h3 className="font-bold text-gray-900 text-xl">Get in Touch</h3>
+          <p className="mt-2 text-gray-600 leading-relaxed">
+            Call/Text: 832-449-6276 <br />
+            Fax: 713-554-1811 <br />
+            <span className="text-[#7DB8CE] font-medium">info@growthfairness.com</span>
           </p>
         </div>
 
-        <div>
-          <h3 className="font-semibold text-gray-900 text-xl">Address</h3>
+        <div className="bg-white p-6 rounded-xl shadow-sm">
+          <h3 className="font-bold text-gray-900 text-xl">Address</h3>
           <p className="mt-2 text-gray-600">
-            BUSINESS ADDRESS: 12337 <br />
-            Jones Road, Houston <br />
-            Texas 77070.
+            12337 Jones Road<br/>
+            Houston, TX 77070
           </p>
         </div>
       </section>
@@ -85,9 +99,9 @@ export default function ContactPage() {
       <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-6 py-16">
 
         {/* MAP */}
-        <div className="w-full h-[500px] rounded-xl overflow-hidden shadow">
+        <div className="w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.578635839958!2d-95.6027063!3d29.98565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640d1df68157771%3A0xc66c11d279318898!2s12337%20Jones%20Rd%2C%20Houston%2C%20TX%2077070!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18..."
             width="100%"
             height="100%"
             loading="lazy"
@@ -96,98 +110,71 @@ export default function ContactPage() {
         </div>
 
         {/* FORM */}
-        <div className="bg-white p-8 rounded-xl shadow">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">
-            Have Questions? Contact Us!
+        <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
+          <h3 className="text-2xl font-black text-gray-900 mb-6 uppercase tracking-tight">
+            Direct Inquiry Form
           </h3>
 
-          <form className="space-y-4">
+          <form
+            className="space-y-5"
+            method="POST"
+            action="/api/contact"
+            encType="multipart/form-data"
+          >
             <input
+              name="name"
               type="text"
-              placeholder="Name"
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-300"
+              placeholder="Full Name"
+              required
+              className="w-full p-4 border rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#7DB8CE]"
             />
 
             <input
+              name="email"
               type="email"
               placeholder="Email Address"
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-300"
+              required
+              className="w-full p-4 border rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#7DB8CE]"
             />
 
             <textarea
-              placeholder="Message"
-              rows={6}
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-300"
+              name="message"
+              placeholder="How can we help?"
+              rows={5}
+              required
+              className="w-full p-4 border rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#7DB8CE]"
             ></textarea>
 
-            <input type="file" className="w-full" />
-
-            <div className="w-full">
-              <div className="bg-gray-100 border rounded-md p-6 text-center text-gray-500">
-                reCAPTCHA placeholder
-              </div>
+            {/* FILE UPLOAD */}
+            <div>
+              <label className="font-semibold text-gray-700">Upload File (Optional)</label>
+              <input
+                type="file"
+                name="file"
+                className="w-full mt-2 p-3 border rounded-xl bg-white text-gray-900"
+              />
             </div>
+
+            {/* CONSENT */}
+            <label className="flex items-start gap-3 text-gray-700 text-sm leading-snug">
+              <input type="checkbox" name="consent" required className="mt-1" />
+              <span>
+                I consent to GrowthFairness Psychiatry receiving my information for contact purposes.
+              </span>
+            </label>
+
+            {/* ⭐⭐⭐ GOOGLE RECAPTCHA (fixed version) */}
+            <div id="recaptcha-container" className="mt-4"></div>
 
             <button
               type="submit"
-              className="w-full bg-[#FFAA00] text-white py-3 rounded-lg font-semibold hover:bg-[#e09a00] transition"
+              className="w-full bg-black text-white py-4 rounded-xl font-black text-lg hover:bg-[#FFAA00] transition-all duration-300"
             >
-              Send
+              SUBMIT MESSAGE
             </button>
           </form>
         </div>
       </section>
-
-      {/* CRISIS SECTION */}
-      <section className="bg-[#EAF6FA] py-20 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-
-          {/* TEXT */}
-          <div>
-            <h2 className="text-2xl font-bold text-center md:text-left text-gray-900 mb-6">
-              Having mental health crisis? Call 911 or 988 or go to your
-              local emergency room for help.
-            </h2>
-
-            <p className="text-gray-600 leading-relaxed">
-              If you or someone you know is considering suicide or having 
-              mental health crisis, call “911” or visit your local emergency 
-              room or contact the National Suicide Prevention Lifeline by 
-              dialing “988” or 1–800–273–TALK (8255) or text “STRENGTH” to the 
-              Crisis Text Line at 741–741.
-            </p>
-          </div>
-
-          {/* IMAGE */}
-          <div className="w-full h-[350px] rounded-xl overflow-hidden shadow">
-            <Image
-              src="/homeanxiety.jpg"
-              alt="mental crisis help"
-              width={600}
-              height={400}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </div>
-
-        {/* Additional paragraph */}
-        <div className="max-w-5xl mx-auto mt-12 text-center text-gray-600 leading-relaxed">
-          <p>
-            During a mental health crisis, it is critical to prioritize your safety
-            and well-being. If you feel safe doing so, contact a trustworthy friend or
-            family member who can offer support.
-            They can help you assure your immediate safety and seek professional
-            assistance.
-          </p>
-
-          <p className="mt-6">
-            Many cities have crisis hotlines or mental health groups that can
-            provide emergency aid. You are not alone — there are people who
-            care and want to assist you.
-          </p>
-        </div>
-      </section>
-
     </div>
   );
 }
