@@ -171,7 +171,21 @@ export default function OCDPage() {
             {isExpanded ? <>View Fewer <FaChevronUp /></> : <>See All Networks ({insuranceLogos.length}) <FaChevronDown /></>}
           </button>
         </div>
-    
+     {/* ================= FINAL CTA ================= */}
+      <section className="py-24 text-center bg-[#FDFDFD]">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-950 mb-8 tracking-tight">
+            The cycle ends <span className="text-[#3DBBBB]">today.</span>
+          </h2>
+          {/* Replaced button with Link component for navigation */}
+          <Link 
+            href="/appointments" 
+            className="inline-flex items-center gap-3 bg-gray-950 text-white font-black px-12 py-5 rounded-2xl text-xl hover:bg-[#3DBBBB] transition-all mx-auto shadow-2xl"
+          >
+            <FaCalendarAlt /> Schedule Consultation
+          </Link>
+        </div>
+      </section>
       </section>
     </main>
   );
