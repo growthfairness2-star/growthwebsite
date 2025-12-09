@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { FaShapes, FaRegCheckCircle, FaCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { MdOutlinePrecisionManufacturing } from "react-icons/md";
 
@@ -36,6 +36,7 @@ export default function OCDPage() {
 
   return (
     <main className="w-full bg-white overflow-hidden">
+
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full pt-20 pb-16 lg:pt-32 lg:pb-24 bg-[#F4F7FA]">
         <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -130,13 +131,19 @@ export default function OCDPage() {
             </p>
         </div>
 
+        {/* Desktop sliding logos */}
         <div className="hidden lg:flex relative w-full overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white z-10 pointer-events-none" />
           <motion.div
             className="flex gap-8 w-max"
             animate={controls}
             onMouseEnter={() => controls.stop()}
-            onMouseLeave={() => controls.start({ x: "-50%", transition: { duration: 40, ease: "linear", repeat: Infinity } })}
+            onMouseLeave={() =>
+              controls.start({ 
+                x: "-50%", 
+                transition: { duration: 40, ease: "linear", repeat: Infinity } 
+              })
+            }
           >
             {[...insuranceLogos, ...insuranceLogos].map((logo, i) => (
               <div key={i} className="flex items-center justify-center w-[220px] h-[120px] bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#306EFF]/20 transition-all duration-300">
@@ -148,6 +155,7 @@ export default function OCDPage() {
           </motion.div>
         </div>
 
+        {/* Mobile insurance grid */}
         <div className="lg:hidden px-6 max-w-md mx-auto">
           <div className="grid grid-cols-2 gap-4">
             {(isExpanded ? insuranceLogos : insuranceLogos.slice(0, 6)).map((logo, i) => (
@@ -156,22 +164,14 @@ export default function OCDPage() {
               </div>
             ))}
           </div>
-          <button onClick={() => setIsExpanded(!isExpanded)} className="mt-8 mx-auto flex items-center gap-2 font-black text-[#306EFF] bg-blue-50 px-8 py-3 rounded-full hover:bg-blue-100 transition-colors shadow-sm">
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)} 
+            className="mt-8 mx-auto flex items-center gap-2 font-black text-[#306EFF] bg-blue-50 px-8 py-3 rounded-full hover:bg-blue-100 transition-colors shadow-sm"
+          >
             {isExpanded ? <>View Fewer <FaChevronUp /></> : <>See All Networks ({insuranceLogos.length}) <FaChevronDown /></>}
           </button>
         </div>
-      </section>
-
-      {/* ================= FINAL CTA ================= */}
-      <section className="py-24 text-center bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-950 mb-8 tracking-tight">
-            Ready for a <span className="text-[#306EFF]">calmer mind?</span>
-          </h2>
-          <button className="bg-gray-950 text-white font-black px-12 py-5 rounded-2xl text-xl hover:bg-[#306EFF] transition-all flex items-center gap-3 mx-auto shadow-2xl">
-            <FaCalendarAlt /> Schedule OCD Evaluation
-          </button>
-        </div>
+    
       </section>
     </main>
   );

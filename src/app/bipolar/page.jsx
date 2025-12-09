@@ -163,17 +163,7 @@ export default function BipolarPage() {
         </div>
       </section>
 
-      {/* ================= FINAL CTA ================= */}
-      <section className="py-24 text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-950 mb-8 tracking-tight">
-            Stabilize your <span className="text-indigo-600">future today.</span>
-          </h2>
-          <button className="bg-indigo-950 text-white font-black px-12 py-5 rounded-2xl text-xl hover:bg-[#306EFF] transition-all flex items-center gap-3 mx-auto shadow-2xl">
-            <FaCalendarAlt /> Schedule Specialist Intake
-          </button>
-        </div>
-      </section>
+
     </main>
   );
 }
