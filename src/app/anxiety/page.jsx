@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { FaLeaf, FaRegCheckCircle, FaCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { MdOutlineSecurity } from "react-icons/md";
 
@@ -115,7 +115,7 @@ export default function AnxietyPage() {
                We treat Generalized Anxiety, Social Anxiety, and Panic Disorders with a focus on long-term regulation rather than just temporary relief.
              </p>
              <Link href="/appointments" className="inline-flex items-center gap-2 font-black text-[#3DBBBB] hover:text-white transition group">
-                Begin Your Path to Peace <span className="group-hover:translate-x-2 transition-transform">→</span>
+               Begin Your Path to Peace <span className="group-hover:translate-x-2 transition-transform">→</span>
              </Link>
           </div>
         </div>
@@ -178,9 +178,13 @@ export default function AnxietyPage() {
           <h2 className="text-4xl md:text-5xl font-black text-gray-950 mb-8 tracking-tight">
             The cycle ends <span className="text-[#3DBBBB]">today.</span>
           </h2>
-          <button className="bg-gray-950 text-white font-black px-12 py-5 rounded-2xl text-xl hover:bg-[#3DBBBB] transition-all flex items-center gap-3 mx-auto shadow-2xl">
+          {/* Replaced button with Link component for navigation */}
+          <Link 
+            href="/appointments" 
+            className="inline-flex items-center gap-3 bg-gray-950 text-white font-black px-12 py-5 rounded-2xl text-xl hover:bg-[#3DBBBB] transition-all mx-auto shadow-2xl"
+          >
             <FaCalendarAlt /> Schedule Consultation
-          </button>
+          </Link>
         </div>
       </section>
     </main>
