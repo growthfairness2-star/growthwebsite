@@ -1,262 +1,108 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { IoChevronDown, IoChevronUp, IoCashOutline, IoCardOutline } from "react-icons/io5";
-import { FaShieldAlt, FaQuestionCircle } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
-// Enhanced FAQ data structure to categorize major topics
-const faqs = [
-  {
-    category: "Payment & Insurance",
-    icon: FaShieldAlt,
-    items: [
-      {
-        question: "What insurances do you accept?",
-        answer: (
-          <div className="text-gray-700">
-            <p className="mb-3 font-semibold">We accept the following major health insurances:</p>
-            
-            <div className="grid sm:grid-cols-2 gap-x-4 gap-y-1 text-sm">
-                <ul className="list-disc pl-6 space-y-1">
-                    <li>Oscar Health</li>
-                    <li>Blue Cross Blue Shield of Texas</li>
-                    <li>United Healthcare</li>
-                    <li>Oxford</li>
-                    <li>Cigna</li>
-                    <li>Aetna</li>
-                    <li>Optum Behavioral Health</li>
-                    <li>UMR</li>
-                    <li>Golden Rule</li>
-                </ul>
-                <ul className="list-disc pl-6 space-y-1">
-                    <li>US Health Group</li>
-                    <li>GEHA</li>
-                    <li>Harvard Pilgrim Health</li>
-                    <li>TUFTS</li>
-                    <li>Meritain</li>
-                    <li>Coventry</li>
-                    <li>Nippon Life Benefits</li>
-                    <li>Chapman Boone</li>
-                    <li>Evernorth</li>
-                </ul>
-            </div>
-            
-            <p className="mt-4 p-3 bg-blue-50 border-l-4 border-blue-400 rounded-md">
-              **Important:** You are responsible for any copays, coinsurance, or deductibles associated with your plan. Please verify coverage directly with your insurer.
-            </p>
-          </div>
-        )
-      },
-      {
-        question: "Do you accept self-pay or private-pay?",
-        answer: (
-          <div className="text-gray-700">
-            <p className="mb-4">Yes, self-pay is accepted. Our transparent pricing is as follows:</p>
-            
-            <div className="space-y-4">
-                <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                    <h4 className="text-lg font-bold text-green-700 mb-1 flex items-center gap-2">
-                        <IoCashOutline className="text-xl" /> Initial Diagnostic Evaluation
-                    </h4>
-                    <p className="text-3xl font-extrabold text-green-700">$200</p>
-                    <ul className="list-disc pl-6 text-sm mt-1 space-y-0.5">
-                        <li>60 minutes session</li>
-                        <li>Comprehensive assessment & treatment planning</li>
-                        <li>Includes medication management (if applicable)</li>
-                    </ul>
-                </div>
-                
-                <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-                    <h4 className="text-lg font-bold text-yellow-700 mb-1 flex items-center gap-2">
-                         <IoCardOutline className="text-xl" /> Follow-up Session
-                    </h4>
-                    <p className="text-3xl font-extrabold text-yellow-700">$120</p>
-                    <ul className="list-disc pl-6 text-sm mt-1 space-y-0.5">
-                        <li>30 minutes session</li>
-                        <li>Ongoing medication management & monitoring</li>
-                    </ul>
-                </div>
+export default function ContactPage() {
+  const router = useRouter();
 
-                <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                    <h4 className="text-lg font-bold text-red-700 mb-1">Cancellation Policy</h4>
-                    <p className="font-semibold text-red-700">$75 fee</p>
-                    <p className="text-sm mt-1">
-                        Must cancel at least 24 hours before your scheduled appointment time to avoid the fee.
-                    </p>
-                </div>
-            </div>
-          </div>
-        )
-      },
-      {
-        question: "Do you know your right as a patient?",
-        answer:
-          "Yes, under the ‘Patients First’ law, you have the right to transparent pricing for medical procedures and healthcare services. We are fully compliant with this regulation."
-      }
-    ]
-  },
-  {
-    category: "Care & Eligibility",
-    icon: FaQuestionCircle,
-    items: [
-        {
-            question: "What ages of clients do you see?",
-            answer: "We specialize in treating young adults and older, specifically those between the ages of 18–65+."
-        },
-        {
-            question: "Do you offer telehealth / telepsych services?",
-            answer:
-              "Yes, we provide secure, private telehealth sessions via video or audio. This allows you to receive care conveniently from your chosen device and location."
-        },
-        {
-            question: "In what state can I get psychiatric services?",
-            answer:
-              "Due to licensing laws, our psychiatric medication management services are currently available only to residents of **Texas**."
-        },
-        {
-            question: "Can I get prescriptions for medications?",
-            answer:
-              "Yes, prescriptions are provided as part of treatment, but please note that **controlled substances** (such as benzodiazepines and stimulants) are generally **not prescribed** as a policy. We will discuss effective, non-controlled alternatives for your care."
-        }
-    ]
-  }
-];
-
-const AccordionItem = ({ question, answer, isOpen, toggle }) => (
-    <motion.div 
-        className={`rounded-xl shadow-lg transition-all duration-300 ${isOpen ? 'bg-[#FFF9E5] border border-[#FFAA00]/50' : 'bg-white border border-gray-100 hover:shadow-md'}`}
-        layout
-    >
-        <button
-            onClick={toggle}
-            className={`flex justify-between w-full text-left px-6 py-5 text-lg font-semibold transition-colors duration-300 ${isOpen ? 'text-gray-900' : 'text-gray-800 hover:text-gray-900'}`}
-        >
-            {question}
-            <motion.div
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="flex items-center"
-            >
-                <IoChevronDown className={`text-2xl ${isOpen ? 'text-[#FFAA00]' : 'text-gray-500'}`} />
-            </motion.div>
-        </button>
-
-        <AnimatePresence>
-            {isOpen && (
-                <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-6 pb-6 text-gray-600 overflow-hidden"
-                >
-                    <div className="pt-2 leading-relaxed">{answer}</div>
-                </motion.div>
-            )}
-        </AnimatePresence>
-    </motion.div>
-);
-
-export default function FAQPage() {
-  const [open, setOpen] = useState(null);
-
-  const toggle = (i) => {
-    setOpen(open === i ? null : i);
-  };
-
-  const renderFaqs = () => {
-    let globalIndex = 0;
-    return faqs.map((category, catIndex) => {
-      const categoryItems = category.items.map((item, itemIndex) => {
-        const currentIndex = globalIndex++;
-        return (
-          <AccordionItem
-            key={currentIndex}
-            question={item.question}
-            answer={item.answer}
-            isOpen={open === currentIndex}
-            toggle={() => toggle(currentIndex)}
-          />
-        );
-      });
-      return (
-        <div key={catIndex} className="space-y-8">
-            <h2 className="text-3xl font-extrabold text-gray-900 border-b-4 border-[#FFAA00] inline-block pb-1 flex items-center gap-3">
-                <category.icon className="text-[#FFAA00]" />
-                {category.category}
-            </h2>
-            <div className="space-y-4">
-                {categoryItems}
-            </div>
-        </div>
-      );
-    });
-  };
+  const goToClinicianForms = () => router.push("/forms");
+  const goToPatientAppointments = () => router.push("/appointments");
 
   return (
-    <div className="w-full">
-      {/* HERO SECTION */}
-      <section className="w-full py-24 lg:py-32 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4">
-              Your Questions, <span className="text-[#FFAA00]">Answered.</span>
-            </h1>
+    <div className="w-full bg-[#F4FAFC]">
 
-            {/* Static Text replacing Typewriter */}
-            <div className="text-xl font-medium text-gray-700 leading-relaxed">
-              <p className="mb-2">We provide clear information on insurance & fees.</p>
-              <p className="text-[#FFAA00] font-bold">Your path to mental wellness starts with clarity.</p>
-            </div>
+      {/* HEADER */}
+      <section className="text-center py-16 px-6">
+        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Contact Us</h1>
+        <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed text-lg">
+          Your mental health is our priority. We are here to support you with psychiatric assessment, 
+          diagnosis, and expert medication management.
+        </p>
+      </section>
 
-            <p className="text-gray-600 mt-6 text-lg">
-              Find detailed answers about our services, insurance, telehealth options, patient rights, and more.
-            </p>
+      {/* PATHWAYS */}
+      <section className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 px-6 pb-16">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          whileHover={{ scale: 1.03 }}
+          onClick={goToClinicianForms}
+          className="bg-[#7DB8CE] text-white text-center py-10 rounded-2xl shadow-xl cursor-pointer transition-all border-b-8 border-black/10"
+        >
+          <p className="text-2xl font-black uppercase tracking-wide">Are you a clinician?</p>
+          <p className="mt-2 text-white/90 font-medium italic">Refer a Client for Med Management</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          whileHover={{ scale: 1.03 }}
+          onClick={goToPatientAppointments}
+          className="bg-[#FFAA00] text-white text-center py-10 rounded-2xl shadow-xl cursor-pointer transition-all border-b-8 border-black/10"
+        >
+          <p className="text-2xl font-black uppercase tracking-wide">Are you a patient?</p>
+          <p className="mt-2 text-white/90 font-medium italic">Book an Appointment Online</p>
+        </motion.div>
+      </section>
+
+      {/* INFO */}
+      <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center px-6 py-10">
+        <div className="bg-white p-6 rounded-xl shadow-sm">
+          <h3 className="font-bold text-gray-900 text-xl">Open Hours</h3>
+          <p className="mt-2 text-gray-600">
+            Mon–Sat<br/>
+            <span className="text-[#FFAA00] font-semibold">9:00 AM – 7:00 PM</span>
+          </p>
+        </div>
+
+        <div className="bg-white p-6 rounded-xl shadow-sm">
+          <h3 className="font-bold text-gray-900 text-xl">Get in Touch</h3>
+          <p className="mt-2 text-gray-600 leading-relaxed">
+            Call/Text: 832-449-6276 <br />
+            Fax: 713-554-1811 <br />
+            <span className="text-[#7DB8CE] font-medium">info@growthfairness.com</span>
+          </p>
+        </div>
+
+        <div className="bg-white p-6 rounded-xl shadow-sm">
+          <h3 className="font-bold text-gray-900 text-xl">Address</h3>
+          <p className="mt-2 text-gray-600">
+            12337 Jones Road<br/>
+            Houston, TX 77070
+          </p>
+        </div>
+      </section>
+
+      {/* MAP + ZOHO FORM */}
+      <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-6 py-16">
+
+        {/* MAP */}
+        <div className="w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18..."
+            width="100%"
+            height="100%"
+            loading="lazy"
+            className="border-0"
+          ></iframe>
+        </div>
+
+        {/* ZOHO EMBEDDED FORM */}
+        <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
+          <h3 className="text-2xl font-black text-gray-900 mb-6 uppercase tracking-tight">
+            Direct Inquiry Form
+          </h3>
+
+          <div className="w-full">
+            <iframe
+              aria-label="Contact Us"
+              frameBorder="0"
+              style={{ height: "500px", width: "99%", border: "none" }}
+              src="https://forms.zohopublic.com/growthfairness2gm1/form/ContactUs/formperma/Q1qTNXG-jfO7hj8tk-8q2N9yzdnOi9kLn-E7CP1Sl4c"
+            ></iframe>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="flex justify-center"
-          >
-            <Image
-              src="/faq.png"
-              width={550}
-              height={550}
-              alt="Illustration of a person asking questions"
-              className="rounded-3xl shadow-2xl object-cover"
-            />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ ACCORDION SECTION */}
-      <section className="w-full bg-[#F4F9FA] py-20 lg:py-24">
-        <div className="max-w-5xl mx-auto px-6 lg:px-16 space-y-12">
-            {renderFaqs()}
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-      <section className="w-full py-20 bg-white">
-        <div className="max-w-4xl mx-auto p-8 rounded-2xl shadow-xl bg-gray-50 border-t-4 border-[#FFAA00] text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 mb-4">
-                Ready to Start Your Journey?
-            </h2>
-            <p className="text-xl text-gray-700 mb-8">
-                Your questions are answered. Let's take the next step towards personalized care.
-            </p>
-
-            <Link
-                href="/appointments"
-                className="inline-block px-10 py-4 bg-[#FFAA00] text-gray-900 font-bold rounded-full text-xl shadow-lg transition transform hover:bg-[#e69a00] hover:scale-[1.02]"
-            >
-                Book Your First Appointment
-            </Link>
         </div>
       </section>
     </div>
