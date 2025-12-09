@@ -73,13 +73,14 @@ export default function SelfPayPage() {
                 <FaCalendarCheck /> Book Now
             </button>
 
+            {/* UPDATED LABEL HERE → Proceed to Payment */}
             <button 
                 onClick={() => setActiveTab('payment')} 
                 className={`flex items-center justify-center gap-2 py-5 text-lg font-bold relative z-10 w-full ${
                     activeTab === 'payment' ? 'text-gray-900' : 'text-gray-500'
                 }`}
             >
-                <FaDollarSign /> Pay Bill
+                <FaDollarSign /> Proceed to Payment
             </button>
 
             {/* ANIMATED INDICATOR */}
@@ -113,7 +114,7 @@ export default function SelfPayPage() {
                 </motion.div>
             ) : (
 
-                /* PAY BILL SECOND */
+                /* PROCEED TO PAYMENT (FORMALLY PAY BILL) */
                 <motion.div key="pay" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-10">
                         <motion.article className="bg-white border-4 border-[#FFAA00] rounded-3xl p-8 shadow-2xl flex flex-col">
