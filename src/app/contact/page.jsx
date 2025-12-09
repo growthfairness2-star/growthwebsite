@@ -8,25 +8,6 @@ import { useRouter } from "next/navigation";
 export default function ContactPage() {
   const router = useRouter();
 
-  // ⭐⭐⭐ Load + Render reCAPTCHA manually (FIXES invisibility)
-  useEffect(() => {
-    // Define callback BEFORE loading script
-    window.onloadCallback = function () {
-      if (window.grecaptcha) {
-        window.grecaptcha.render("recaptcha-container", {
-          sitekey: "6LcrlyUsAAAAABQPTXrs2gpQb-vuwFoeCyEtXaP_",
-        });
-      }
-    };
-
-    // Load script
-    const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-  }, []);
-
   const goToClinicianForms = () => router.push("/forms");
   const goToPatientAppointments = () => router.push("/appointments");
 
@@ -37,7 +18,7 @@ export default function ContactPage() {
       <section className="text-center py-16 px-6">
         <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Contact Us</h1>
         <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed text-lg">
-          Your mental health is our priority. We are here to support you with psychiatric assessment, 
+          Your mental health is our priority. We are here to support you with psychiatric assessment,
           diagnosis, and expert medication management.
         </p>
       </section>
@@ -71,10 +52,7 @@ export default function ContactPage() {
       <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center px-6 py-10">
         <div className="bg-white p-6 rounded-xl shadow-sm">
           <h3 className="font-bold text-gray-900 text-xl">Open Hours</h3>
-          <p className="mt-2 text-gray-600">
-            Mon–Sat<br/>
-            <span className="text-[#FFAA00] font-semibold">9:00 AM – 7:00 PM</span>
-          </p>
+          <p className="mt-2 text-gray-600">Mon–Sat<br/><span className="text-[#FFAA00] font-semibold">9:00 AM – 7:00 PM</span></p>
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow-sm">
@@ -88,18 +66,15 @@ export default function ContactPage() {
 
         <div className="bg-white p-6 rounded-xl shadow-sm">
           <h3 className="font-bold text-gray-900 text-xl">Address</h3>
-          <p className="mt-2 text-gray-600">
-            12337 Jones Road<br/>
-            Houston, TX 77070
-          </p>
+          <p className="mt-2 text-gray-600">12337 Jones Road<br/>Houston, TX 77070</p>
         </div>
       </section>
 
-      {/* MAP + FORM */}
+      {/* MAP + ZOHO FORM */}
       <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-6 py-16">
 
-        {/* MAP */}
-        <div className="w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+        {/* MAP - REDUCED MOBILE HEIGHT */}
+        <div className="w-full h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18..."
             width="100%"
@@ -109,70 +84,18 @@ export default function ContactPage() {
           ></iframe>
         </div>
 
-        {/* FORM */}
-        <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
+        {/* ZOHO EMBED FORM */}
+        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-2xl border border-gray-100">
           <h3 className="text-2xl font-black text-gray-900 mb-6 uppercase tracking-tight">
             Direct Inquiry Form
           </h3>
 
-          <form
-            className="space-y-5"
-            method="POST"
-            action="/api/contact"
-            encType="multipart/form-data"
-          >
-            <input
-              name="name"
-              type="text"
-              placeholder="Full Name"
-              required
-              className="w-full p-4 border rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#7DB8CE]"
-            />
-
-            <input
-              name="email"
-              type="email"
-              placeholder="Email Address"
-              required
-              className="w-full p-4 border rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#7DB8CE]"
-            />
-
-            <textarea
-              name="message"
-              placeholder="How can we help?"
-              rows={5}
-              required
-              className="w-full p-4 border rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#7DB8CE]"
-            ></textarea>
-
-            {/* FILE UPLOAD */}
-            <div>
-              <label className="font-semibold text-gray-700">Upload File (Optional)</label>
-              <input
-                type="file"
-                name="file"
-                className="w-full mt-2 p-3 border rounded-xl bg-white text-gray-900"
-              />
-            </div>
-
-            {/* CONSENT */}
-            <label className="flex items-start gap-3 text-gray-700 text-sm leading-snug">
-              <input type="checkbox" name="consent" required className="mt-1" />
-              <span>
-                I consent to GrowthFairness Psychiatry receiving my information for contact purposes.
-              </span>
-            </label>
-
-            {/* ⭐⭐⭐ GOOGLE RECAPTCHA (fixed version) */}
-            <div id="recaptcha-container" className="mt-4"></div>
-
-            <button
-              type="submit"
-              className="w-full bg-black text-white py-4 rounded-xl font-black text-lg hover:bg-[#FFAA00] transition-all duration-300"
-            >
-              SUBMIT MESSAGE
-            </button>
-          </form>
+          <iframe
+            aria-label="Contact Us"
+            frameBorder="0"
+            style={{ height: "600px", width: "100%", border: "none" }}
+            src="https://forms.zohopublic.com/growthfairness2gm1/form/ContactUs/formperma/Q1qTNXG-jfO7hj8tk-8q2N9yzdnOi9kLn-E7CP1Sl4c"
+          ></iframe>
         </div>
       </section>
     </div>
