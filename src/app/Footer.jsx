@@ -7,6 +7,8 @@ import { FaFacebookF, FaWhatsapp, FaTwitter } from "react-icons/fa";
 export default function Footer() {
   const websiteUrl = "https://growthfairness.com";
 
+  const psychologyTodayUrl = "https://www.psychologytoday.com/us/psychiatrists/growthfairness-psychiatry-pllc-raymond-obiajulu-houston-tx/1172295";
+
   const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
   const whatsappShare = `https://api.whatsapp.com/send?text=${websiteUrl}`;
   const twitterShare = `https://twitter.com/intent/tweet?url=${websiteUrl}&text=Check%20out%20this%20website`;
@@ -14,13 +16,12 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#F4F9FA] text-[#1A1A1A] py-16 mt-20 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-12">
-
         {/* COLUMN 1 — CENTERED ON MOBILE */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <Image 
-            src="/logoweb.png" 
-            width={280} 
-            height={60} 
+          <Image
+            src="/logoweb.png"
+            width={280}
+            height={60}
             alt="GrowthFairness Logo"
             className="mb-6"
           />
@@ -28,28 +29,38 @@ export default function Footer() {
           <p className="text-gray-600 mb-3">Secured & Verified by:</p>
 
           <div className="flex items-center gap-4 mb-8">
-            <Image src="/logo1.png" width={120} height={60} alt="Security Logo 1" />
+            {/* START: MODIFICATION FOR logo1.png */}
+            <Link
+              href={psychologyTodayUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity" // Optional: Added hover effect
+            >
+              <Image src="/logo1.png" width={120} height={60} alt="Security Logo 1" />
+            </Link>
+            {/* END: MODIFICATION FOR logo1.png */}
+
             <Image src="/logo2.png" width={120} height={60} alt="Security Logo 2" />
           </div>
 
           <h3 className="text-lg font-semibold mb-3">Share This Website</h3>
 
           <div className="flex gap-4 text-2xl">
-            <a 
-              href={facebookShare} 
-              target="_blank" 
+            <a
+              href={facebookShare}
+              target="_blank"
               className="p-3 rounded-full bg-[#3b5998] text-white hover:opacity-80 transition"
             >
               <FaFacebookF />
             </a>
-            <a 
-              href={whatsappShare} 
-              target="_blank" 
+            <a
+              href={whatsappShare}
+              target="_blank"
               className="p-3 rounded-full bg-[#25D366] text-white hover:opacity-80 transition"
             >
               <FaWhatsapp />
             </a>
-            <a 
+            <a
               href={twitterShare}
               target="_blank"
               className="p-3 rounded-full bg-[#1DA1F2] text-white hover:opacity-80 transition"
@@ -81,7 +92,7 @@ export default function Footer() {
           </a>
 
           <p className="mb-1 text-gray-700 font-medium">Business Address:</p>
-          <a 
+          <a
             href="https://maps.google.com/?q=12337+Jones+Road+Houston+Texas+77070"
             target="_blank"
             rel="noopener noreferrer"
@@ -95,7 +106,7 @@ export default function Footer() {
         {/* COLUMNS 3 & 4 — HORIZONTAL ON MOBILE */}
         {/* We use px-2 to ensure text doesn't hit the screen edges on very small devices */}
         <div className="flex flex-row md:contents gap-2 sm:gap-8 px-2 md:px-0">
-          
+
           {/* COLUMN 3 — QUICK LINKS */}
           <div className="flex-1 text-left">
             <h3 className="text-lg md:text-xl font-semibold mb-4 text-[#FFAA00]">Quick Links</h3>
