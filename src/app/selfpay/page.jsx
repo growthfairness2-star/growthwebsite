@@ -24,18 +24,15 @@ export default function SelfPayPage() {
     </li>
   );
 
-  const ActionButton = ({ stripeLink, isFeatured = false }) => (
+  const ActionButton = ({ stripeLink }) => (
     <div className="mt-auto pt-6">
       <a
         href={stripeLink}
         target="_blank"
         rel="noopener noreferrer"
-        className={`w-full flex items-center justify-center gap-2 font-black rounded-xl px-5 py-4 shadow-lg transition transform hover:scale-[1.02] active:scale-95
-          ${
-            isFeatured
-              ? "bg-[#FFAA00] text-gray-900 hover:bg-[#e69900]"
-              : "bg-[#306EFF] text-white hover:bg-[#2052c2]"
-          }`}
+        className="w-full flex items-center justify-center gap-2 font-black rounded-xl px-5 py-4 
+                   shadow-lg transition transform hover:scale-[1.02] active:scale-95 
+                   bg-[#FFAA00] text-gray-900 hover:bg-[#e69900]"
       >
         <FaCreditCard /> PAY NOW
       </a>
@@ -47,17 +44,11 @@ export default function SelfPayPage() {
 
       {/* 🔥 GLOW ANIMATIONS */}
       <style jsx global>{`
-        @keyframes pulseGlowBlue {
-          0% { box-shadow: 0 0 0px rgba(48,110,255,0.0); }
-          50% { box-shadow: 0 0 18px rgba(48,110,255,0.5); }
-          100% { box-shadow: 0 0 0px rgba(48,110,255,0.0); }
-        }
         @keyframes pulseGlowGold {
           0% { box-shadow: 0 0 0px rgba(255,170,0,0.0); }
           50% { box-shadow: 0 0 18px rgba(255,170,0,0.6); }
           100% { box-shadow: 0 0 0px rgba(255,170,0,0.0); }
         }
-        .pulse-blue { animation: pulseGlowBlue 2.5s infinite ease-in-out; }
         .pulse-gold { animation: pulseGlowGold 2.5s infinite ease-in-out; }
       `}</style>
 
@@ -93,24 +84,26 @@ export default function SelfPayPage() {
       <div className="max-w-md mx-auto px-6 mt-12 mb-8">
         <div className="bg-gray-100 p-1 rounded-2xl flex flex-col relative overflow-hidden">
 
-          {/* BOOK NOW (BLUE) */}
+          {/* BOOK NOW TAB */}
           <button
             onClick={() => setActiveTab("appointment")}
             className={`flex items-center justify-center gap-2 py-5 text-lg font-bold w-full rounded-xl transition-all
               ${activeTab === "appointment"
-                ? "text-white bg-[#306EFF] pulse-blue"
+                ? "text-white bg-[#306EFF]"
                 : "text-gray-600 bg-transparent"}`}
           >
             <FaCalendarCheck /> Book Now
           </button>
 
-          {/* PAYMENT (GOLD) */}
+          {/* PROCEED TO PAYMENT TAB (ALWAYS YELLOW) */}
           <button
             onClick={() => setActiveTab("payment")}
             className={`flex items-center justify-center gap-2 py-5 text-lg font-bold w-full rounded-xl transition-all
-              ${activeTab === "payment"
-                ? "text-gray-900 bg-[#FFAA00] pulse-gold"
-                : "text-gray-600 bg-transparent"}`}
+              ${
+                activeTab === "payment"
+                  ? "text-gray-900 bg-[#FFAA00] pulse-gold"
+                  : "text-gray-800 bg-[#FFE9A6]"  /* Soft yellow when inactive */
+              }`}
           >
             <FaDollarSign /> Proceed to Payment
           </button>
@@ -137,7 +130,6 @@ export default function SelfPayPage() {
                   height="1000"
                   src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=04215c313b1c953d96519b97deb749ef5aaf05b01deaa28103f210ee818d752f6ee57013c1a537e6967f905c2f4771da1fd5a498e982bdad"
                   className="border-none w-full"
-                  style={{ overflow: "hidden" }}
                   title="Book Appointment"
                 />
               </div>
@@ -162,7 +154,7 @@ export default function SelfPayPage() {
                     <FeatureItem text="Diagnostic evaluation" />
                     <FeatureItem text="Medication assessment" />
                   </ul>
-                  <ActionButton stripeLink={stripe200} isFeatured={true} />
+                  <ActionButton stripeLink={stripe200} />
                 </motion.article>
 
                 {/* $120 CARD */}
@@ -196,7 +188,7 @@ export default function SelfPayPage() {
                   Pay the exact amount previously agreed upon between you and GrowthFairness Psychiatry, PLLC.
                 </p>
                 <div className="max-w-sm">
-                  <ActionButton stripeLink={stripeCustomBill} isFeatured={true} />
+                  <ActionButton stripeLink={stripeCustomBill} />
                 </div>
               </div>
 
