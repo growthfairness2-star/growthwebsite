@@ -40,7 +40,7 @@ export default function Footer() {
             </Link>
             {/* END: MODIFICATION FOR logo1.png */}
 
-            <Image src="/logo2.png" width={120} height={60} alt="Security Logo 2" />
+            <Image src="/logo3.png" width={120} height={60} alt="Security Logo 2" />
           </div>
 
           <h3 className="text-lg font-semibold mb-3">Share This Website</h3>
