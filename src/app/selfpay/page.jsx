@@ -9,7 +9,8 @@ import {
 } from "react-icons/fa";
 
 export default function SelfPayPage() {
-  const [activeTab, setActiveTab] = useState("payment");
+  // DEFAULT TAB CHANGED → "appointment"
+  const [activeTab, setActiveTab] = useState("appointment");
 
   // Payment Links
   const stripe200 = "https://checkout.stripe.com/c/pay/cs_live_a1jjJD8GymFlzf9hyGZTadCiQ5xvFSra3QAqliZZbywjln0jYAMpg5eCGq";
@@ -23,7 +24,7 @@ export default function SelfPayPage() {
       {text}
     </li>
   );
-  
+
   const ActionButton = ({ stripeLink, isFeatured = false }) => (
     <div className="mt-auto pt-6">
         <a
@@ -31,8 +32,7 @@ export default function SelfPayPage() {
             target="_blank"
             rel="noopener noreferrer"
             className={`w-full flex items-center justify-center gap-2 font-black rounded-xl px-5 py-4 shadow-lg transition transform hover:scale-[1.02] active:scale-95
-                ${isFeatured ? 'bg-[#FFAA00] text-gray-900 hover:bg-[#e69900]' : 'bg-[#306EFF] text-white hover:bg-[#2052c2]'}
-            `}
+                ${isFeatured ? 'bg-[#FFAA00] text-gray-900 hover:bg-[#e69900]' : 'bg-[#306EFF] text-white hover:bg-[#2052c2]'}`}
         >
             <FaCreditCard /> PAY NOW
         </a>
@@ -62,22 +62,30 @@ export default function SelfPayPage() {
       {/* 2. VERTICAL TAB TOGGLE SYSTEM */}
       <div className="max-w-md mx-auto px-6 mt-12 mb-8">
         <div className="bg-gray-100 p-1 rounded-2xl flex flex-col relative overflow-hidden">
-            <button 
-                onClick={() => setActiveTab('payment')} 
-                className={`flex items-center justify-center gap-2 py-5 text-lg font-bold transition-all relative z-10 w-full ${activeTab === 'payment' ? 'text-gray-900' : 'text-gray-500'}`}
-            >
-                <FaDollarSign /> Pay Bill
-            </button>
+
+            {/* BOOK NOW FIRST */}
             <button 
                 onClick={() => setActiveTab('appointment')} 
-                className={`flex items-center justify-center gap-2 py-5 text-lg font-bold transition-all relative z-10 w-full ${activeTab === 'appointment' ? 'text-gray-900' : 'text-gray-500'}`}
+                className={`flex items-center justify-center gap-2 py-5 text-lg font-bold relative z-10 w-full ${
+                    activeTab === 'appointment' ? 'text-gray-900' : 'text-gray-500'
+                }`}
             >
                 <FaCalendarCheck /> Book Now
             </button>
 
+            <button 
+                onClick={() => setActiveTab('payment')} 
+                className={`flex items-center justify-center gap-2 py-5 text-lg font-bold relative z-10 w-full ${
+                    activeTab === 'payment' ? 'text-gray-900' : 'text-gray-500'
+                }`}
+            >
+                <FaDollarSign /> Pay Bill
+            </button>
+
+            {/* ANIMATED INDICATOR */}
             <motion.div 
                 className="absolute left-1 right-1 bg-white rounded-xl shadow-md" 
-                animate={{ y: activeTab === 'payment' ? '0%' : '100%' }} 
+                animate={{ y: activeTab === 'appointment' ? '0%' : '100%' }} 
                 style={{ height: 'calc(50% - 4px)', top: '2px' }} 
             />
         </div>
@@ -86,7 +94,26 @@ export default function SelfPayPage() {
       {/* 3. DYNAMIC CONTENT AREA */}
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <AnimatePresence mode="wait">
-            {activeTab === 'payment' ? (
+
+            {/* BOOK NOW FIRST */}
+            {activeTab === 'appointment' ? (
+                <motion.div key="book" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="py-10">
+                    <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                        <div className="w-full flex justify-center">
+                            <iframe 
+                                width="100%" 
+                                height="1000" 
+                                src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=04215c313b1c953d96519b97deb749ef5aaf05b01deaa28103f210ee818d752f6ee57013c1a537e6967f905c2f4771da1fd5a498e982bdad"
+                                className="border-none w-full"
+                                style={{ overflow: "hidden" }}
+                                title="Book Appointment"
+                            />
+                        </div>
+                    </div>
+                </motion.div>
+            ) : (
+
+                /* PAY BILL SECOND */
                 <motion.div key="pay" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-10">
                         <motion.article className="bg-white border-4 border-[#FFAA00] rounded-3xl p-8 shadow-2xl flex flex-col">
@@ -127,21 +154,6 @@ export default function SelfPayPage() {
                         </p>
                         <div className="max-w-sm">
                           <ActionButton stripeLink={stripeCustomBill} isFeatured={true} />
-                        </div>
-                    </div>
-                </motion.div>
-            ) : (
-                <motion.div key="book" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="py-10">
-                    <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-                        <div className="w-full flex justify-center">
-                            <iframe 
-                                width="100%" 
-                                height="1000" 
-                                src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=04215c313b1c953d96519b97deb749ef5aaf05b01deaa28103f210ee818d752f6ee57013c1a537e6967f905c2f4771da1fd5a498e982bdad" 
-                                className="border-none w-full"
-                                style={{ overflow: "hidden" }}
-                                title="Book Appointment"
-                            />
                         </div>
                     </div>
                 </motion.div>
