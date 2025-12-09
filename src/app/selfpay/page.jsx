@@ -4,17 +4,17 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { 
-  FaDollarSign, FaUserClock, FaCreditCard, FaLock, 
-  FaStar, FaInfoCircle, FaPhoneAlt, FaEnvelope, FaCalendarCheck 
+  FaDollarSign, FaCreditCard, FaLock, 
+  FaCalendarCheck 
 } from "react-icons/fa";
 
 export default function SelfPayPage() {
   const [activeTab, setActiveTab] = useState("payment");
 
   // Payment Links
-  const stripe200 = "https://checkout.stripe.com/c/pay/cs_live_...";
-  const stripe120 = "https://checkout.stripe.com/c/pay/cs_live_...";
-  const stripe100 = "https://checkout.stripe.com/c/pay/cs_live_...";
+  const stripe200 = "https://checkout.stripe.com/c/pay/cs_live_a1jjJD8GymFlzf9hyGZTadCiQ5xvFSra3QAqliZZbywjln0jYAMpg5eCGq";
+  const stripe120 = "https://checkout.stripe.com/c/pay/cs_live_a1oPm1StSmERDkvOHGBGq41EpfAR6x0XJ9ZUaeTbmO2fNQ4cFEFntvqX4u";
+  const stripe100 = "https://checkout.stripe.com/c/pay/cs_live_a1B9urElK59hKEFhIsbkR0czs4WxOM5Jmp1xRhlqjPXSJgCTMhyu7LYyuS";
   const stripeCustomBill = "https://buy.stripe.com/3cI5kD9YN16GgUub6eak000";
 
   const FeatureItem = ({ text }) => (
@@ -59,7 +59,7 @@ export default function SelfPayPage() {
         </div>
       </div>
 
-      {/* 2. UPDATED VERTICAL TAB TOGGLE SYSTEM */}
+      {/* 2. VERTICAL TAB TOGGLE SYSTEM */}
       <div className="max-w-md mx-auto px-6 mt-12 mb-8">
         <div className="bg-gray-100 p-1 rounded-2xl flex flex-col relative overflow-hidden">
             <button 
@@ -75,7 +75,6 @@ export default function SelfPayPage() {
                 <FaCalendarCheck /> Book Now
             </button>
 
-            {/* Background slider animates Y instead of X */}
             <motion.div 
                 className="absolute left-1 right-1 bg-white rounded-xl shadow-md" 
                 animate={{ y: activeTab === 'payment' ? '0%' : '100%' }} 
@@ -90,8 +89,7 @@ export default function SelfPayPage() {
             {activeTab === 'payment' ? (
                 <motion.div key="pay" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-10">
-                        {/* Initial Intake */}
-                        <motion.article className="bg-white border-4 border-[#FFAA00] rounded-3xl p-8 shadow-2xl flex flex-col transform transition-all">
+                        <motion.article className="bg-white border-4 border-[#FFAA00] rounded-3xl p-8 shadow-2xl flex flex-col">
                             <h3 className="text-2xl font-bold mb-1">Initial Intake</h3>
                             <div className="text-5xl font-black text-gray-900 my-6">$200</div>
                             <ul className="space-y-3 mb-8">
@@ -101,7 +99,6 @@ export default function SelfPayPage() {
                             <ActionButton stripeLink={stripe200} isFeatured={true} />
                         </motion.article>
                         
-                        {/* Follow-up */}
                         <article className="bg-white border rounded-3xl p-8 shadow-lg flex flex-col">
                             <h3 className="text-2xl font-bold mb-1">Follow-up</h3>
                             <div className="text-5xl font-black text-gray-900 my-6">$120</div>
@@ -112,7 +109,6 @@ export default function SelfPayPage() {
                             <ActionButton stripeLink={stripe120} />
                         </article>
 
-                        {/* Admin Fee */}
                         <article className="bg-white border rounded-3xl p-8 shadow-lg flex flex-col">
                             <h3 className="text-2xl font-bold mb-1">Admin Fee</h3>
                             <div className="text-5xl font-black text-gray-900 my-6">$100</div>
@@ -124,8 +120,7 @@ export default function SelfPayPage() {
                         </article>
                     </div>
 
-                    {/* BLACK BILL BOX */}
-                    <div className="bg-black text-white rounded-[40px] p-10 mt-8 relative overflow-hidden shadow-2xl">
+                    <div className="bg-black text-white rounded-[40px] p-10 mt-8 relative shadow-2xl">
                         <h2 className="text-3xl font-black text-[#FFAA00] mb-4">CUSTOM BILL PAY</h2>
                         <p className="text-gray-400 mb-8 max-w-lg italic font-medium leading-relaxed">
                           Pay the exact amount previously agreed upon between you and GrowthFairness Psychiatry, PLLC.
@@ -138,15 +133,14 @@ export default function SelfPayPage() {
             ) : (
                 <motion.div key="book" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="py-10">
                     <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-                        <div className="w-full">
+                        <div className="w-full flex justify-center">
                             <iframe 
                                 width="100%" 
                                 height="1000" 
-                                src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=04215c313b1c953d96519b97deb749efeef2f42393af6fbb54c15310aafaee1f5385f436ad42bc02967f905c2f4771da1fd5a4982bdad" 
-                                className="border-none"
+                                src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=04215c313b1c953d96519b97deb749ef5aaf05b01deaa28103f210ee818d752f6ee57013c1a537e6967f905c2f4771da1fd5a498e982bdad" 
+                                className="border-none w-full"
                                 style={{ overflow: "hidden" }}
-                                loading="lazy"
-                                title="CharmTracker Scheduler"
+                                title="Book Appointment"
                             />
                         </div>
                     </div>
