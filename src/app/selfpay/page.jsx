@@ -13,7 +13,7 @@ export default function SelfPayPage() {
   const [activeTab, setActiveTab] = useState("appointment");
 
   // Payment Links
-  const stripe200 = "https://checkout.stripe.com/c/pay/cs_live_a1jjJD8GymFlzf9hyGZTadCiQ5xvFSra3QAqliZZbywjln0jYAMpg5eCGq";
+  const stripe200 = "https://buy.stripe.com/9B69AT5Ix3eO6fQcaiak001";
   const stripe120 = "https://checkout.stripe.com/c/pay/cs_live_a1oPm1StSmERDkvOHGBGq41EpfAR6x0XJ9ZUaeTbmO2fNQ4cFEFntvqX4u";
   const stripe100 = "https://checkout.stripe.com/c/pay/cs_live_a1B9urElK59hKEFhIsbkR0czs4WxOM5Jmp1xRhlqjPXSJgCTMhyu7LYyuS";
   const stripeCustomBill = "https://buy.stripe.com/3cI5kD9YN16GgUub6eak000";
