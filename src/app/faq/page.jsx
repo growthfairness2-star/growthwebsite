@@ -3,10 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { IoChevronDown, IoChevronUp, IoCashOutline, IoCardOutline } from "react-icons/io5"; // Added IoCashOutline, IoCardOutline
-import { FaShieldAlt, FaQuestionCircle } from "react-icons/fa"; // Added FaShieldAlt, FaQuestionCircle
+import { IoChevronDown, IoChevronUp, IoCashOutline, IoCardOutline } from "react-icons/io5";
+import { FaShieldAlt, FaQuestionCircle } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import Typewriter from "typewriter-effect";
 
 // Enhanced FAQ data structure to categorize major topics
 const faqs = [
@@ -57,7 +56,6 @@ const faqs = [
           <div className="text-gray-700">
             <p className="mb-4">Yes, self-pay is accepted. Our transparent pricing is as follows:</p>
             
-            {/* Pricing Table/Grid */}
             <div className="space-y-4">
                 <div className="p-4 bg-green-50 rounded-lg border border-green-200">
                     <h4 className="text-lg font-bold text-green-700 mb-1 flex items-center gap-2">
@@ -127,7 +125,6 @@ const faqs = [
   }
 ];
 
-// Reusable Accordion Item Component
 const AccordionItem = ({ question, answer, isOpen, toggle }) => (
     <motion.div 
         className={`rounded-xl shadow-lg transition-all duration-300 ${isOpen ? 'bg-[#FFF9E5] border border-[#FFAA00]/50' : 'bg-white border border-gray-100 hover:shadow-md'}`}
@@ -163,7 +160,6 @@ const AccordionItem = ({ question, answer, isOpen, toggle }) => (
     </motion.div>
 );
 
-
 export default function FAQPage() {
   const [open, setOpen] = useState(null);
 
@@ -171,7 +167,6 @@ export default function FAQPage() {
     setOpen(open === i ? null : i);
   };
 
-  // Function to map FAQs with unique global index
   const renderFaqs = () => {
     let globalIndex = 0;
     return faqs.map((category, catIndex) => {
@@ -203,29 +198,18 @@ export default function FAQPage() {
 
   return (
     <div className="w-full">
-
-      {/* HERO SECTION - Enhanced Visuals */}
+      {/* HERO SECTION */}
       <section className="w-full py-24 lg:py-32 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          {/* TEXT WITH TYPING EFFECT */}
           <div>
             <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4">
               Your Questions, <span className="text-[#FFAA00]">Answered.</span>
             </h1>
 
-            <div className="text-2xl font-medium text-gray-700 h-10">
-              <Typewriter
-                options={{
-                  strings: [
-                    "We provide clear information on insurance & fees.",
-                    "Learn about our telehealth and care policies.",
-                    "Your path to mental wellness starts with clarity."
-                  ],
-                  autoStart: true,
-                  loop: true
-                }}
-              />
+            {/* Static Text replacing Typewriter */}
+            <div className="text-xl font-medium text-gray-700 leading-relaxed">
+              <p className="mb-2">We provide clear information on insurance & fees.</p>
+              <p className="text-[#FFAA00] font-bold">Your path to mental wellness starts with clarity.</p>
             </div>
 
             <p className="text-gray-600 mt-6 text-lg">
@@ -233,7 +217,6 @@ export default function FAQPage() {
             </p>
           </div>
 
-          {/* IMAGE RIGHT SIDE */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -251,14 +234,14 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* FAQ ACCORDION SECTION - Categorized and Polished */}
+      {/* FAQ ACCORDION SECTION */}
       <section className="w-full bg-[#F4F9FA] py-20 lg:py-24">
         <div className="max-w-5xl mx-auto px-6 lg:px-16 space-y-12">
             {renderFaqs()}
         </div>
       </section>
 
-      {/* COMBINED CTA SECTION - Integrated and Prominent */}
+      {/* CTA SECTION */}
       <section className="w-full py-20 bg-white">
         <div className="max-w-4xl mx-auto p-8 rounded-2xl shadow-xl bg-gray-50 border-t-4 border-[#FFAA00] text-center">
             <h2 className="text-3xl font-extrabold text-gray-900 mb-4">
