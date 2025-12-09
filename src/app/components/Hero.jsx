@@ -94,7 +94,7 @@ export default function Hero() {
               href="/appointments"
               className="px-10 py-5 rounded-2xl font-black text-xl text-white shadow-xl bg-[#FFAA00] transition transform hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center"
             >
-              Book Your Session
+              Book Appointment
             </Link>
             
             <Link 

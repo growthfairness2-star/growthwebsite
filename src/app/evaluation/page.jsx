@@ -182,7 +182,7 @@ export default function PsychiatricEvaluation() {
       {/* CTA */}
       <div className="text-center mt-20">
         <Link
-          href="https://care.headway.co/providers/raymond-obiajulu"
+          href="/appointments"
           target="_blank"
           className="px-10 py-4 bg-[#FFAA00] text-black rounded-xl text-lg font-semibold hover:opacity-90 transition"
         >
