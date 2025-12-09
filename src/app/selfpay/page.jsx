@@ -12,9 +12,9 @@ export default function SelfPayPage() {
   const [activeTab, setActiveTab] = useState("payment");
 
   // Payment Links
-  const stripe200 = "https://checkout.stripe.com/c/pay/cs_live_a1jjJD8GymFlzf9hyGZTadCiQ5xvFSra3QAqliZZbywjln0jYAMpg5eCGq#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blppbHNgWjA0SjRzVEdDMHVpZHVjT10wUzZcM0djdDJjMG5NdTRmRG9Ea0BpVDF3U2pLY3JAa2FBVWRQdFJKTkRjdlBGTW83Yn93fFdCfU12cDxfdkkxc31SS081U3I3NTV3Vl9sUTZCcicpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl";
-  const stripe120 = "https://checkout.stripe.com/c/pay/cs_live_a1oPm1StSmERDkvOHGBGq41EpfAR6x0XJ9ZUaeTbmO2fNQ4cFEFntvqX4u#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blppbHNgWjA0SjRzVEdDMHVpZHVjT10wUzZcM0djdDJjMG5NdTRmRG9Ea0BpVDF3U2pLY3JAa2FBVWRQdFJKTkRjdlBGTW83Yn93fFdCfU12cDxfdkkxc31SS081U3I3NTV3Vl9sUTZCcicpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl";
-  const stripe100 = "https://checkout.stripe.com/c/pay/cs_live_a1B9urElK59hKEFhIsbkR0czs4WxOM5Jmp1xRhlqjPXSJgCTMhyu7LYyuS#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blppbHNgWjA0SjRzVEdDMHVpZHVjT10wUzZcM0djdDJjMG5NdTRmRG9Ea0BpVDF3U2pLY3JAa2FBVWRQdFJKTkRjdlBGTW83Yn93fFdCfU12cDxfdkkxc31SS081U3I3NTV3Vl9sUTZCcicpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl";
+  const stripe200 = "https://checkout.stripe.com/c/pay/cs_live_...";
+  const stripe120 = "https://checkout.stripe.com/c/pay/cs_live_...";
+  const stripe100 = "https://checkout.stripe.com/c/pay/cs_live_...";
   const stripeCustomBill = "https://buy.stripe.com/3cI5kD9YN16GgUub6eak000";
 
   const FeatureItem = ({ text }) => (
@@ -59,16 +59,28 @@ export default function SelfPayPage() {
         </div>
       </div>
 
-      {/* 2. TAB TOGGLE SYSTEM */}
-      <div className="max-w-2xl mx-auto px-6 mt-12 mb-8">
-        <div className="bg-gray-100 p-1 rounded-2xl flex relative overflow-hidden">
-            <button onClick={() => setActiveTab('payment')} className={`flex-1 flex items-center justify-center gap-2 py-4 text-lg font-bold transition-all relative z-10 ${activeTab === 'payment' ? 'text-gray-900' : 'text-gray-500'}`}>
+      {/* 2. UPDATED VERTICAL TAB TOGGLE SYSTEM */}
+      <div className="max-w-md mx-auto px-6 mt-12 mb-8">
+        <div className="bg-gray-100 p-1 rounded-2xl flex flex-col relative overflow-hidden">
+            <button 
+                onClick={() => setActiveTab('payment')} 
+                className={`flex items-center justify-center gap-2 py-5 text-lg font-bold transition-all relative z-10 w-full ${activeTab === 'payment' ? 'text-gray-900' : 'text-gray-500'}`}
+            >
                 <FaDollarSign /> Pay Bill
             </button>
-            <button onClick={() => setActiveTab('appointment')} className={`flex-1 flex items-center justify-center gap-2 py-4 text-lg font-bold transition-all relative z-10 ${activeTab === 'appointment' ? 'text-gray-900' : 'text-gray-500'}`}>
+            <button 
+                onClick={() => setActiveTab('appointment')} 
+                className={`flex items-center justify-center gap-2 py-5 text-lg font-bold transition-all relative z-10 w-full ${activeTab === 'appointment' ? 'text-gray-900' : 'text-gray-500'}`}
+            >
                 <FaCalendarCheck /> Book Now
             </button>
-            <motion.div className="absolute top-1 bottom-1 left-1 bg-white rounded-xl shadow-md" animate={{ x: activeTab === 'payment' ? '0%' : '98%' }} style={{ width: '49%' }} />
+
+            {/* Background slider animates Y instead of X */}
+            <motion.div 
+                className="absolute left-1 right-1 bg-white rounded-xl shadow-md" 
+                animate={{ y: activeTab === 'payment' ? '0%' : '100%' }} 
+                style={{ height: 'calc(50% - 4px)', top: '2px' }} 
+            />
         </div>
       </div>
 
@@ -76,9 +88,9 @@ export default function SelfPayPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <AnimatePresence mode="wait">
             {activeTab === 'payment' ? (
-                <motion.div key="pay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <motion.div key="pay" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-10">
-                        {/* SERVICE CARDS */}
+                        {/* Initial Intake */}
                         <motion.article className="bg-white border-4 border-[#FFAA00] rounded-3xl p-8 shadow-2xl flex flex-col transform transition-all">
                             <h3 className="text-2xl font-bold mb-1">Initial Intake</h3>
                             <div className="text-5xl font-black text-gray-900 my-6">$200</div>
@@ -89,6 +101,7 @@ export default function SelfPayPage() {
                             <ActionButton stripeLink={stripe200} isFeatured={true} />
                         </motion.article>
                         
+                        {/* Follow-up */}
                         <article className="bg-white border rounded-3xl p-8 shadow-lg flex flex-col">
                             <h3 className="text-2xl font-bold mb-1">Follow-up</h3>
                             <div className="text-5xl font-black text-gray-900 my-6">$120</div>
@@ -99,6 +112,7 @@ export default function SelfPayPage() {
                             <ActionButton stripeLink={stripe120} />
                         </article>
 
+                        {/* Admin Fee */}
                         <article className="bg-white border rounded-3xl p-8 shadow-lg flex flex-col">
                             <h3 className="text-2xl font-bold mb-1">Admin Fee</h3>
                             <div className="text-5xl font-black text-gray-900 my-6">$100</div>
@@ -122,10 +136,9 @@ export default function SelfPayPage() {
                     </div>
                 </motion.div>
             ) : (
-                <motion.div key="book" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="py-10">
+                <motion.div key="book" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="py-10">
                     <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                         <div className="w-full">
-                            {/* REACT-OPTIMIZED IFRAME */}
                             <iframe 
                                 width="100%" 
                                 height="1000" 
