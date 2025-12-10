@@ -4,9 +4,6 @@ import FAQ from "./components/FAQ";
 import Insurances from "./components/Insurances";
 import Suicide from "./components/Suicide";
 import CTA from "./components/CTA";
-
-
-
 export default function Home() {
   return (
     <>
