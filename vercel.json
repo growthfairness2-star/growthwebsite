@@ -1,7 +1,3 @@
 {
-  "functions": {
-    "studio/**": {
-      "exclude": ["**"]
-    }
-  }
+  "version": 2
 }
