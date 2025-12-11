@@ -71,7 +71,9 @@ export default function InsuranceMarquee() {
                   src={logo.src}
                   alt={logo.name}
                   fill
-                  className="object-contain filter grayscale opacity-60 transition-all duration-300 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-110"
+                  // ----------------- MODIFIED LINE -----------------
+                  className="object-contain transition-all duration-300 group-hover/card:scale-110"
+                  // -------------------------------------------------
                 />
               </div>
             </div>
