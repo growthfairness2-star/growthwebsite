@@ -95,14 +95,14 @@ export default function SelfPayPage() {
             <FaCalendarCheck /> Book Now
           </button>
 
-          {/* PROCEED TO PAYMENT TAB (ALWAYS YELLOW) */}
+          {/* PROCEED TO PAYMENT TAB */}
           <button
             onClick={() => setActiveTab("payment")}
             className={`flex items-center justify-center gap-2 py-5 text-lg font-bold w-full rounded-xl transition-all
               ${
                 activeTab === "payment"
                   ? "text-gray-900 bg-[#FFAA00] pulse-gold"
-                  : "text-gray-800 bg-[#FFE9A6]"  /* Soft yellow when inactive */
+                  : "text-gray-800 bg-[#FFE9A6]"
               }`}
           >
             <FaDollarSign /> Proceed to Payment
@@ -146,46 +146,56 @@ export default function SelfPayPage() {
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-10">
 
-                {/* $200 CARD */}
+                {/* INITIAL INTAKE CONSULT */}
                 <motion.article className="bg-white border-4 border-[#FFAA00] rounded-3xl p-8 shadow-2xl flex flex-col">
-                  <h3 className="text-2xl font-bold mb-1">Initial Intake</h3>
+                  <h3 className="text-2xl font-bold mb-1">Initial Intake Consult</h3>
+                  <p className="text-xs text-gray-500 mb-2">Out-of-Pocket Payment</p>
                   <div className="text-5xl font-black text-gray-900 my-6">$200</div>
                   <ul className="space-y-3 mb-8">
+                    <FeatureItem text="Up to 60 minutes" />
+                    <FeatureItem text="Comprehensive assessment" />
                     <FeatureItem text="Diagnostic evaluation" />
-                    <FeatureItem text="Medication assessment" />
+                    <FeatureItem text="Medication management" />
+                    <FeatureItem text="Talk / Supportive therapy" />
                   </ul>
                   <ActionButton stripeLink={stripe200} />
                 </motion.article>
 
-                {/* $120 CARD */}
+                {/* FOLLOW-UP CONSULT */}
                 <article className="bg-white border rounded-3xl p-8 shadow-lg flex flex-col">
-                  <h3 className="text-2xl font-bold mb-1">Follow-up</h3>
+                  <h3 className="text-2xl font-bold mb-1">Follow-up Consult</h3>
+                  <p className="text-xs text-gray-500 mb-2">Out-of-Pocket Payment</p>
                   <div className="text-5xl font-black text-gray-900 my-6">$120</div>
                   <ul className="space-y-3 mb-8">
+                    <FeatureItem text="30 minutes" />
+                    <FeatureItem text="Quick assessment" />
                     <FeatureItem text="Medication management" />
-                    <FeatureItem text="30-min clinical session" />
+                    <FeatureItem text="Medication refill" />
+                    <FeatureItem text="Talk / Supportive therapy" />
                   </ul>
                   <ActionButton stripeLink={stripe120} />
                 </article>
 
-                {/* $100 CARD */}
+                {/* ADMINISTRATIVE FEES */}
                 <article className="bg-white border rounded-3xl p-8 shadow-lg flex flex-col">
-                  <h3 className="text-2xl font-bold mb-1">Admin Fee</h3>
+                  <h3 className="text-2xl font-bold mb-1">Administrative Fees</h3>
+                  <p className="text-xs text-gray-500 mb-2">Out-of-Pocket Payment</p>
                   <div className="text-5xl font-black text-gray-900 my-6">$100</div>
                   <ul className="space-y-3 mb-8">
-                    <FeatureItem text="Official documentation" />
-                    <FeatureItem text="Consultation services" />
+                    <FeatureItem text="Writing a letter or report at the patient’s request" />
+                    <FeatureItem text="Consulting with another healthcare provider" />
                   </ul>
                   <ActionButton stripeLink={stripe100} />
                 </article>
 
               </div>
 
-              {/* CUSTOM BILL */}
+              {/* CUSTOM BILL PAY */}
               <div className="bg-black text-white rounded-[40px] p-10 mt-8 shadow-2xl">
-                <h2 className="text-3xl font-black text-[#FFAA00] mb-4">CUSTOM BILL PAY</h2>
+                <h2 className="text-3xl font-black text-[#FFAA00] mb-4">PAY BILL</h2>
                 <p className="text-gray-400 mb-8 max-w-lg italic">
-                  Pay the exact amount previously agreed upon between you and GrowthFairness Psychiatry, PLLC.
+                  Click on the “Pay Now” button below and pay the exact amount agreed upon between you and GrowthFairness Psychiatry, PLLC.
+                  If you are unsure of the amount, please contact us at (832) 449-6276 or info@growthfairness.com.
                 </p>
                 <div className="max-w-sm">
                   <ActionButton stripeLink={stripeCustomBill} />
