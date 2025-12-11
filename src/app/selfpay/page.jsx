@@ -183,7 +183,8 @@ export default function SelfPayPage() {
                   <div className="text-5xl font-black text-gray-900 my-6">$100</div>
                   <ul className="space-y-3 mb-8">
                     <FeatureItem text="Writing a letter or report at the patient’s request" />
-                    <FeatureItem text="Consulting with another healthcare provider" />
+                    <FeatureItem text="Consulting with another healthcare provideror other 
+                    professional outside of normal case management practices. " />
                   </ul>
                   <ActionButton stripeLink={stripe100} />
                 </article>
