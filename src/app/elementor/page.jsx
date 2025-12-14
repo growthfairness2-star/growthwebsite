@@ -1,117 +1,217 @@
 "use client";
-
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { MdOutlineHealthAndSafety, MdOutlineVerified } from "react-icons/md"; 
+import { FaShieldAlt } from "react-icons/fa"; 
 
-// Automatically generate insurance list 1–18
-const insuranceLogos = Array.from({ length: 18 }, (_, i) => ({
-  src: `/insurances${i + 1}.jpeg`,
-  name: `Insurance ${i + 1}`,
-}));
+export default function Hero() {
+  // === BRAND COLORS from Logo ===
+  const BRAND_PRIMARY = "#1A435A"; // Dark Blue/Teal
+  const BRAND_SECONDARY = "#4CAF50"; // Bright Green
+  const BRAND_ACCENT = "#FF9800"; // Warm Orange (for CTAs)
+  const BRAND_LIGHT_BG = "#F4F9FA"; // Retain a light background color
 
-export default function InsurancesPage() {
-  return (
-    <div className="w-full bg-[#F7FBFD] pb-20">
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    })
+  };
 
-      {/* HERO SECTION */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-16 py-20 grid lg:grid-cols-2 gap-12 items-center">
-        
-        {/* LEFT TEXT */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
-            Insurance Coverage Made Easy
-          </h1>
+  // Updated services array to use image paths instead of icon components
+  const services = [
+    { 
+      title: "Medication Management", 
+      imagePath: "/medication.png", // Replaced icon with image path
+      description: "Monitoring and adjusting medication to optimize treatment and safety.", 
+      href: "/medication" 
+    },
+    { 
+      title: "Psychiatric Evaluation", 
+      imagePath: "/evaluation.png", // Replaced icon with image path
+      description: "Comprehensive mental-health assessment and personalized professional diagnosis.", 
+      href: "/evaluation" 
+    },
+    { 
+      title: "Psychotherapy", 
+      imagePath: "/psychotherapy.png", // Replaced icon with image path
+      description: "Supportive emotional guidance to help you heal, grow, and regain balance.", 
+      href: "/therapy" 
+    },
+    { 
+      title: "Telepsychiatry", 
+      imagePath: "/tele.png", // Replaced icon with image path
+      description: "Expert mental-health care securely from the comfort and privacy of home.", 
+      href: "/telepsychiatry" 
+    },
+  ];
 
-          <p className="mt-4 text-gray-600 text-lg">
-            We partner with trusted insurance providers to make mental health care 
-            accessible and affordable for everyone.
-          </p>
+  return (
+    <section className="w-full pb-24 overflow-x-hidden" style={{ backgroundColor: BRAND_LIGHT_BG }}>
+      
+      {/* ================= HERO TOP ================= */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 lg:px-16 pt-24 items-center">
 
-          <button
-            onClick={() => (window.location.href = "/appointments")}
-            className="mt-8 px-8 py-3 bg-[#FFAA00] hover:bg-[#e69a00] text-white font-semibold rounded-xl shadow-md transition"
-          >
-            Verify Your Insurance
-          </button>
-        </motion.div>
+        <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+        >
+          {/* Tag line with Dark Blue/Teal color */}
+          <div 
+            style={{ 
+              color: BRAND_PRIMARY, 
+              backgroundColor: `white`, // White background for tag
+              borderColor: BRAND_PRIMARY // Dark border
+            }}
+            className="inline-flex items-center gap-2 text-xs md:text-sm font-black px-4 py-1 rounded-full border-2 mb-6 shadow-md"
+          >
+            <FaShieldAlt className="text-sm" /> CONFIDENTIAL & PROFESSIONAL CARE
+          </div>
 
-        {/* RIGHT IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center"
-        >
-          <Image
-            src="/insure.png"
-            alt="Insurance Support"
-            width={500}
-            height={500}
-            className="object-contain drop-shadow-md"
-          />
-        </motion.div>
-      </section>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1A1A1A] leading-tight tracking-tight">
+            Expert Mental Health Care for Lasting <span style={{ color: BRAND_SECONDARY }}>Stability</span> and <span style={{ color: BRAND_SECONDARY }}>Clarity</span>
+          </h1>
 
-      {/* LOGOS SECTION */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-16 mt-16">
-        
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl font-bold text-center text-gray-900 mb-4"
-        >
-          Insurances We Accept
-        </motion.h2>
+          <p className="mt-6 text-xl md:text-2xl text-gray-700 leading-relaxed max-w-lg mb-10">
+            Compassionate, professional care designed to help you regain clarity, balance, and peace through expert psychiatric services and therapy.
+          </p>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-gray-600 text-center max-w-2xl mx-auto mb-12 text-lg"
-        >
-          Below is the full list of insurance plans we currently accept.
-        </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="lg:hidden flex justify-center mb-10"
+          >
+             <div 
+                className="p-0 rounded-[40px] shadow-2xl shadow-blue-100/40 border-4 border-white" 
+              >
+                <Image 
+                    src="/hero.png"
+                    width={550}
+                    height={550}
+                    alt="Illustration of health clarity"
+                    className="rounded-[36px] object-cover w-full h-auto"
+                />
+             </div>
+          </motion.div>
 
-        {/* GRID OF LOGOS */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 mt-10">
-          {insuranceLogos.map((logo, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="flex justify-center items-center bg-white rounded-xl shadow-md hover:shadow-xl transition p-4 border border-gray-100"
-            >
-              <Image
-                src={logo.src}
-                width={150}
-                height={100}
-                alt={logo.name}
-                className="object-contain"
-              />
-            </motion.div>
-          ))}
-        </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Primary CTA with Warm Orange color */}
+            <Link 
+              href="/appointments"
+              style={{ backgroundColor: BRAND_ACCENT }}
+              className="px-12 py-5 rounded-2xl font-black text-xl text-white shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center"
+            >
+              Book Appointment
+            </Link>
+            
+            <Link 
+              href="/insurances"
+              style={{ borderColor: BRAND_PRIMARY, color: BRAND_PRIMARY }}
+              className="px-12 py-5 rounded-2xl font-black text-xl bg-transparent border-2 hover:bg-white transition flex items-center justify-center"
+            >
+              Check Insurance
+            </Link>
+          </div>
+          
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4 text-gray-700 text-sm font-bold">
+            {/* Verification icons with Dark Blue/Teal color */}
+            <span className="flex items-center gap-2"><MdOutlineVerified style={{ color: BRAND_PRIMARY }} className="text-xl" /> Licensed in Texas</span>
+            <span className="flex items-center gap-2"><MdOutlineHealthAndSafety style={{ color: BRAND_PRIMARY }} className="text-xl" /> Secure Telehealth</span>
+          </div>
 
-        {/* CTA BUTTON */}
-        <div className="text-center mt-14">
-          <motion.button
-            onClick={() => (window.location.href = "/appointments")}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="bg-[#FFAA00] text-white font-semibold px-10 py-3 rounded-xl hover:bg-[#e69900] transition shadow-lg"
-          >
-            Book an Appointment
-          </motion.button>
-        </div>
+        </motion.div>
 
-      </section>
-    </div>
-  );
+        <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="hidden lg:flex relative justify-center lg:justify-end"
+        >
+            <Image 
+                src="/hero.png"
+                width={550}
+                height={550}
+                alt="Clarity Illustration"
+                className="rounded-[40px] object-cover shadow-2xl shadow-blue-50/50" 
+            />
+        </motion.div>
+      </div>
+
+      {/* ================= OUR COMPREHENSIVE SERVICES - UPDATED IMAGES ================= */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 mt-32">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+        >
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-950 mb-4 tracking-tight">
+            Our Comprehensive Services
+            </h2>
+            {/* Divider bar with Warm Orange color */}
+            <div style={{ backgroundColor: BRAND_ACCENT }} className="h-1.5 w-20 mx-auto rounded-full" />
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-white/50 p-6 md:p-10 rounded-[40px] border border-gray-100 shadow-inner">
+
+          {services.map((service, i) => (
+            <motion.div
+              key={i}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={cardVariants}
+              className="p-0 rounded-3xl bg-white shadow-xl hover:shadow-[0_20px_50px_rgba(26,67,90,0.1)] transition-all duration-500 flex flex-col items-center text-center group overflow-hidden"
+              
+            >
+              {/* BEGIN: Image Section - Fill Container */}
+              <div 
+                className="w-full h-40 relative flex items-center justify-center border-b-4"
+                style={{ borderColor: BRAND_SECONDARY }} // Use Green border on bottom of image
+              >
+                <Image 
+                    src={service.imagePath} 
+                    alt={service.title} 
+                    layout="fill" 
+                    objectFit="cover" // Changed to cover to make the image fill the area
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
+              {/* END: Image Section */}
+
+                {/* Content Area */}
+                <div className="p-8 flex flex-col items-center text-center h-full flex-grow">
+                  <h3 className="font-black text-gray-950 text-xl md:text-2xl mb-4 leading-tight">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-base text-gray-700 font-medium leading-relaxed mb-6 flex-grow">
+                    {service.description}
+                  </p>
+                  
+                  {/* Link text with Bright Green color */}
+                  <Link 
+                    href={service.href} 
+                    style={{ color: BRAND_SECONDARY }}
+                    className="inline-flex items-center gap-2 font-black text-base transition-all hover:gap-3"
+                  >
+                    Explore Details <span className="text-xl">→</span>
+                  </Link>
+                </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
