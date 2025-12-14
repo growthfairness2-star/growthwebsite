@@ -15,13 +15,14 @@ export default function MentalHealthBlog() {
   // ======================================================
   const blogs = [
     {
-      title: "Living With Anxiety: When the Mind Refuses to Rest",
-      image: "/blog3.png",
-      link: "/living-with-anxiety-when-the-mind-refuses-to-rest",
-      dateDisplay: "Dec 12, 2025",
-      dateISO: "2025-12-12",
+      title: "OCD Explained: When Thoughts Feel Loud and Uncontrollable",
+      image: "/blog1.png",
+      link: "/ocd-explained-when-thoughts-feel-loud-and-uncontrollable",
+      dateDisplay: "Dec 14, 2025",
+      dateISO: "2025-12-14",
       objectPosition: "object-center",
     },
+    
     {
       title: "Depression Is Not Laziness: Understanding the Invisible Weight",
       image: "/blog2.png",
@@ -31,13 +32,14 @@ export default function MentalHealthBlog() {
       objectPosition: "object-center",
     },
     {
-      title: "OCD Explained: When Thoughts Feel Loud and Uncontrollable",
-      image: "/blog1.png",
-      link: "/ocd-explained-when-thoughts-feel-loud-and-uncontrollable",
-      dateDisplay: "Dec 15, 2025",
-      dateISO: "2025-12-15",
+      title: "Living With Anxiety: When the Mind Refuses to Rest",
+      image: "/blog3.png",
+      link: "/living-with-anxiety-when-the-mind-refuses-to-rest",
+      dateDisplay: "Dec 12, 2025",
+      dateISO: "2025-12-12",
       objectPosition: "object-center",
     },
+    
   ];
 
   // DATE FILTER
