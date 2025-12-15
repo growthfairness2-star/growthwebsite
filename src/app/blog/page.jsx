@@ -11,9 +11,17 @@ export default function MentalHealthBlog() {
   const [filteredPosts, setFilteredPosts] = useState([]);
 
   // ======================================================
-  // MENTAL HEALTH BLOG POSTS (ONLY SPECIFIC DATES)
+  // MENTAL HEALTH BLOG POSTS
   // ======================================================
   const blogs = [
+    {
+      title: "Schizophrenia Beyond the Myths: Understanding Reality Perception",
+      image: "/blog4.png",
+      link: "/schizophrenia-beyond-the-myths-understanding-reality-perception",
+      dateDisplay: "Dec 15, 2025",
+      dateISO: "2025-12-15",
+      objectPosition: "object-center",
+    },
     {
       title: "OCD Explained: When Thoughts Feel Loud and Uncontrollable",
       image: "/blog1.png",
@@ -22,7 +30,6 @@ export default function MentalHealthBlog() {
       dateISO: "2025-12-14",
       objectPosition: "object-center",
     },
-    
     {
       title: "Depression Is Not Laziness: Understanding the Invisible Weight",
       image: "/blog2.png",
@@ -39,7 +46,6 @@ export default function MentalHealthBlog() {
       dateISO: "2025-12-12",
       objectPosition: "object-center",
     },
-    
   ];
 
   // DATE FILTER
@@ -111,7 +117,7 @@ export default function MentalHealthBlog() {
             Mental Health Reflections
           </h1>
           <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-            Thoughtful insights on anxiety, depression, OCD, and emotional wellbeing.
+            Thoughtful insights on anxiety, depression, OCD, schizophrenia, and emotional wellbeing.
           </p>
         </motion.div>
 
@@ -132,7 +138,6 @@ export default function MentalHealthBlog() {
 
       {/* BLOGS */}
       <section className="max-w-6xl mx-auto px-6 py-20">
-
         {/* FILTER */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
           <label className="text-gray-700 font-medium text-base">
@@ -199,7 +204,6 @@ export default function MentalHealthBlog() {
             ))}
           </motion.div>
         </AnimatePresence>
-
       </section>
     </div>
   );
