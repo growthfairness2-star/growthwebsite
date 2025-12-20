@@ -15,6 +15,15 @@ export default function MentalHealthBlog() {
   // ======================================================
   const blogs = [
     {
+      title: "The Cycle of Self-Medication: Why We Reach for Relief",
+      image: "/blog5.png",
+      link: "/The-cycle-of-self-medication-why-we-reach-for-relief",
+      dateDisplay: "Dec 20, 2025",
+      dateISO: "2025-12-20",
+      objectPosition: "object-center",
+    },
+    
+    {
       title: "Schizophrenia Beyond the Myths: Understanding Reality Perception",
       image: "/blog4.png",
       link: "/schizophrenia-beyond-the-myths-understanding-reality-perception",
