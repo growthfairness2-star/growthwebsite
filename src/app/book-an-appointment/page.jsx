@@ -1,16 +1,13 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../Footer";
 
-/** * SEO CONFIGURATION 
- * Title: Book a Mental Health Consultation | Specialized Clinical Care
- * Description: Schedule your appointment with our expert clinical team. We provide specialized care for various mental health conditions with flexible insurance and self-pay options.
- */
+/** * SEO CONFIGURATION */
 const metadata = {
   title: "Book a Mental Health Consultation | Specialized Clinical Care",
-  description: "Schedule your appointment with our expert clinical team. We provide specialized care for various mental health conditions with flexible insurance and self-pay options.",
+  description:
+    "Schedule your appointment with our expert clinical team. We provide specialized care for various mental health conditions with flexible insurance and self-pay options.",
   keywords: [
     "mental health booking",
     "schedule therapy session",
@@ -22,104 +19,113 @@ const metadata = {
 };
 
 export default function GeneralBookingPage() {
-  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F9FAFB]">
+    <div className="min-h-screen flex flex-col bg-[#F9FAFB] overflow-x-hidden">
       <title>{metadata.title}</title>
       <meta name="description" content={metadata.description} />
       <meta name="keywords" content={metadata.keywords.join(", ")} />
 
-      {/* ===== Hero Section ===== */}
-      <section className="relative flex-grow flex items-center justify-center overflow-hidden py-20 px-6">
-        {/* Background Accents */}
-        <div className="absolute top-0 left-0 w-full h-full -z-10">
-          <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-yellow-100 rounded-full blur-[120px] opacity-40" />
-          <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-yellow-50 rounded-full blur-[100px] opacity-50" />
+      {/* ===== Hero Section (Split & Moderate) ===== */}
+      <section className="relative py-20 px-4 sm:px-6">
+        {/* Background accents */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-yellow-100 rounded-full blur-[120px] opacity-40" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[450px] h-[450px] bg-yellow-50 rounded-full blur-[100px] opacity-50" />
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl w-full text-center"
-        >
-          <span className="inline-block px-5 py-2 mb-8 text-xs font-black tracking-[0.2em] text-[#8A6D3B] uppercase bg-yellow-100 rounded-full">
-            Clinical Excellence • Compassionate Care
-          </span>
-          
-          <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-8 leading-[1.1] text-justify md:text-center">
-            Specialized Care for Your <span className="text-[#E1C16E] italic">Complete Wellbeing.</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 font-light leading-relaxed text-justify">
-            Mental health is not a one-size-fits-all journey. Whether you are seeking 
-            support for mood disorders, cognitive challenges, or personal growth, our 
-            multidisciplinary team provides the evidence-based tools and clinical 
-            expertise to help you achieve lasting stability and clarity.
-          </p>
-
-          {/* ===== Universal CTA Card ===== */}
-          <motion.div 
-            whileHover={{ scale: 1.01 }}
-            className="relative p-1 bg-gradient-to-r from-[#FACC15] via-[#E1C16E] to-[#FACC15] rounded-[3rem] shadow-2xl overflow-hidden"
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* LEFT — TEXT */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="bg-white rounded-[2.8rem] p-10 md:p-16">
-              <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+            <span className="inline-block px-5 py-2 mb-6 text-xs font-black tracking-[0.2em] text-[#8A6D3B] uppercase bg-yellow-100 rounded-full">
+              Clinical Excellence • Compassionate Care
+            </span>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+              Specialized Care for Your{" "}
+              <span className="text-[#E1C16E] italic">Complete Wellbeing.</span>
+            </h1>
+
+            <p className="text-lg sm:text-xl text-gray-600 font-light leading-relaxed text-justify">
+              Mental health is not a one-size-fits-all journey. Whether you are
+              seeking support for mood disorders, cognitive challenges, or
+              personal growth, our multidisciplinary team provides the
+              evidence-based tools and clinical expertise to help you achieve
+              lasting stability and clarity.
+            </p>
+          </motion.div>
+
+          {/* RIGHT — CTA CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="relative p-1 bg-gradient-to-r from-[#FACC15] via-[#E1C16E] to-[#FACC15] rounded-[2.5rem] shadow-xl"
+          >
+            <div className="bg-white rounded-[2.3rem] p-8 sm:p-10 text-center">
+              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-4">
                 Ready to start your journey?
               </h2>
-              <p className="text-lg md:text-xl text-gray-500 mb-10 font-medium text-justify md:text-center">
-                We specialize in a wide range of conditions and are here to help you 
-                navigate your path to recovery. Take the first step today.
+
+              <p className="text-gray-500 mb-8 font-medium text-justify">
+                We specialize in a wide range of conditions and are here to help
+                you navigate your path to recovery. Take the first step today.
               </p>
-              
-              <button 
+
+              <button
                 onClick={() => setIsModalOpen(true)}
-                className="group relative inline-flex items-center justify-center px-14 py-5 font-bold text-white transition-all duration-300 bg-gray-900 rounded-2xl hover:bg-gray-800 hover:shadow-2xl transform hover:-translate-y-1"
+                className="w-full py-4 bg-gray-900 text-white font-extrabold rounded-2xl hover:bg-gray-800 transition-all"
               >
                 Book an Appointment
               </button>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* ===== Universal Selection Modal ===== */}
+      {/* ===== Selection Modal ===== */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-md">
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 30 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 30 }}
-              className="bg-white p-10 md:p-12 rounded-[2.5rem] shadow-2xl max-w-sm w-full text-center border border-gray-100"
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white p-8 rounded-[2rem] shadow-2xl max-w-sm w-full text-center"
             >
-              <div className="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-[#E1C16E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-              </div>
-              
-              <h3 className="text-2xl font-black text-gray-900 mb-2">Selection Option</h3>
-              <p className="text-gray-500 mb-8 font-medium">Please choose your payment or coverage method to view available times.</p>
-              
+              <h3 className="text-2xl font-black text-gray-900 mb-2">
+                Selection Option
+              </h3>
+              <p className="text-gray-500 mb-8 font-medium">
+                Please choose your payment or coverage method to view available
+                times.
+              </p>
+
               <div className="flex flex-col gap-4">
-                <button 
-                  onClick={() => router.push('/insurances')}
-                  className="w-full py-4 bg-[#FACC15] text-gray-900 font-extrabold rounded-2xl hover:shadow-lg transition-all transform hover:-translate-y-1"
+                {/* INSURANCE — UPDATED LINK */}
+                <a
+                  href="https://care.headway.co/providers/raymond-obiajulu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 bg-[#FACC15] text-gray-900 font-extrabold rounded-2xl hover:shadow-lg transition-all"
                 >
                   Insurance
-                </button>
-                <button 
-                  onClick={() => router.push('/selfpay')}
-                  className="w-full py-4 bg-gray-900 text-white font-extrabold rounded-2xl hover:shadow-lg transition-all transform hover:-translate-y-1"
+                </a>
+
+                <button
+                  className="w-full py-4 bg-gray-900 text-white font-extrabold rounded-2xl hover:shadow-lg transition-all"
                 >
                   Self Pay
                 </button>
-                <button 
+
+                <button
                   onClick={() => setIsModalOpen(false)}
-                  className="mt-6 text-gray-400 hover:text-gray-600 text-xs font-black uppercase tracking-widest transition-colors"
+                  className="mt-4 text-gray-400 hover:text-gray-600 text-xs font-black uppercase tracking-widest"
                 >
                   Go Back
                 </button>
