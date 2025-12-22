@@ -64,7 +64,8 @@ export default function RaymondProfile() {
               <p className="text-xl font-semibold text-[#306EFF] mt-1">
                 Psychiatric Mental Health NP  
               </p>
-              <p className="text-gray-600 italic">5 years of experience</p>
+              {/* UPDATED: Experience changed to 10 years */}
+              <p className="text-gray-600 italic">10 years of experience</p>
 
               <div className="mt-8 w-full space-y-4">
                 <InfoItem icon={FaMapMarkerAlt} text="Virtual Care (Licensed in Texas)" />
@@ -103,7 +104,6 @@ export default function RaymondProfile() {
                         <InfoItem icon={FaCheckCircle} text="Medication Management" />
                         <InfoItem icon={FaCheckCircle} text="Individual Therapy" />
                         <InfoItem icon={FaCheckCircle} text="CBT, Motivational Interviewing" />
-                        {/* Updated to include Teens */}
                         <InfoItem icon={FaCheckCircle} text="Teens, Adults & Seniors" />
                     </div>
                 </div>
@@ -201,7 +201,8 @@ export default function RaymondProfile() {
                     Qualifications
                 </h2>
                 <div className="mt-4 space-y-3 text-gray-700">
-                    <p><strong>Years of experience:</strong> 5 years</p>
+                    {/* UPDATED: Experience changed to 10 years */}
+                    <p><strong>Years of experience:</strong> 10 years</p>
                     <p><strong>Training:</strong> MSN (Walden University)</p>
                     <p><strong>License type:</strong> APN – Texas</p>
                     <p><strong>Licensed in:</strong> Texas</p>
