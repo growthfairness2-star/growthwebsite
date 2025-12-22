@@ -14,6 +14,16 @@ export default function MentalHealthBlog() {
   // MENTAL HEALTH BLOG POSTS
   // ======================================================
   const blogs = [
+
+    {
+      title: "Anxiety Disorders: Causes, Symptoms, Treatment & Types",
+      image: "/blog6.png",
+      link: "/anxiety-disorders-causes-symptoms-treatment-and-types",
+      dateDisplay: "Dec 22, 2025",
+      dateISO: "2025-12-22",
+      objectPosition: "object-center",
+    },
+    
     {
       title: "The Cycle of Self-Medication: Why We Reach for Relief",
       image: "/blog5.png",
