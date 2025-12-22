@@ -28,7 +28,7 @@ export default function OpeningHours() {
             <div className="flex justify-between items-center border-b border-gray-100 pb-4">
               <span className="font-bold text-gray-800">Monday – Saturday</span>
               <span className="text-[#FFAA00] font-black bg-[#FFF9E5] px-4 py-1 rounded-lg">
-                9:00 AM – 7:00 PM
+                8:00 AM – 7:00 PM
               </span>
             </div>
 
