@@ -14,6 +14,16 @@ export default function MentalHealthBlog() {
   // MENTAL HEALTH BLOG POSTS
   // ======================================================
   const blogs = [
+    
+    {
+      title: "Burnout: Symptoms, Treatment, and Coping Strategy Tips",
+      image: "/blog7.png",
+      link: "/burnout-symptoms-treatment-and-coping-strategy-tips",
+      dateDisplay: "Dec 23, 2025",
+      dateISO: "2025-12-23",
+      objectPosition: "object-center",
+    },
+
 
     {
       title: "Anxiety Disorders: Causes, Symptoms, Treatment & Types",
