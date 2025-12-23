@@ -6,6 +6,8 @@ import Footer from "../Footer";
 import { motion, AnimatePresence } from "framer-motion";
 
 /** * SEO CONFIGURATION */
+const BASE_URL = "https://www.growthfairness.com";
+
 const metadata = {
   title: "Anxiety Disorders: Causes, Symptoms, Treatment & Types",
   description: "A deep-dive educational guide on the neurobiology, types, and recovery paths for anxiety disorders.",
@@ -18,8 +20,9 @@ const metadata = {
     "mental health education", 
     "anxiety treatment protocols"
   ],
-  image: "/blog6.png",
-  url: "https://growthfairness.com/anxiety-disorders-guide"
+  // ABSOLUTE URLS FOR SOCIAL MEDIA CRAWLERS
+  image: `${BASE_URL}/blog6.png`,
+  url: `${BASE_URL}/anxiety-disorders-causes-symptoms-treatment-and-types`
 };
 
 export default function ComprehensiveAnxietyBlog() {
@@ -33,16 +36,21 @@ export default function ComprehensiveAnxietyBlog() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+      {/* Standard SEO */}
       <title>{metadata.title}</title>
       <meta name="description" content={metadata.description} />
       <meta name="keywords" content={metadata.keywords.join(", ")} />
 
+      {/* Facebook / Open Graph (Absolute URLs Required) */}
       <meta property="og:type" content="article" />
       <meta property="og:url" content={metadata.url} />
       <meta property="og:title" content={metadata.title} />
       <meta property="og:description" content={metadata.description} />
       <meta property="og:image" content={metadata.image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
 
+      {/* Twitter (Absolute URLs Required) */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={metadata.url} />
       <meta name="twitter:title" content={metadata.title} />
@@ -83,7 +91,7 @@ export default function ComprehensiveAnxietyBlog() {
           className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[80vh] relative"
         >
           <Image
-            src={metadata.image}
+            src="/blog6.png"
             alt="Educational guide to mental health and anxiety disorders"
             fill
             priority
@@ -159,7 +167,6 @@ export default function ComprehensiveAnxietyBlog() {
           <section className="mb-16 sm:mb-20">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">The Symptomatology</h2>
 
-            {/* FIXED: Added a shadow indicator and better container for mobile scrolling */}
             <div className="relative">
               <div className="overflow-x-auto pb-4 -mx-1 px-1">
                 <table className="w-full min-w-[500px] text-left border-collapse border-spacing-0">
