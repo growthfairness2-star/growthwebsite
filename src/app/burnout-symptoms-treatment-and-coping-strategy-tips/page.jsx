@@ -39,7 +39,7 @@ export default function BurnoutGuideBlog() {
       <meta name="keywords" content={metadata.keywords.join(", ")} />
 
       {/* ===== Hero Section ===== */}
-      <section className="flex flex-col md:flex-row items-center justify-between overflow-hidden bg-orange-50/30 shadow-sm border-b border-orange-100 rounded-b-[2rem] md:rounded-b-[3rem]">
+      <section className="flex flex-col md:flex-row items-center justify-between overflow-hidden bg-yellow-50/40 shadow-sm border-b border-yellow-200 rounded-b-[2rem] md:rounded-b-[3rem]">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -51,7 +51,7 @@ export default function BurnoutGuideBlog() {
             <span
               className="font-light italic"
               style={{
-                background: "linear-gradient(90deg, #F97316, #FB923C)",
+                background: "linear-gradient(90deg, #EAB308, #FACC15)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -92,7 +92,7 @@ export default function BurnoutGuideBlog() {
       >
         <div className="prose prose-base sm:prose-lg max-w-full overflow-hidden break-words">
           
-          <p className="text-lg sm:text-2xl leading-relaxed mb-10 font-serif italic border-l-4 sm:border-l-8 border-[#F97316] pl-4 sm:pl-8 text-gray-700 text-justify">
+          <p className="text-lg sm:text-2xl leading-relaxed mb-10 font-serif italic border-l-4 sm:border-l-8 border-[#EAB308] pl-4 sm:pl-8 text-gray-700 text-justify">
             Burnout is not a sign of weakness; it is a sign that you have been strong for too long without the necessary support or resources to replenish your internal battery.
           </p>
 
@@ -104,20 +104,20 @@ export default function BurnoutGuideBlog() {
           </section>
 
           <section className="mb-12 sm:mb-20">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 border-b-4 border-[#FB923C] inline-block">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 border-b-4 border-[#FACC15] inline-block">
               The Three Pillars of Burnout
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
               <div className="bg-white">
-                <h3 className="text-lg sm:text-xl font-bold mb-4 text-[#C2410C]">1. Emotional Exhaustion</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-4 text-[#A16207]">1. Emotional Exhaustion</h3>
                 <p className="text-gray-700 text-justify">
                   This is the "core" of burnout. You feel drained, used up, and like you have nothing left to give to your clients, coworkers, or family.
                 </p>
               </div>
 
               <div className="bg-white">
-                <h3 className="text-lg sm:text-xl font-bold mb-4 text-[#C2410C]">2. Depersonalization</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-4 text-[#A16207]">2. Depersonalization</h3>
                 <p className="text-gray-700 text-justify">
                   A defensive mechanism where you become cynical or detached from your work. You may start seeing people as "tasks" rather than humans.
                 </p>
@@ -125,7 +125,7 @@ export default function BurnoutGuideBlog() {
             </div>
           </section>
 
-          <section className="mb-12 sm:mb-20 bg-orange-50/50 p-5 sm:p-10 rounded-2xl sm:rounded-3xl border border-orange-100">
+          <section className="mb-12 sm:mb-20 bg-yellow-50/50 p-5 sm:p-10 rounded-2xl sm:rounded-3xl border border-yellow-100">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Coping Strategy Tips</h2>
 
             <div className="space-y-4 sm:space-y-8">
@@ -135,7 +135,7 @@ export default function BurnoutGuideBlog() {
                 { title: "Somatic Grounding", content: "Burnout lives in the body. Use progressive muscle relaxation or movement to signal safety to your nervous system." }
               ].map((type, idx) => (
                 <div key={idx} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                  <h4 className="font-bold text-[#F97316] text-lg mb-2">{type.title}</h4>
+                  <h4 className="font-bold text-[#CA8A04] text-lg mb-2">{type.title}</h4>
                   <p className="text-justify text-sm sm:text-base">{type.content}</p>
                 </div>
               ))}
@@ -149,10 +149,10 @@ export default function BurnoutGuideBlog() {
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[500px] text-left border-collapse">
                   <thead>
-                    <tr className="bg-[#F97316] text-white">
-                      <th className="p-3 sm:p-4 border-b border-orange-700">Physical Signs</th>
-                      <th className="p-3 sm:p-4 border-b border-orange-700">Emotional Signs</th>
-                      <th className="p-3 sm:p-4 border-b border-orange-700">Workplace Signs</th>
+                    <tr className="bg-[#EAB308] text-white">
+                      <th className="p-3 sm:p-4 border-b border-yellow-700">Physical Signs</th>
+                      <th className="p-3 sm:p-4 border-b border-yellow-700">Emotional Signs</th>
+                      <th className="p-3 sm:p-4 border-b border-yellow-700">Workplace Signs</th>
                     </tr>
                   </thead>
                   <tbody className="text-sm sm:text-base">
@@ -161,7 +161,7 @@ export default function BurnoutGuideBlog() {
                       <td className="p-3 sm:p-4 border-b border-gray-100">Sense of Failure</td>
                       <td className="p-3 sm:p-4 border-b border-gray-100">Isolation</td>
                     </tr>
-                    <tr className="bg-orange-50/30">
+                    <tr className="bg-yellow-50/30">
                       <td className="p-3 sm:p-4 border-b border-gray-100">Lowered Immunity</td>
                       <td className="p-3 sm:p-4 border-b border-gray-100">Loss of Motivation</td>
                       <td className="p-3 sm:p-4 border-b border-gray-100">Procrastination</td>
@@ -179,7 +179,7 @@ export default function BurnoutGuideBlog() {
         </div>
 
         {/* ===== People Also Ask ===== */}
-        <section className="mt-16 sm:mt-24 pt-12 border-t border-orange-100">
+        <section className="mt-16 sm:mt-24 pt-12 border-t border-yellow-100">
           <h2 className="text-2xl sm:text-4xl font-black mb-10 text-gray-900 text-center">
             People Also Ask
           </h2>
@@ -191,8 +191,8 @@ export default function BurnoutGuideBlog() {
               { q: "Can you recover from burnout without quitting?", a: "Often yes, through boundary setting, role adjustments, and professional therapy to address underlying stress responses." },
               { q: "What is the fastest way to heal?", a: "Prioritizing sleep, seeking clinical support, and identifying the 'root cause' of the stress rather than just treating the symptoms." }
             ].map((item, idx) => (
-              <div key={idx} className="bg-orange-50/20 p-6 rounded-2xl border border-orange-100">
-                <h3 className="font-bold text-[#C2410C] text-lg mb-3">{item.q}</h3>
+              <div key={idx} className="bg-yellow-50/30 p-6 rounded-2xl border border-yellow-100">
+                <h3 className="font-bold text-[#A16207] text-lg mb-3">{item.q}</h3>
                 <p className="text-gray-700 text-sm sm:text-base text-justify">{item.a}</p>
               </div>
             ))}
@@ -201,7 +201,7 @@ export default function BurnoutGuideBlog() {
 
         {/* ===== CTA ===== */}
         <div className="mt-16 sm:mt-24 text-center">
-          <div className="p-8 sm:p-12 bg-gradient-to-br from-[#F97316] to-[#FB923C] rounded-[2rem] sm:rounded-[4rem] text-white shadow-lg">
+          <div className="p-8 sm:p-12 bg-gradient-to-br from-[#EAB308] to-[#FACC15] rounded-[2rem] sm:rounded-[4rem] text-white shadow-lg">
             <h2 className="text-2xl sm:text-4xl font-black mb-4">Are you feeling burnt out?</h2>
             <p className="text-base sm:text-xl font-light mb-8 opacity-90">
               Recovery starts with a single step. Let us help you find your balance again.
@@ -209,7 +209,7 @@ export default function BurnoutGuideBlog() {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-white text-gray-900 px-8 py-3 rounded-full font-bold text-base hover:bg-gray-100 transition-all active:scale-95"
+              className="bg-white text-gray-900 px-8 py-3 rounded-full font-bold text-base hover:bg-yellow-50 transition-all active:scale-95"
             >
               Consult a Specialist
             </button>
@@ -229,7 +229,7 @@ export default function BurnoutGuideBlog() {
             >
               <h3 className="text-xl font-bold text-gray-900 mb-6">Take Action Today</h3>
               <div className="flex flex-col gap-3">
-                <button onClick={() => router.push('/insurances')} className="w-full py-4 bg-[#F97316] text-white font-bold rounded-xl active:bg-[#ea580c]">
+                <button onClick={() => router.push('/insurances')} className="w-full py-4 bg-[#EAB308] text-white font-bold rounded-xl active:bg-[#CA8A04]">
                   Use Insurance
                 </button>
                 <button onClick={() => router.push('/selfpay')} className="w-full py-4 bg-gray-100 text-gray-900 font-bold rounded-xl active:bg-gray-200">
