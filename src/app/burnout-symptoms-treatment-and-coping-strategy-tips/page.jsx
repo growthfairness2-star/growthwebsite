@@ -230,10 +230,10 @@ export default function BurnoutGuideBlog() {
               <h3 className="text-xl font-bold text-gray-900 mb-6">Take Action Today</h3>
               <div className="flex flex-col gap-3">
                 <button onClick={() => router.push('/insurances')} className="w-full py-4 bg-[#EAB308] text-white font-bold rounded-xl active:bg-[#CA8A04]">
-                  Use Insurance
+                  All Insurances
                 </button>
                 <button onClick={() => router.push('/selfpay')} className="w-full py-4 bg-gray-100 text-gray-900 font-bold rounded-xl active:bg-gray-200">
-                  Self Pay
+                  Self Pay / out-of-pocket
                 </button>
                 <button onClick={() => setIsModalOpen(false)} className="mt-2 text-gray-400 text-sm">
                   Maybe later
