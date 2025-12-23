@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Footer from "../Footer";
 import { motion, AnimatePresence } from "framer-motion";
 
 /** * SEO CONFIGURATION 
@@ -244,8 +243,6 @@ export default function BurnoutGuideBlog() {
           </div>
         )}
       </AnimatePresence>
-
-      <Footer />
     </div>
   );
 }
