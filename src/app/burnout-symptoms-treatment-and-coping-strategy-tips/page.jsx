@@ -20,7 +20,7 @@ const metadata = {
     "mental health for professionals"
   ],
   image: "/blog-burnout.png", // Ensure this image exists in your public folder
-  url: "https://growthfairness.com/burnout-guide"
+  url: "https://growthfairness.com/"
 };
 
 export default function BurnoutGuideBlog() {
