@@ -236,10 +236,10 @@ export default function ComprehensiveAnxietyBlog() {
               <h3 className="text-xl font-bold text-gray-900 mb-6">Select Your Option</h3>
               <div className="flex flex-col gap-3">
                 <button onClick={() => router.push('/insurances')} className="w-full py-4 bg-[#FACC15] text-gray-900 font-bold rounded-xl active:bg-[#eab308]">
-                  Insurance
+                  All Insurances
                 </button>
                 <button onClick={() => router.push('/selfpay')} className="w-full py-4 bg-gray-100 text-gray-900 font-bold rounded-xl active:bg-gray-200">
-                  Self Pay
+                  Self Pay / Out-of-Pocket
                 </button>
                 <button onClick={() => setIsModalOpen(false)} className="mt-2 text-gray-400 text-sm">
                   Cancel
