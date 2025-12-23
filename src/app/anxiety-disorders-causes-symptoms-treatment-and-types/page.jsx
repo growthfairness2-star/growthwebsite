@@ -220,7 +220,7 @@ export default function ComprehensiveAnxietyBlog() {
           <div className="p-6 sm:p-12 bg-gradient-to-br from-[#FACC15] to-[#E1C16E] rounded-[2.5rem] sm:rounded-[4rem] text-white shadow-xl">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-6">Do you want to manage anxiety?</h2>
             <p className="text-lg sm:text-xl md:text-2xl font-light mb-8 sm:mb-10 opacity-90">
-              We are here to help you navigate your journey to peace.
+              We are here, to help you navigate your journey to peace.
             </p>
 
             <button
