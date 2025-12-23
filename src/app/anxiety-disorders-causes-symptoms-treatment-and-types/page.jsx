@@ -19,7 +19,7 @@ const metadata = {
     "anxiety treatment protocols"
   ],
   image: "/blog6.png",
-  url: "https://www.growthfairness.com/anxiety-disorders-causes-symptoms-treatment-and-types"
+  url: "https://growthfairness.com/anxiety-disorders-guide"
 };
 
 export default function ComprehensiveAnxietyBlog() {
@@ -32,7 +32,7 @@ export default function ComprehensiveAnxietyBlog() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-white">
       <title>{metadata.title}</title>
       <meta name="description" content={metadata.description} />
       <meta name="keywords" content={metadata.keywords.join(", ")} />
@@ -55,7 +55,7 @@ export default function ComprehensiveAnxietyBlog() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="w-full md:w-1/2 px-6 py-12 md:p-24 text-center md:text-left"
+          className="w-full md:w-1/2 px-4 sm:px-6 py-10 sm:py-12 md:p-24 text-center md:text-left"
         >
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 sm:mb-8 leading-tight text-gray-900">
             Anxiety Disorders: <br />
@@ -80,7 +80,7 @@ export default function ComprehensiveAnxietyBlog() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2 }}
-          className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[80vh] relative"
+          className="w-full md:w-1/2 h-[35vh] sm:h-[40vh] md:h-[80vh] relative"
         >
           <Image
             src={metadata.image}
@@ -99,10 +99,10 @@ export default function ComprehensiveAnxietyBlog() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="max-w-5xl mx-auto px-5 sm:px-6 md:px-12 py-16 sm:py-20 text-gray-800"
+        className="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 py-16 sm:py-20 text-gray-800"
       >
         <div className="prose prose-base sm:prose-lg max-w-none">
-          <p className="text-lg sm:text-2xl leading-relaxed mb-10 sm:mb-12 font-serif italic border-l-4 sm:border-l-8 border-[#FACC15] pl-4 sm:pl-8 text-gray-700 text-justify">
+          <p className="text-xl sm:text-2xl leading-relaxed mb-10 sm:mb-12 font-serif italic border-l-8 border-[#FACC15] pl-6 sm:pl-8 text-gray-700 text-justify">
             Anxiety is not merely "stress." It is a sophisticated, albeit often misaligned, survival mechanism. To truly understand anxiety disorders, one must look beyond the surface-level nervousness and into the intricate architecture of the human brain.
           </p>
 
@@ -138,7 +138,7 @@ export default function ComprehensiveAnxietyBlog() {
             </div>
           </section>
 
-          <section className="mb-16 sm:mb-20 bg-gray-50 p-5 sm:p-10 rounded-3xl border border-yellow-100">
+          <section className="mb-16 sm:mb-20 bg-gray-50 p-6 sm:p-10 rounded-3xl border border-yellow-100">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Clinical Classifications: The Types</h2>
 
             <div className="space-y-6 sm:space-y-8">
@@ -159,37 +159,33 @@ export default function ComprehensiveAnxietyBlog() {
           <section className="mb-16 sm:mb-20">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">The Symptomatology</h2>
 
-            {/* FIXED: Added a shadow indicator and better container for mobile scrolling */}
-            <div className="relative">
-              <div className="overflow-x-auto pb-4 -mx-1 px-1">
-                <table className="w-full min-w-[500px] text-left border-collapse border-spacing-0">
-                  <thead>
-                    <tr className="bg-[#FACC15] text-gray-900">
-                      <th className="p-4 border border-yellow-200">Physical</th>
-                      <th className="p-4 border border-yellow-200">Cognitive</th>
-                      <th className="p-4 border border-yellow-200">Behavioral</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="p-4 border border-gray-100">Tachycardia</td>
-                      <td className="p-4 border border-gray-100">Catastrophizing</td>
-                      <td className="p-4 border border-gray-100">Avoidance</td>
-                    </tr>
-                    <tr className="bg-yellow-50/50">
-                      <td className="p-4 border border-gray-100">GI Distress</td>
-                      <td className="p-4 border border-gray-100">Hyper-focus</td>
-                      <td className="p-4 border border-gray-100">Withdrawal</td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 border border-gray-100">Muscle Tension</td>
-                      <td className="p-4 border border-gray-100">Brain fog</td>
-                      <td className="p-4 border border-gray-100">Checking behaviors</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="md:hidden text-xs text-gray-400 mt-2 italic">← Scroll table horizontally to see more →</p>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[600px] text-left border-collapse">
+                <thead>
+                  <tr className="bg-[#FACC15] text-gray-900">
+                    <th className="p-4 border">Physical</th>
+                    <th className="p-4 border">Cognitive</th>
+                    <th className="p-4 border">Behavioral</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-4 border">Tachycardia</td>
+                    <td className="p-4 border">Catastrophizing</td>
+                    <td className="p-4 border">Avoidance</td>
+                  </tr>
+                  <tr className="bg-yellow-50">
+                    <td className="p-4 border">GI Distress</td>
+                    <td className="p-4 border">Hyper-focus</td>
+                    <td className="p-4 border">Withdrawal</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 border">Muscle Tension</td>
+                    <td className="p-4 border">Brain fog</td>
+                    <td className="p-4 border">Checking behaviors</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </section>
         </div>
@@ -217,7 +213,7 @@ export default function ComprehensiveAnxietyBlog() {
 
         {/* ===== CTA ===== */}
         <div className="mt-20 sm:mt-24 text-center">
-          <div className="p-6 sm:p-12 bg-gradient-to-br from-[#FACC15] to-[#E1C16E] rounded-[2.5rem] sm:rounded-[4rem] text-white shadow-xl">
+          <div className="p-8 sm:p-12 bg-gradient-to-br from-[#FACC15] to-[#E1C16E] rounded-[3rem] sm:rounded-[4rem] text-white shadow-xl">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-6">Do you want to manage anxiety?</h2>
             <p className="text-lg sm:text-xl md:text-2xl font-light mb-8 sm:mb-10 opacity-90">
               We are here to help you navigate your journey to peace.
@@ -225,7 +221,7 @@ export default function ComprehensiveAnxietyBlog() {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-white text-gray-900 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-gray-100 transition-all shadow-lg active:scale-95"
+              className="bg-white text-gray-900 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-gray-100 transition-all shadow-lg"
             >
               Book an Appointment
             </button>
@@ -236,7 +232,7 @@ export default function ComprehensiveAnxietyBlog() {
       {/* ===== Modal ===== */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/50 backdrop-blur-sm">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -251,7 +247,7 @@ export default function ComprehensiveAnxietyBlog() {
                 <button onClick={() => router.push('/selfpay')} className="w-full py-4 bg-gray-100 text-gray-900 font-bold rounded-xl hover:bg-gray-200 transition-colors">
                   Self Pay
                 </button>
-                <button onClick={() => setIsModalOpen(false)} className="mt-4 text-gray-400 text-sm font-medium hover:text-gray-600">
+                <button onClick={() => setIsModalOpen(false)} className="mt-4 text-gray-400 text-sm font-medium">
                   Cancel
                 </button>
               </div>
