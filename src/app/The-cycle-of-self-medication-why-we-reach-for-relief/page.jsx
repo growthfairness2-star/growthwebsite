@@ -1,10 +1,13 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Footer from "../Footer"; // Ensure the path matches your project structure
 
 export default function SelfMedicationCycle() {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -39,9 +42,7 @@ export default function SelfMedicationCycle() {
             The Cycle of Self-Medication: Why We Reach for Relief
           </h1>
 
-          <p className="text-gray-600 text-sm md:text-base mb-6">
-            Dec 16, 2025
-          </p>
+          <p className="text-gray-600 text-sm md:text-base mb-6">Dec 16, 2025</p>
 
           <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0 text-justify">
             Substance use often begins not as a search for a high, but as a
@@ -72,7 +73,8 @@ export default function SelfMedicationCycle() {
       <motion.section
         variants={fadeUp}
         initial="hidden"
-        animate="show"
+        whileInView="show"
+        viewport={{ once: true }}
         className="max-w-4xl mx-auto px-6 md:px-10 py-16 text-gray-800"
       >
         <p className="text-lg leading-relaxed mb-6 text-justify">
@@ -128,19 +130,76 @@ export default function SelfMedicationCycle() {
           wears off.
         </p>
 
-        {/* CTA BUTTON */}
+        {/* ===== CALL TO ACTION BANNER ===== */}
+        <div className="mt-16 sm:mt-24 text-center">
+          <div className="p-8 sm:p-12 bg-gradient-to-br from-[#FACC15] to-[#E1C16E] rounded-[2rem] sm:rounded-[4rem] text-white shadow-lg">
+            <h2 className="text-2xl sm:text-4xl font-black mb-4">
+              Break the Cycle Today
+            </h2>
+            <p className="text-base sm:text-xl font-light mb-8 opacity-90">
+              Recovery starts with addressing the root cause. We are here to
+              support you.
+            </p>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-white text-gray-900 px-8 py-3 rounded-full font-bold text-base hover:bg-gray-100 transition-all active:scale-95"
+            >
+              Book an Appointment
+            </button>
+          </div>
+        </div>
+
+        {/* SECONDARY CTA */}
         <div className="mt-12 text-center">
           <button
             onClick={() => router.push("/blog")}
-            className="px-8 py-3 rounded-full font-semibold text-white shadow-md transition hover:opacity-90"
-            style={{
-              background: "linear-gradient(90deg, #000000ff, #000000ff)",
-            }}
+            className="text-gray-400 hover:text-gray-600 transition text-sm font-medium"
           >
-            Explore More Insights
+            ← Back to Blog Resources
           </button>
         </div>
       </motion.section>
+
+      {/* ===== POP-UP MODAL ===== */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white p-6 sm:p-10 rounded-[2rem] shadow-2xl max-w-sm w-full text-center"
+            >
+              <h3 className="text-xl font-bold text-gray-900 mb-6">
+                Select Your Option
+              </h3>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => router.push("/insurances")}
+                  className="w-full py-4 bg-[#FACC15] text-gray-900 font-bold rounded-xl active:bg-[#eab308]"
+                >
+                  All Insurances
+                </button>
+                <button
+                  onClick={() => router.push("/selfpay")}
+                  className="w-full py-4 bg-gray-100 text-gray-900 font-bold rounded-xl active:bg-gray-200"
+                >
+                  Self Pay / Out-of-Pocket
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="mt-2 text-gray-400 text-sm"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      <Footer />
     </div>
   );
 }

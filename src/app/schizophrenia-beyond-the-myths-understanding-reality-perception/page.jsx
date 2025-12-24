@@ -1,10 +1,13 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Footer from "../Footer"; // Ensure the path matches your project structure
 
 export default function SchizophreniaBeyondTheMythsUnderstandingRealityPerception() {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -44,9 +47,9 @@ export default function SchizophreniaBeyondTheMythsUnderstandingRealityPerceptio
           </p>
 
           <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0 text-justify">
-            Schizophrenia is often surrounded by fear and misunderstanding.
-            In reality it is a complex mental health condition that affects how a person
-            experiences thoughts perceptions and meaning.
+            Schizophrenia is often surrounded by fear and misunderstanding. In
+            reality it is a complex mental health condition that affects how a
+            person experiences thoughts perceptions and meaning.
           </p>
         </motion.div>
 
@@ -71,55 +74,117 @@ export default function SchizophreniaBeyondTheMythsUnderstandingRealityPerceptio
       <motion.section
         variants={fadeUp}
         initial="hidden"
-        animate="show"
+        whileInView="show"
+        viewport={{ once: true }}
         className="max-w-4xl mx-auto px-6 md:px-10 py-16 text-gray-800"
       >
         <p className="text-lg leading-relaxed mb-6 text-justify">
-          Schizophrenia affects the way the brain processes information.
-          People living with this condition may experience changes in how they interpret
-          reality. Thoughts can feel disorganized or disconnected. Sounds images or ideas
-          may seem more intense or unusually meaningful. These experiences are not a choice
-          and they are not a reflection of weakness or character.
+          Schizophrenia affects the way the brain processes information. People
+          living with this condition may experience changes in how they
+          interpret reality. Thoughts can feel disorganized or disconnected.
+          Sounds images or ideas may seem more intense or unusually meaningful.
+          These experiences are not a choice and they are not a reflection of
+          weakness or character.
         </p>
 
         <p className="text-lg leading-relaxed mb-6 text-justify">
-          One of the most challenging aspects of schizophrenia is the feeling of being
-          misunderstood. A person may struggle to explain what they are experiencing.
-          Conversations can become difficult and social withdrawal may follow.
-          This isolation often comes from confusion or fear rather than a lack of interest
-          in others. Compassion and patience from loved ones can make a powerful difference.
+          One of the most challenging aspects of schizophrenia is the feeling of
+          being misunderstood. A person may struggle to explain what they are
+          experiencing. Conversations can become difficult and social withdrawal
+          may follow. This isolation often comes from confusion or fear rather
+          than a lack of interest in others. Compassion and patience from loved
+          ones can make a powerful difference.
         </p>
 
         <p className="text-lg leading-relaxed mb-6 text-justify">
           Another important truth is that schizophrenia does not erase identity.
-          People with this condition still have goals creativity humor and emotional depth.
-          With the right support many are able to build meaningful routines and relationships.
-          Stability often comes gradually through consistent care understanding environments
-          and professional guidance tailored to individual needs.
+          People with this condition still have goals creativity humor and
+          emotional depth. With the right support many are able to build
+          meaningful routines and relationships. Stability often comes gradually
+          through consistent care understanding environments and professional
+          guidance tailored to individual needs.
         </p>
 
         <p className="text-lg leading-relaxed mb-6 text-justify">
-          Education plays a key role in reducing stigma.
-          When schizophrenia is viewed with empathy rather than fear it becomes easier to
-          recognize the human experience behind the diagnosis. Recovery is not about forcing
-          someone to be different. It is about helping them feel safe grounded and supported.
-          With understanding structure and hope people living with schizophrenia can find
-          clarity purpose and moments of peace in their lives.
+          Education plays a key role in reducing stigma. When schizophrenia is
+          viewed with empathy rather than fear it becomes easier to recognize
+          the human experience behind the diagnosis. Recovery is not about
+          forcing someone to be different. It is about helping them feel safe
+          grounded and supported. With understanding structure and hope people
+          living with schizophrenia can find clarity purpose and moments of
+          peace in their lives.
         </p>
 
-        {/* CTA BUTTON */}
+        {/* ===== CALL TO ACTION BANNER ===== */}
+        <div className="mt-16 sm:mt-24 text-center">
+          <div className="p-8 sm:p-12 bg-gradient-to-br from-[#FACC15] to-[#E1C16E] rounded-[2rem] sm:rounded-[4rem] text-white shadow-lg">
+            <h2 className="text-2xl sm:text-4xl font-black mb-4">
+              Seeking Professional Guidance?
+            </h2>
+            <p className="text-base sm:text-xl font-light mb-8 opacity-90">
+              We provide compassionate support for navigating complex mental
+              health journeys.
+            </p>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-white text-gray-900 px-8 py-3 rounded-full font-bold text-base hover:bg-gray-100 transition-all active:scale-95"
+            >
+              Book an Appointment
+            </button>
+          </div>
+        </div>
+
+        {/* SECONDARY CTA */}
         <div className="mt-12 text-center">
           <button
             onClick={() => router.push("/blog")}
-            className="px-8 py-3 rounded-full font-semibold text-white shadow-md transition hover:opacity-90"
-            style={{
-              background: "linear-gradient(90deg, #000000ff, #000000ff)",
-            }}
+            className="text-gray-500 hover:text-gray-800 transition text-sm font-medium"
           >
-            Explore Mental Health Resources
+            ← Back to Blog Resources
           </button>
         </div>
       </motion.section>
+
+      {/* ===== POP-UP MODAL ===== */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white p-6 sm:p-10 rounded-[2rem] shadow-2xl max-w-sm w-full text-center"
+            >
+              <h3 className="text-xl font-bold text-gray-900 mb-6">
+                Select Your Option
+              </h3>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => router.push("/insurances")}
+                  className="w-full py-4 bg-[#FACC15] text-gray-900 font-bold rounded-xl active:bg-[#eab308]"
+                >
+                  All Insurances
+                </button>
+                <button
+                  onClick={() => router.push("/selfpay")}
+                  className="w-full py-4 bg-gray-100 text-gray-900 font-bold rounded-xl active:bg-gray-200"
+                >
+                  Self Pay / Out-of-Pocket
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="mt-2 text-gray-400 text-sm"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      <Footer />
     </div>
   );
 }
