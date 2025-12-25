@@ -14,6 +14,15 @@ export default function MentalHealthBlog() {
   // MENTAL HEALTH BLOG POSTS
   // ======================================================
   const blogs = [
+
+    {
+      title: " Insomnia: What It Is, Causes, Symptoms & Treatment",
+      image: "/blog8.png",
+      link: "/insomnia-what-it-is-causes-symptoms-and-treatment",
+      dateDisplay: "Dec 25, 2025",
+      dateISO: "2025-12-25",
+      objectPosition: "object-center",
+    },
     
     {
       title: "Burnout: Symptoms, Treatment, and Coping Strategy Tips",
