@@ -15,6 +15,33 @@ export default function MentalHealthBlog() {
   // ======================================================
   const blogs = [
 
+
+     {
+      title: " Schizophrenia - Symptoms and causes",
+      image: "/blog11.png",
+      link: "/schizophrenia-symptoms-and-causes",
+      dateDisplay: "Dec 28, 2025",
+      dateISO: "2025-12-28",
+      objectPosition: "object-center",
+    },
+
+     {
+      title: " Post-traumatic stress disorder (PTSD) - Symptoms and causes",
+      image: "/blog10.png",
+      link: "/post-traumatic-stress-disorder-symptoms-and-causes",
+      dateDisplay: "Dec 27, 2025",
+      dateISO: "2025-12-27",
+      objectPosition: "object-center",
+    },
+
+     {
+      title: " Borderline personality disorder - Symptoms and causes",
+      image: "/blog9.png",
+      link: "/borderline-personality-disorder-symptoms-and-causes",
+      dateDisplay: "Dec 26, 2025",
+      dateISO: "2025-12-26",
+      objectPosition: "object-center",
+    },
     {
       title: " Insomnia: What It Is, Causes, Symptoms & Treatment",
       image: "/blog8.png",
