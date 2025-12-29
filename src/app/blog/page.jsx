@@ -15,6 +15,70 @@ export default function MentalHealthBlog() {
   // ======================================================
   const blogs = [
 
+     {
+  title: "How to Restore Healthy Sleep and Strengthen Your Mental Wellbeing",
+  image: "/blog19.png",
+  link: "/how-to-restore-healthy-sleep-and-strengthen-your-mental-wellbeing",
+  dateDisplay: "Jan 5, 2026",
+  dateISO: "2026-01-05",
+  objectPosition: "object-center",
+},
+{
+  title: "Practical Ways to Recover from Emotional Burnout and Feel Balanced Again",
+  image: "/blog18.png",
+  link: "/practical-ways-to-recover-from-emotional-burnout-and-feel-balanced-again",
+  dateDisplay: "Jan 4, 2026",
+  dateISO: "2026-01-04",
+  objectPosition: "object-center",
+},
+{
+  title: "Simple Techniques to Manage Chronic Stress and Protect Your Mental Health",
+  image: "/blog17.png",
+  link: "/simple-techniques-to-manage-chronic-stress-and-protect-your-mental-health",
+  dateDisplay: "Jan 3, 2026",
+  dateISO: "2026-01-03",
+  objectPosition: "object-center",
+},
+{
+  title: "How to Understand and Regulate Emotional Triggers from Past Trauma",
+  image: "/blog16.png",
+  link: "/how-to-understand-and-regulate-emotional-triggers-from-past-trauma",
+  dateDisplay: "Jan 2, 2026",
+  dateISO: "2026-01-02",
+  objectPosition: "object-center",
+},
+{
+  title: "Starting the New Year with Emotional Clarity and Realistic Mental Goals",
+  image: "/blog15.png",
+  link: "/starting-the-new-year-with-emotional-clarity-and-realistic-mental-goals",
+  dateDisplay: "Jan 1, 2026",
+  dateISO: "2026-01-01",
+  objectPosition: "object-center",
+},
+{
+  title: "Living Well with Bipolar Disorder: Building Stability and Routine",
+  image: "/blog14.png",
+  link: "/living-well-with-bipolar-disorder-building-stability-and-routine",
+  dateDisplay: "Dec 31, 2025",
+  dateISO: "2025-12-31",
+  objectPosition: "object-center",
+},
+{
+  title: "Healthy Ways to Navigate Depression and Rebuild Daily Motivation",
+  image: "/blog13.png",
+  link: "/healthy-ways-to-navigate-depression-and-rebuild-daily-motivation",
+  dateDisplay: "Dec 30, 2025",
+  dateISO: "2025-12-30",
+  objectPosition: "object-center",
+},
+{
+  title: "Effective Strategies to Calm Anxiety and Regain Mental Control",
+  image: "/blog12.png",
+  link: "/effective-strategies-to-calm-anxiety-and-regain-mental-control",
+  dateDisplay: "Dec 29, 2025",
+  dateISO: "2025-12-29",
+  objectPosition: "object-center",
+},
 
      {
       title: " Schizophrenia - Symptoms and causes",
@@ -114,15 +178,17 @@ export default function MentalHealthBlog() {
   ];
 
   // DATE FILTER
-  const handleFilter = (e) => {
-    const selectedDate = new Date(e.target.value);
-    setFilterDate(e.target.value);
-    const filtered = blogs.filter(
-      (post) =>
-        new Date(post.dateISO).toDateString() === selectedDate.toDateString()
-    );
-    setFilteredPosts(filtered);
-  };
+ const handleFilter = (e) => {
+  const selectedDate = e.target.value; // yyyy-mm-dd
+  setFilterDate(selectedDate);
+
+  const filtered = blogs.filter(
+    (post) => post.dateISO === selectedDate
+  );
+
+  setFilteredPosts(filtered);
+};
+
 
   // PAGINATION
   const [currentPage, setCurrentPage] = useState(1);
@@ -138,8 +204,15 @@ export default function MentalHealthBlog() {
     return () =>
       window.removeEventListener("resize", updatePostsPerPage);
   }, []);
+  const todayISO = new Date().toISOString().split("T")[0];
 
-  const list = filterDate ? filteredPosts : blogs;
+  const visibleBlogs = blogs.filter(
+  (post) => post.dateISO <= todayISO
+);
+
+
+const list = filterDate ? filteredPosts : visibleBlogs;
+
 
   const totalPages = Math.ceil(list.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
@@ -211,7 +284,7 @@ export default function MentalHealthBlog() {
           <input
             type="date"
             min="2025-12-12"
-            max="2025-12-15"
+            max="2029-12-15"
             onChange={handleFilter}
             value={filterDate}
             className="border border-[#ccc] rounded-lg px-4 py-2 w-[230px]"
