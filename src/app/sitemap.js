@@ -1,9 +1,10 @@
 export default async function sitemap() {
-  const baseUrl = "https://growthfairness.com/";
+  // Corrected: Removed trailing slash from the base URL
+  const baseUrl = "https://growthfairness.com";
 
   return [
     {
-      url: `${baseUrl}/`,
+      url: `${baseUrl}`,
       lastModified: new Date(),
     },
     {
