@@ -2,21 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaWhatsapp, FaTwitter } from "react-icons/fa";
+import { 
+  FaFacebookF, 
+  FaInstagram, 
+  FaLinkedinIn, 
+  FaYoutube, 
+  FaTiktok 
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6"; // Using the modern X icon
 
 export default function Footer() {
-  const websiteUrl = "https://growthfairness.com";
-
   const psychologyTodayUrl = "https://www.psychologytoday.com/us/psychiatrists/growthfairness-psychiatry-pllc-raymond-obiajulu-houston-tx/1172295";
+  
+  // Base social URL
+  const socialHandle = "growthfairness";
 
-  const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
-  const whatsappShare = `https://api.whatsapp.com/send?text=${websiteUrl}`;
-  const twitterShare = `https://twitter.com/intent/tweet?url=${websiteUrl}&text=Check%20out%20this%20website`;
+  const socialLinks = [
+    { name: "Facebook", icon: <FaFacebookF />, url: `https://facebook.com/${socialHandle}`, color: "bg-[#1877F2]" },
+    { name: "Instagram", icon: <FaInstagram />, url: `https://instagram.com/${socialHandle}`, color: "bg-[#E4405F]" },
+    { name: "X", icon: <FaXTwitter />, url: `https://x.com/${socialHandle}`, color: "bg-[#000000]" },
+    { name: "LinkedIn", icon: <FaLinkedinIn />, url: `https://linkedin.com/company/${socialHandle}`, color: "bg-[#0A66C2]" },
+    { name: "YouTube", icon: <FaYoutube />, url: `https://youtube.com/@${socialHandle}`, color: "bg-[#FF0000]" },
+    { name: "TikTok", icon: <FaTiktok />, url: `https://tiktok.com/@${socialHandle}`, color: "bg-[#000000]" },
+  ];
 
   return (
     <footer className="w-full bg-[#F4F9FA] text-[#1A1A1A] py-16 mt-20 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-12">
-        {/* COLUMN 1 — CENTERED ON MOBILE */}
+        
+        {/* COLUMN 1 — BRANDING & SOCIALS */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <Image
             src="/logoweb.png"
@@ -29,48 +43,36 @@ export default function Footer() {
           <p className="text-gray-600 mb-3">Secured & Verified by:</p>
 
           <div className="flex items-center gap-4 mb-8">
-            {/* START: MODIFICATION FOR logo1.png */}
             <Link
               href={psychologyTodayUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-80 transition-opacity" // Optional: Added hover effect
+              className="hover:opacity-80 transition-opacity"
             >
               <Image src="/logo1.png" width={120} height={60} alt="Security Logo 1" />
             </Link>
-            {/* END: MODIFICATION FOR logo1.png */}
-
             <Image src="/logo3.png" width={120} height={60} alt="Security Logo 2" />
           </div>
 
-          <h3 className="text-lg font-semibold mb-3">Share This Website</h3>
+          <h3 className="text-lg font-semibold mb-4">Follow Us on Social Media</h3>
 
-          <div className="flex gap-4 text-2xl">
-            <a
-              href={facebookShare}
-              target="_blank"
-              className="p-3 rounded-full bg-[#3b5998] text-white hover:opacity-80 transition"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href={whatsappShare}
-              target="_blank"
-              className="p-3 rounded-full bg-[#25D366] text-white hover:opacity-80 transition"
-            >
-              <FaWhatsapp />
-            </a>
-            <a
-              href={twitterShare}
-              target="_blank"
-              className="p-3 rounded-full bg-[#1DA1F2] text-white hover:opacity-80 transition"
-            >
-              <FaTwitter />
-            </a>
+          <div className="flex flex-wrap justify-center md:justify-start gap-3 text-xl">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2.5 rounded-full text-white ${social.color} hover:scale-110 transition-transform`}
+                aria-label={social.name}
+              >
+                {social.icon}
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* COLUMN 2 — CONTACT INFO (CENTERED ON MOBILE) */}
+        {/* COLUMN 2 — CONTACT INFO */}
         <div className="text-center md:text-left">
           <h3 className="text-xl font-semibold mb-4 text-[#FFAA00]">
             GrowthFairness Psychiatry, PLLC.
@@ -103,11 +105,8 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* COLUMNS 3 & 4 — HORIZONTAL ON MOBILE */}
-        {/* We use px-2 to ensure text doesn't hit the screen edges on very small devices */}
+        {/* COLUMNS 3 & 4 — LINKS */}
         <div className="flex flex-row md:contents gap-2 sm:gap-8 px-2 md:px-0">
-
-          {/* COLUMN 3 — QUICK LINKS */}
           <div className="flex-1 text-left">
             <h3 className="text-lg md:text-xl font-semibold mb-4 text-[#FFAA00]">Quick Links</h3>
             <ul className="space-y-3 text-gray-700 text-sm md:text-base">
@@ -120,7 +119,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 4 — OUR SERVICES */}
           <div className="flex-1 text-left">
             <h3 className="text-lg md:text-xl font-semibold mb-4 text-[#FFAA00]">Our Services</h3>
             <ul className="space-y-3 text-gray-700 text-sm md:text-base">
@@ -130,9 +128,7 @@ export default function Footer() {
               <li><Link href="/telepsychiatry" className="hover:text-[#FFAA00]">Telepsychiatry</Link></li>
             </ul>
           </div>
-
         </div>
-
       </div>
 
       <div className="text-center text-gray-600 text-sm mt-12 border-t border-gray-200 pt-8">

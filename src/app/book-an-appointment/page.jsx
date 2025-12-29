@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Footer from "../Footer";
+import Link from "next/link"; // Added this import
 
 /** * SEO CONFIGURATION */
 const metadata = {
@@ -112,16 +112,18 @@ export default function GeneralBookingPage() {
                   href="https://care.headway.co/providers/raymond-obiajulu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-4 bg-[#FACC15] text-gray-900 font-extrabold rounded-2xl hover:shadow-lg transition-all"
+                  className="w-full py-4 bg-[#FACC15] text-gray-900 font-extrabold rounded-2xl hover:shadow-lg transition-all flex items-center justify-center"
                 >
                   Insurance
                 </a>
 
-                <button
-                  className="w-full py-4 bg-gray-900 text-white font-extrabold rounded-2xl hover:shadow-lg transition-all"
+                {/* SELF PAY — NOW REDIRECTS TO /self-pay */}
+                <Link
+                  href="/self-pay"
+                  className="w-full py-4 bg-gray-900 text-white font-extrabold rounded-2xl hover:shadow-lg transition-all flex items-center justify-center"
                 >
                   Self Pay
-                </button>
+                </Link>
 
                 <button
                   onClick={() => setIsModalOpen(false)}
@@ -134,8 +136,6 @@ export default function GeneralBookingPage() {
           </div>
         )}
       </AnimatePresence>
-
-      <Footer />
     </div>
   );
 }
