@@ -14,16 +14,44 @@ import { FaXTwitter } from "react-icons/fa6"; // Using the modern X icon
 export default function Footer() {
   const psychologyTodayUrl = "https://www.psychologytoday.com/us/psychiatrists/growthfairness-psychiatry-pllc-raymond-obiajulu-houston-tx/1172295";
   
-  // Base social URL
-  const socialHandle = "growthfairness";
-
+  // Updated with your specific social media profile links
   const socialLinks = [
-    { name: "Facebook", icon: <FaFacebookF />, url: `https://facebook.com/${socialHandle}`, color: "bg-[#1877F2]" },
-    { name: "Instagram", icon: <FaInstagram />, url: `https://instagram.com/${socialHandle}`, color: "bg-[#E4405F]" },
-    { name: "X", icon: <FaXTwitter />, url: `https://x.com/${socialHandle}`, color: "bg-[#000000]" },
-    { name: "LinkedIn", icon: <FaLinkedinIn />, url: `https://linkedin.com/company/${socialHandle}`, color: "bg-[#0A66C2]" },
-    { name: "YouTube", icon: <FaYoutube />, url: `https://youtube.com/@${socialHandle}`, color: "bg-[#FF0000]" },
-    { name: "TikTok", icon: <FaTiktok />, url: `https://tiktok.com/@${socialHandle}`, color: "bg-[#000000]" },
+    { 
+      name: "Facebook", 
+      icon: <FaFacebookF />, 
+      url: "https://www.facebook.com/share/1DRNiJY8wk/?mibextid=wwXIfr", 
+      color: "bg-[#1877F2]" 
+    },
+    { 
+      name: "Instagram", 
+      icon: <FaInstagram />, 
+      url: "https://www.instagram.com/growthfairnesspsychiatry?igsh=MTVsbHNyYzNvcjh0aA==", 
+      color: "bg-[#E4405F]" 
+    },
+    { 
+      name: "X", 
+      icon: <FaXTwitter />, 
+      url: "https://x.com/growthfairness", 
+      color: "bg-[#000000]" 
+    },
+    { 
+      name: "LinkedIn", 
+      icon: <FaLinkedinIn />, 
+      url: "https://www.linkedin.com/company/growth-fairness-psychiatry-pllc/", 
+      color: "bg-[#0A66C2]" 
+    },
+    { 
+      name: "YouTube", 
+      icon: <FaYoutube />, 
+      url: "https://youtube.com/@growthfairnesspsychiatrypllc", 
+      color: "bg-[#FF0000]" 
+    },
+    { 
+      name: "TikTok", 
+      icon: <FaTiktok />, 
+      url: "https://www.tiktok.com/@growthfairness", 
+      color: "bg-[#000000]" 
+    },
   ];
 
   return (
@@ -95,7 +123,7 @@ export default function Footer() {
 
           <p className="mb-1 text-gray-700 font-medium">Business Address:</p>
           <a
-            href="https://maps.google.com/?q=12337+Jones+Road+Houston+Texas+77070"
+            href="https://maps.google.com/?q=12337+Jones+Road,+Houston,+Texas+77070"
             target="_blank"
             rel="noopener noreferrer"
             className="block leading-relaxed hover:text-[#FFAA00] transition-colors"
