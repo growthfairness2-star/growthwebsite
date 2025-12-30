@@ -3,6 +3,7 @@ import ConditionsTabs from "./components/ConditionsTabs";
 import FAQ from "./components/FAQ";
 import Insurances from "./components/Insurances";
 import Suicide from "./components/Suicide";
+import Reviews from "./components/Reviews";
 import CTA from "./components/CTA";
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <FAQ />
       <Insurances />
       <Suicide />
+      <Reviews />
       <CTA />
     </>
   );
