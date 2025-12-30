@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { FaStar } from "react-icons/fa";
+import React, { useRef } from "react";
 
 const testimonials = [
   { name: "Anthony Weaver", text: "I recommend Raymond. Getting back on my medication has always been a challenge but with the Right person, it can be easy and smooth! Very Easy to talk to and get you where you need to be. Thank you to Raymond and Growthfairness Psychiatry for the best support." },
@@ -16,48 +15,76 @@ const testimonials = [
   { name: "ABC Family Ngodo", text: "The service which my entire family did receive when we are going through mental breakdown from the loss of our was very therapeutic" },
   { name: "Logan Wooley", text: "Good doctors and fast service" },
   { name: "Prosper", text: "Great mental health and psychiatric care. Thank you." },
-  { name: "Allison Tyner", text: "Exceptional psychiatric care and professional guidance." } // Added text for consistency
+  { name: "Allison Tyner", text: "Exceptional psychiatric care and professional guidance." }
 ];
 
 export default function ReviewStage() {
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="bg-white py-32 font-sans selection:bg-[#FFAA00] selection:text-white">
+    <section className="bg-white py-20 font-sans selection:bg-[#FFAA00] selection:text-white overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-8 lg:px-12">
         
-        {/* SECTION HEADER: BOLD ARCHITECTURAL ALIGNMENT */}
-        <div className="flex flex-col lg:flex-row justify-between items-baseline mb-24 border-b-2 border-black pb-8">
-          <h2 className="text-[12vw] lg:text-[150px] font-black leading-[0.8] tracking-tighter text-[#1A1A1A]">
-            PROO<span className="text-[#FFAA00]">F.</span>
+        {/* HEADER SECTION */}
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 border-b-2 border-black pb-8">
+          <h2 className="text-[12vw] lg:text-[120px] font-black leading-[0.8] tracking-tighter text-[#1A1A1A]">
+            REVIEW<span className="text-[#FFAA00]">S.</span>
           </h2>
-          <div className="mt-8 lg:mt-0 text-right">
-            <p className="text-xl font-bold uppercase tracking-widest text-black">GrowthFairness Psychiatry</p>
-            <div className="flex justify-end gap-1 text-[#FFAA00] mt-2">
-              {[...Array(5)].map((_, i) => <FaStar key={i} size={20} />)}
+          
+          <div className="flex flex-col items-end mt-8 lg:mt-0">
+            {/* NAVIGATION ARROWS (STAINLESS CSS) */}
+            <div className="flex gap-2 mb-6">
+              <button 
+                onClick={() => scroll('left')}
+                className="w-12 h-12 flex items-center justify-center border-2 border-black hover:bg-[#FFAA00] transition-all group"
+                aria-label="Previous"
+              >
+                <span className="border-t-2 border-l-2 border-black w-3 h-3 -rotate-45 ml-1"></span>
+              </button>
+              <button 
+                onClick={() => scroll('right')}
+                className="w-12 h-12 flex items-center justify-center border-2 border-black hover:bg-[#FFAA00] transition-all"
+                aria-label="Next"
+              >
+                <span className="border-t-2 border-r-2 border-black w-3 h-3 rotate-45 mr-1"></span>
+              </button>
             </div>
-            <p className="text-gray-400 mt-2 font-medium">Verified Patient Documentation</p>
+            <p className="text-lg font-bold uppercase tracking-widest text-black">GrowthFairness Psychiatry</p>
           </div>
         </div>
 
-        {/* THE MASONRY GRID: TOTAL IMMERSION */}
-        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-12 space-y-12">
+        {/* HORIZONTAL SLIDER CONTAINER */}
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-8 no-scrollbar snap-x snap-mandatory pb-10"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {testimonials.map((review, index) => (
             <div 
               key={index} 
-              className="break-inside-avoid group flex flex-col border-l border-gray-100 pl-8 pb-4 transition-all hover:border-[#FFAA00]"
+              className="min-w-[300px] md:min-w-[450px] snap-start flex flex-col border-l-2 border-gray-100 pl-8 transition-all hover:border-[#FFAA00]"
             >
-              {/* QUOTE DECOR: MINIMALIST LINE */}
-              <div className="w-8 h-1 bg-[#FFAA00] mb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="flex mb-4 text-[#FFAA00] text-[10px]">
-                {[...Array(5)].map((_, i) => <FaStar key={i} />)}
+              {/* STAR ICONS (CSS ONLY) */}
+              <div className="flex gap-1 mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="text-[#FFAA00]">★</div>
+                ))}
               </div>
 
-              <blockquote className="text-xl font-medium text-[#1A1A1A] leading-tight mb-8 tracking-tight">
+              <blockquote className="text-xl md:text-2xl font-medium text-[#1A1A1A] leading-snug mb-10 italic">
                 "{review.text}"
               </blockquote>
 
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="text-sm font-black uppercase tracking-tighter border-b border-black pb-1">
+              <div className="mt-auto">
+                <div className="text-sm font-black uppercase tracking-tighter border-b-2 border-[#FFAA00] inline-block mb-1">
                   {review.name}
                 </div>
                 <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
@@ -67,8 +94,13 @@ export default function ReviewStage() {
             </div>
           ))}
         </div>
-
       </div>
+
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 }
