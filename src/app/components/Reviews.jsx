@@ -68,14 +68,6 @@ export default function ReviewStage() {
           ))}
         </div>
 
-        {/* FOOTER CALL TO ACTION: BOLD & FUNCTIONAL */}
-        <div className="mt-32 pt-12 border-t border-gray-100 flex flex-col items-center">
-          <p className="text-gray-400 mb-6 font-medium uppercase tracking-[0.3em]">Ready for your own story?</p>
-          <button className="bg-[#1A1A1A] text-white px-12 py-5 text-lg font-bold hover:bg-[#FFAA00] transition-all duration-300 rounded-full shadow-2xl hover:scale-105">
-            Book a Consultation
-          </button>
-        </div>
-
       </div>
     </section>
   );
