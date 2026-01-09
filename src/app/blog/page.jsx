@@ -14,6 +14,63 @@ export default function MentalHealthBlog() {
   // MENTAL HEALTH BLOG POSTS
   // ======================================================
   const blogs = [
+    {
+  title: "How to Calm an Overactive Mind and Stop Overthinking at Night",
+  image: "/blog26.png",
+  link: "/how-to-calm-an-overactive-mind-and-stop-overthinking-at-night",
+  dateDisplay: "Jan 12, 2026",
+  dateISO: "2026-01-12",
+  objectPosition: "object-center",
+},
+{
+  title: "Practical Ways to Build Emotional Resilience When Life Feels Uncertain",
+  image: "/blog25.png",
+  link: "/practical-ways-to-build-emotional-resilience-when-life-feels-uncertain",
+  dateDisplay: "Jan 11, 2026",
+  dateISO: "2026-01-11",
+  objectPosition: "object-center",
+},
+{
+  title: "How to Set Boundaries Without Guilt and Protect Your Mental Peace",
+  image: "/blog24.png",
+  link: "/how-to-set-boundaries-without-guilt-and-protect-your-mental-peace",
+  dateDisplay: "Jan 10, 2026",
+  dateISO: "2026-01-10",
+  objectPosition: "object-center",
+},
+{
+  title: "Simple Daily Habits That Improve Mood and Support Mental Stability",
+  image: "/blog23.png",
+  link: "/simple-daily-habits-that-improve-mood-and-support-mental-stability",
+  dateDisplay: "Jan 9, 2026",
+  dateISO: "2026-01-09",
+  objectPosition: "object-center",
+},
+{
+  title: "How to Manage Anger and Irritability in Healthy, Respectful Ways",
+  image: "/blog22.png",
+  link: "/how-to-manage-anger-and-irritability-in-healthy-respectful-ways",
+  dateDisplay: "Jan 8, 2026",
+  dateISO: "2026-01-08",
+  objectPosition: "object-center",
+},
+{
+  title: "Practical Ways to Cope With Loneliness and Feel Connected Again",
+  image: "/blog21.png",
+  link: "/practical-ways-to-cope-with-loneliness-and-feel-connected-again",
+  dateDisplay: "Jan 7, 2026",
+  dateISO: "2026-01-07",
+  objectPosition: "object-center",
+},
+{
+  title: "How to Regain Motivation After a Tough Season and Start Moving Again",
+  image: "/blog20.png",
+  link: "/how-to-regain-motivation-after-a-tough-season-and-start-moving-again",
+  dateDisplay: "Jan 6, 2026",
+  dateISO: "2026-01-06",
+  objectPosition: "object-center",
+},
+
 
      {
   title: "How to Restore Healthy Sleep and Strengthen Your Mental Wellbeing",
