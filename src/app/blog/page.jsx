@@ -15,6 +15,63 @@ export default function MentalHealthBlog() {
   // ======================================================
   const blogs = [
     {
+  title: "How to Create a Calm Morning Routine That Protects Your Mental Health",
+  image: "/blog333.png",
+  link: "/how-to-create-a-calm-morning-routine-that-protects-your-mental-health",
+  dateDisplay: "Jan 19, 2026",
+  dateISO: "2026-01-19",
+  objectPosition: "object-center",
+},
+{
+  title: "Practical Steps to Stop Self-Criticism and Build Healthier Self-Talk",
+  image: "/blog332.png",
+  link: "/practical-steps-to-stop-self-criticism-and-build-healthier-self-talk",
+  dateDisplay: "Jan 18, 2026",
+  dateISO: "2026-01-18",
+  objectPosition: "object-center",
+},
+{
+  title: "How to Feel Less Mentally Exhausted and Reset Your Mind During the Day",
+  image: "/blog31.png",
+  link: "/how-to-feel-less-mentally-exhausted-and-reset-your-mind-during-the-day",
+  dateDisplay: "Jan 17, 2026",
+  dateISO: "2026-01-17",
+  objectPosition: "object-center",
+},
+{
+  title: "Simple Ways to Heal Emotionally After a Hard Conversation or Conflict",
+  image: "/blog30.png",
+  link: "/simple-ways-to-heal-emotionally-after-a-hard-conversation-or-conflict",
+  dateDisplay: "Jan 16, 2026",
+  dateISO: "2026-01-16",
+  objectPosition: "object-center",
+},
+{
+  title: "How to Quiet Intrusive Thoughts Without Fighting Your Mind",
+  image: "/blog29.png",
+  link: "/how-to-quiet-intrusive-thoughts-without-fighting-your-mind",
+  dateDisplay: "Jan 15, 2026",
+  dateISO: "2026-01-15",
+  objectPosition: "object-center",
+},
+{
+  title: "Practical Ways to Reduce Social Anxiety and Feel More Confident in Public",
+  image: "/blog28.png",
+  link: "/practical-ways-to-reduce-social-anxiety-and-feel-more-confident-in-public",
+  dateDisplay: "Jan 14, 2026",
+  dateISO: "2026-01-14",
+  objectPosition: "object-center",
+},
+{
+  title: "How to Stop a Panic Spiral and Feel Grounded in Under 10 Minutes",
+  image: "/blog27.png",
+  link: "/how-to-stop-a-panic-spiral-and-feel-grounded-in-under-10-minutes",
+  dateDisplay: "Jan 13, 2026",
+  dateISO: "2026-01-13",
+  objectPosition: "object-center",
+},
+
+    {
   title: "How to Calm an Overactive Mind and Stop Overthinking at Night",
   image: "/blog26.png",
   link: "/how-to-calm-an-overactive-mind-and-stop-overthinking-at-night",
